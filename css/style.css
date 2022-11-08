@@ -216,6 +216,8 @@ article {
     margin: 180px 0px 0px 100px;
     padding: 30px 15px 30px 15px;
     background: var(--color-background-white);
+    /* border: 3px solid transparent; */
+    border-radius: 10px;
 }
 
 
@@ -226,6 +228,7 @@ article {
     margin-top: 8px;
     border-radius: 10px 10px 0px 0px;
 }
+
 
 
 
