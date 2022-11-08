@@ -55,7 +55,7 @@ if (products) {
 
 function renData(){
 
-    $('#body').load('./admin.html',adminRen) //Sửa admin.html thành tên file của mình
+    $('#body').load('./admin.html', adminRen) //Sửa admin.html thành tên file của mình
     // Search selection
     var srchSelect =  document.querySelector('.input-select')
     categories.forEach((ele, index) => {
