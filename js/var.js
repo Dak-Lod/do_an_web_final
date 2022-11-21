@@ -1,8 +1,22 @@
+function disablePopup(e){
+    setTimeout(()=>{
+        blur.classList.toggle('active')
+    }, 200)
+    
+    const popup = document.getElementsByClassName('popup')
+    Array.prototype.forEach.call(popup, (ele=>{
+        ele.style.top = 0;
+        ele.classList.remove('active')
+    }))
+}
+
+let blur;
+
 var categories = localStorage.getItem('cate')
 categories = JSON.parse(categories)
-if (!categories){
+if (categories == null){
     categories  = 
-    ['Trang chủ', 'Nam', 'Nữ', 'Trẻ em', 'Khuyến mãi']
+    ['Nam', 'Nữ', 'Trẻ em', 'Khuyến mãi']
     localStorage.setItem('cate', JSON.stringify(categories))
 }
 
@@ -19,24 +33,32 @@ if (!info) {
 }
 
 
-var account = localStorage.getItem('acc')
-account = JSON.parse(account)
-if (!account) {
-    account = [
-        {
-            username: 'admin',
-            password: 'admin'
-        }
-    ]
-    localStorage.setItem('acc', JSON.stringify(account))
+var accounts = localStorage.getItem('acc')
+accounts = JSON.parse(accounts)
+class Account {
+    static count = 0;
+    constructor (name, user, pass, role){
+        Account.count++;
+        this.id = Account.count + 10000
+        this.name = name
+        this.username = user
+        this.password = pass
+        this.role = role // 0 = admin, 1 = user
+    }
+}
+if (accounts == null) {
+    accounts = []
+    accounts.push(new Account('Trần Dương Đắc Lộc', 'admin', 'admin', 0))
+    localStorage.setItem('acc', JSON.stringify(accounts))
+}else {
+    Account.count = accounts.length
 }
 
-var products = localStorage.getItem('products')
-products = JSON.stringify(products)
-class product {
+class Product {
+    static count = 0;
     constructor (name, cate, price, des, img){
-        product.count++;
-        this.id = product.count + 10000;
+        Product.count++;
+        this.id = Product.count + 10000;
         this.name = name;
         this.cate = categories[cate];
         this.price = price;
@@ -44,19 +66,22 @@ class product {
         this.img = img
     }
 }
-product.count = 0
-if (products) {
-    var tmp = new product('Giày Thể Thao Nam Hunter Street Cream',1,781000,'Mô tả:  ', './img/product1.webp')
+var products = localStorage.getItem('products')
+products = JSON.parse(products)
+if (products == null) {
     products = []
-    products.push(tmp)
-    products.push(new product('Giày Thể Thao Bé Trai', 3, 437000, 'Mô tả: ', './img/product2.webp'))
+    products.push(new Product('Giày Thể Thao Nam Hunter Street Cream',1,781000,'Mô tả:  ', './img/product1.webp'))
+    products.push(new Product('Giày Thể Thao Bé Trai', 3, 437000, 'Mô tả: ', './img/product2.webp'))
+}else{
+    Product.count = products.length    
 }
 
 
 function renData(){
+    blur = document.getElementById('blur')
 
-    // $('#body').load('./admin.html', adminRen) //Sửa admin.html thành tên file của mình
-    $('#body').load('./shopee.html') //Sửa admin.html thành tên file của mình
+    $('#body').load('./admin.html', adminRen) //Sửa admin.html thành tên file của mình
+    // $('#body').load('./shopee.html') //Sửa admin.html thành tên file của mình
     // Search selection
     var srchSelect =  document.querySelector('.input-select')
     categories.forEach((ele, index) => {
@@ -81,13 +106,10 @@ function renData(){
         // link.appendChild(span)
         navBar.appendChild(link)
     })
-
     
-
-    
-    
+    document.getElementById('blur').addEventListener('click',disablePopup)
 
 }
 
-window.onload = renData
 
+window.onload = renData

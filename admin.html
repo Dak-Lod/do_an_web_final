@@ -1,6 +1,6 @@
 <div class="feature">
-    <div class="product-search body-item border-gradient">
-        <form class="feature-form" action="">
+    <div class="product-search body-item">
+        <form class="feature-form" action="" autocomplete="off">
             <span class="title">Tìm Kiếm Sản Phẩm</span>
             <div class="container">
                 <select name="" id="searchSlt">
@@ -11,11 +11,15 @@
             </div>
             <div class="container">
                 <label for="">Khoảng giá:</label>
-                <input type="text" class="price-product-input" id="product-price-min" placeholder="0">
-                <div>đ</div>
-                <div class="price-product-line"></div>
-                <input type="text" class="price-product-input" id="product-price-max" placeholder="2.000.000">
-                <div>đ</div>
+                <div class="container-price">
+                    <input type="number" class="price-product-input" id="product-price-min" placeholder="0"
+                    oninput="searchChange()">
+                    <div>Kđ</div>
+                    <div class="price-product-line"></div>
+                    <input type="number" class="price-product-input" id="product-price-max" placeholder="2.000"
+                    oninput="searchChange()">
+                    <div>Kđ</div>
+                </div>
             </div>
             <div class="container">
             </div>
@@ -25,36 +29,47 @@
         </form>
     </div>
 
-    <div class="product-add body-item border-gradient">
-        <form class="feature-form">
+    <div class="product-add body-item">
+        <form method="get" class="feature-form" autocomplete="off" 
+        action="" onsubmit="return addProduct()">
             <span class="title">Thêm Sản Phẩm</span>
             <div class="container">
                 <label for="">Mã sản phẩm:</label>
                 <input type="text" readonly name="id-product" id="id-product">
             </div>
             <div class="container">
-                <label for="">Tên sản phẩm:</label>
-                <input type="text" name="name-product" id="name-product">
+                <label for="" >Tên sản phẩm:</label>
+                <input type="text" name="name-product" id="name-product" autocomplete="off">
+            </div>
+            <div class="container">
+                <label for="" >Giá sản phẩm:</label>
+                <input type="number" name="price-product" id="price-product" autocomplete="off">
             </div>
             <div class="container">
                 <label for="">Thể loại:</label>
-                <input type="text" name="price-product" id="price-product">
+                <input type="search" id="cate-product">
             </div>
             <div class="container">
                 <label for="">Ảnh:</label>
-                <input type="file" name="status-product" id="status-product">
+                <input type="file" name="status-product" id="img-product">
+            </div>
+            <div class="img-preview">
+                <img id="img-preview" >
             </div>
             <div class="container">
                 <label for="">Mô tả:</label>
-                <input type="text" name="des-product" id="des-product">
+                <!-- <input autocomplete="off" type="text" name="des-product" id="des-product"> -->
+                <textarea name="des-product" id="des-product" rows="7"></textarea>
+
             </div>
             <div>
-                <input type="submit" name="" class="add-btn" value="Thêm">            </div>
+                <input type="submit" name="" class="add-btn" value="Thêm">            
+            </div>
         </form>
     </div>
 </div>
 
-<div class="product-view body-item border-gradient">
+<div class="product-view body-item">
     <span class="title">Danh sách sản phẩm</span>
     <div class="container">
         <!-- <div class="item">
@@ -80,31 +95,25 @@
         <tbody>
             
         </tbody>
-        <!-- <tr>
-            <td>
-                10001
-            </td>
-            <td>
-                <img class="product-img" src="./img/product1.webp" alt="">
-            </td>
-            <td>
-                Giày Thể Thao Nam Hunter Street Cream
-            </td>
-            <td>
-                Nam
-            </td>
-            <td>
-                781,000đ
-            </td>
-            <td>
-                <a class="btn-edt">
-                    <i class="fa-sharp fa-solid fa-gear"></i>
-                </a>
-                <br>
-                <a class="btn-dlt">
-                    <i class="fa-sharp fa-solid fa-circle-xmark"></i>
-                </a>
-            </td>
-        </tr> -->
     </table>
 </div>
+
+<div class="popup" id="popup-rmv">
+    <img src="./icon/remove1.png" alt="">
+    <span class="title">Bạn có chắc chắn muốn xoá sản phẩm này hay ko?</span>
+    <div class="body">
+        <span></span>
+        <span>Giày Thể Thao Bé Trai</span>
+        <img src="./img/product1.webp" alt="">
+    </div>
+    <div class="btn">
+        <button class="ok">Đồng ý</button>
+        <button class="cancel">Huỷ bỏ</button>
+    </div>
+</div>
+
+<div class="popup" id="popup-edt">
+    <img src="./icon/setting.png" alt="">
+    <span class="title">Thay đổi thông tin</span>
+</div>
+
