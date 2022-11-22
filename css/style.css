@@ -273,3 +273,16 @@ article {
 .active {
     visibility: unset !important;
 }
+
+.toggle-pass {
+    float: right;
+    margin-top: -24px;
+    margin-right: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}

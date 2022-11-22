@@ -92,8 +92,9 @@ function account_ren(accounts){
 
             popup_info[1].children[1].value = accounts[index].name
             popup_info[2].children[1].value = accounts[index].username
-            popup_info[3].children[1].value = accounts[index].password
-            popup_info[4].children[1].value = role[accounts[index].role]
+            popup_info[3].children[1].children[0].value = accounts[index].password
+            popup_info[4].children[1].value = accounts[index].role
+            
 
         })
 
@@ -105,15 +106,18 @@ function account_ren(accounts){
         btn.addEventListener('click', function(e){
             const blur = document.getElementById('blur')
             blur.classList.toggle('active')
-            popup_rmv.classList.toggle('active')
-            popup_rmv.style.top = "50%"
+            popup_rmv_account.classList.toggle('active')
+            popup_rmv_account.style.top = "50%"
             const info = e.currentTarget.parentNode.parentNode.children
-            const popup_info = popup_rmv.children[2].children
-            
-            popup_info[0].textContent = info[0].textContent
-            popup_info[1].textContent = info[2].textContent
-            popup_info[2].src = info[1].children[0].src
+            const popup_info = popup_rmv_account.children[2].children
 
+            const id_rmv = info[0].textContent
+            const index = accounts.findIndex(({id})=>{
+                return id_rmv == id
+            })
+            popup_info[0].textContent = id_rmv
+            popup_info[1].textContent = accounts[index].name
+            
 
 
         })
@@ -230,6 +234,19 @@ function adminRen(){
     
     // Load view
 
+
+    popup_edt = document.getElementById('popup-edt')
+    popup_rmv = document.getElementById('popup-rmv')
+    
+    popup_edt_account = document.getElementById('popup-edt-account')
+    popup_rmv_account = document.getElementById('popup-rmv-account')
+
+
+    document.querySelectorAll('.popup .cancel').forEach(ele=>{
+        ele.addEventListener('click', disablePopup)
+    })
+
+
     // Navigation
     const navBar = document.querySelector('nav')
     let navBar_cnt = document.querySelector('nav > .container')
@@ -246,10 +263,159 @@ function adminRen(){
         case '1':
             document.querySelector('.manager.product').style.display = "flex"
             product_ren(products)
+             //Add product
+
+            const id = Product.count + 1 + 10000
+            document.getElementById('id-product').value = id
+
+
+            const select = document.getElementsByClassName('cate-product')
+            const dataList = document.createElement('datalist')
+            
+            dataList.id = "cate-datalist"
+            
+            categories.forEach(function (ele){
+                const option = document.createElement('option')
+                option.value = ele
+                dataList.appendChild(option)
+            })
+            Array.prototype.forEach.call(select, ele => {
+                ele.append(dataList)
+                ele.setAttribute('list', 'cate-datalist')
+
+            })
+            
+
+            //Input check
+            document.getElementById('name-product').addEventListener('input', function (e){
+                if (e.target.value == "" || e.target.value.trim() == ""){
+                    e.target.setCustomValidity("Tên sản phẩm không được trống!")
+                    e.target.reportValidity()   
+                }else
+                    e.target.setCustomValidity("")
+            })
+
+            document.getElementById('cate-product').addEventListener('input', function (e){
+                if (e.target.value == "" || e.target.value.trim() == ""){
+                    e.target.setCustomValidity("Thể loại sản phẩm không được trống!")
+                    e.target.reportValidity()   
+                }else
+                    e.target.setCustomValidity("")
+            })
+
+
+
+            //add Image
+            const imgUpload = document.getElementsByClassName("img-product")
+            Array.prototype.forEach.call(imgUpload, ele=>{
+                ele.addEventListener("change", function (event) {
+                    const file = event.target.files[0]
+                    const img = event.currentTarget.parentElement.children[1]
+                    img.file = file
+                    img.style.display = "block";
+                    const reader = new FileReader();
+                    reader.onload = function (e){
+                        img.src = e.target.result
+                    }
+                    reader.readAsDataURL(file)
+            
+                })
+
+            })
+            // Popup btn remove
+            popup_rmv.children[3].children[0].onclick = function(){
+                const id_rmv =  popup_rmv.children[2].children[0].textContent
+                const index = products.findIndex(({id})=>{
+                    return id == id_rmv
+                })
+                products.splice(index, 1)
+                localStorage.setItem('products', JSON.stringify(products))
+                location.reload()
+            }
+
+            // Popup btn edit
+            popup_edt.children[3].children[0].onclick = function(){
+                const form = document.querySelector('#popup-edt form')
+                form.dispatchEvent(new Event('submit'))
+            }
             break
         case '2':
             document.querySelector('.manager.account').style.display = "flex"
             account_ren(accounts)
+            // Account form add
+            let formAccount = document.getElementById('form-account')
+            console.log();
+            formAccount.children[1].children[1].value = Account.count + 10001
+            // Input check
+            formAccount.children[2].children[1].addEventListener('input', function (e){
+                if (e.target.value == "" || e.target.value.trim() == ""){
+                    e.target.setCustomValidity("Tên tài khoản không được trống!")
+                    e.target.reportValidity()   
+                }else
+                    e.target.setCustomValidity("")
+            })
+
+            formAccount.children[3].children[1].addEventListener('input', function (e){
+                if (e.target.value == "" || e.target.value.trim() == ""){
+                    e.target.setCustomValidity("Tên đăng nhập không được trống!")
+                    e.target.reportValidity()   
+                }else
+                    e.target.setCustomValidity("")
+            })
+            
+            formAccount.children[4].children[1].addEventListener('input', function (e){
+                if (e.target.value == ""){
+                    e.target.setCustomValidity("Mật khẩu không được trống!")
+                    e.target.reportValidity()   
+                }else
+                    e.target.setCustomValidity("")
+            })
+
+            formAccount.children[5].children[1].addEventListener('input', function (e){
+                if (e.target.value == "" || e.target.value.trim() == ""){
+                    e.target.setCustomValidity("Loại tài khoản không được trống!")
+                    e.target.reportValidity()   
+                }else
+                    e.target.setCustomValidity("")
+            })
+            
+            formAccount.children[6].children[0].addEventListener('click', e=>{
+                
+                for (let i = 2; i < 6; i++){
+                    formAccount.children[i].children[1].dispatchEvent(new Event('input'))
+                }
+                
+                const name = formAccount.children[2].children[1].value
+                const user = formAccount.children[3].children[1].value
+                const pass = formAccount.children[4].children[1].value
+                const role = formAccount.children[5].children[1].value
+
+                accounts.push(new Account(name, user, pass, role))
+                
+                localStorage.setItem('acc', JSON.stringify(accounts))
+                location.reload()
+
+            })
+
+            // Popup btn remove
+            popup_rmv_account.children[3].children[0].onclick = function(){
+                const id_rmv =  popup_rmv.children[2].children[0].textContent
+                const index = accounts.findIndex(({id})=>{
+                    return id == id_rmv
+                })
+                accounts.splice(index, 1)
+                localStorage.setItem('acc', JSON.stringify(accounts))
+                location.reload()
+            }
+
+            // Popup btn edit
+            popup_edt_account.children[3].children[0].onclick = function(){
+                const form = document.querySelector('#popup-edt-account form')
+                form.dispatchEvent(new Event('submit'))
+            }
+
+            
+            
             break
             
     }
@@ -276,106 +442,63 @@ function adminRen(){
 
 
 
-    popup_edt = document.getElementById('popup-edt')
-    popup_rmv = document.getElementById('popup-rmv')
     
-    popup_edt_account = document.getElementById('popup-edt-account')
-    popup_rmv_account = document.getElementById('popup-rmv-account')
-
-
-    document.querySelectorAll('.popup .cancel').forEach(ele=>{
-        ele.addEventListener('click', disablePopup)
-    })
 
 
 
 
     
-    //Add product
+   
 
-    const id = Product.count + 1 + 10000
-    document.getElementById('id-product').value = id
-
-
-    const select = document.getElementsByClassName('cate-product')
-    const dataList = document.createElement('datalist')
-    
-    dataList.id = "cate-datalist"
-    
-    categories.forEach(function (ele){
-        const option = document.createElement('option')
-        option.value = ele
-        dataList.appendChild(option)
-    })
-    Array.prototype.forEach.call(select, ele => {
-        ele.append(dataList)
-        ele.setAttribute('list', 'cate-datalist')
-
-    })
     
 
-    //Input check
-    document.getElementById('name-product').addEventListener('input', function (e){
-        if (e.target.value == "" || e.target.value.trim() == ""){
-            e.target.setCustomValidity("Tên sản phẩm không được trống!")
-            e.target.reportValidity()   
-        }else
-            e.target.setCustomValidity("")
+
+    // Show pass
+    let showPass = document.getElementsByClassName('toggle-pass')
+    Array.prototype.forEach.call(showPass, ele =>{
+        ele.addEventListener('click', e=>{
+            let input = e.currentTarget.parentElement.children[0]
+            if (input.type == 'password')
+                input.type = 'text'
+            else    
+                input.type = 'password'
+            e.target.classList.toggle('fa-eye')
+            e.target.classList.toggle('fa-eye-slash')
+            
+        })
     })
 
-    document.getElementById('cate-product').addEventListener('input', function (e){
-        if (e.target.value == "" || e.target.value.trim() == ""){
-            e.target.setCustomValidity("Thể loại sản phẩm không được trống!")
-            e.target.reportValidity()   
-        }else
-            e.target.setCustomValidity("")
-    })
-
-
-
-    //add Image
-    const imgUpload = document.getElementsByClassName("img-product")
-    Array.prototype.forEach.call(imgUpload, ele=>{
-        ele.addEventListener("change", function (event) {
-            const file = event.target.files[0]
-            const img = event.currentTarget.parentElement.children[1]
-            img.file = file
-            img.style.display = "block";
-            const reader = new FileReader();
-            reader.onload = function (e){
-                img.src = e.target.result
+    // Search account
+    document.getElementById('searchAccount').addEventListener('input', e=>{
+        const id = e.target.value.toUpperCase()
+        if (id.trim() !== ""){
+            if (e.currentTarget.parentNode.children[0].value == 1){
+                account_ren(accounts.map(function(ele){
+                    if (ele.id.match(id))
+                        return ele
+                    else return null
+                }))
+            }else{
+                account_ren((accounts.map(function(ele){
+                    if (removeAccents(ele.name.toUpperCase()).match(id) || ele.name.toUpperCase().match(id) || removeAccents(ele.name.toUpperCase()).match(removeAccents(id)))
+                        return ele
+                    else return null
+                })))
             }
-            reader.readAsDataURL(file)
-    
-        })
-
+        }else {
+            account_ren(accounts)
+        }
     })
 
-    // Popup btn remove
-    popup_rmv.children[3].children[0].onclick = function(){
-        const id_rmv =  popup_rmv.children[2].children[0].textContent
-        const index = products.findIndex(({id})=>{
-            return id == id_rmv
-        })
-        products.splice(index, 1)
-        localStorage.setItem('products', JSON.stringify(products))
-        location.reload()
-    }
+    
 
-    // Popup btn edit
-    popup_edt.children[3].children[0].onclick = function(){
-        const form = document.querySelector('#popup-edt form')
-        form.dispatchEvent(new Event('submit'))
-    }
 }
 
 
-
 function searchChange(){
-    console.log("Searching");
     let min = document.getElementById('product-price-min');
     let max = document.getElementById('product-price-max');
-    let proudct_search = products
+    let product_search = products
 
     if (min.value == "") min = 0;
     else min = min.value * 1000
@@ -383,7 +506,7 @@ function searchChange(){
     else max = max.value * 1000
 
     if (max != 2000000 || min != 0 )
-        proudct_search = products.map(function (ele){
+        product_search = products.map(function (ele){
             if (ele.price >= min && ele.price <= max)      
                 return ele
             else 
@@ -393,21 +516,20 @@ function searchChange(){
     var id = document.getElementById('product-id-search').value.toUpperCase()
     if (id.trim() !== ""){
         if (document.getElementById('searchSlt').value == 1)
-            product_ren(proudct_search.map(function(ele){
+            product_ren(product_search.map(function(ele){
                 // console.log(id);
-                if (removeAccents(ele.id.toString()).match(id) ||
-                ele.id.toString().match(id) || removeAccents(ele.id.toString()).match(removeAccents(id)))
+                if (ele.id.toString().match(id))
                     return ele
                 else return null
             }))
         else
-            product_ren(proudct_search.map(function(ele){
+            product_ren(product_search.map(function(ele){
                 if (removeAccents(ele.name.toUpperCase()).match(id) || ele.name.toUpperCase().match(id) || removeAccents(ele.name.toUpperCase()).match(removeAccents(id)))
                     return ele
                 else return null
             }))
     }else{
-        product_ren(proudct_search)
+        product_ren(product_search)
     }
 
 
@@ -491,6 +613,24 @@ function changeProduct(e){
     products[index].des = popup_info[5].children[0].value 
     localStorage.setItem('products', JSON.stringify(products))
     location.reload()
+}
+
+function changeAccount(e){
+    const popup_info = popup_edt_account.children[2].children[0].children
+    const id_change  = popup_info[0].children[1].value
+
+    const index = accounts.findIndex(({id})=>{
+        return id == id_change
+    })
+
+    accounts[index].name = popup_info[1].children[1].value
+    accounts[index].username = popup_info[2].children[1].value
+    accounts[index].password = popup_info[3].children[1].value
+    accounts[index].role = popup_info[4].children[1].value
+    
+    localStorage.setItem('acc', JSON.stringify(accounts))
+    location.reload()
+    return false
 }
 
 
