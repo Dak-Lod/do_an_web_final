@@ -175,6 +175,58 @@
     </div>
 </div>
 
+<div class="manager cate">
+    <div class="feature">
+        <div class="product-search body-item">
+            <form class="feature-form" action="" autocomplete="off">
+                <span class="title">Tìm Kiếm Thể Loại</span>
+                <div class="container">
+                    <select name="">
+                        <option value="0">Tên thể loại</option>
+                        <option value="1">Mã tài khoản</option>
+                    </select>
+                    <input type="text" id="searchCate">
+                </div>
+                
+            </form>
+        </div>
+        <div class="product-add body-item">
+            <form method="get" class="feature-form" autocomplete="off" 
+            action="" onsubmit="return addProduct()"
+            id="form-cate">
+                <span class="title">Thêm Thể Loại</span>
+                <div class="container">
+                    <label for="">Mã thể loại:</label>
+                    <input type="text" readonly name="id-product" id="id-cate">
+                </div>
+                <div class="container">
+                    <label for="" >Tên thể loại:</label>
+                    <input type="text" id="name-cate" autocomplete="off">
+                </div>
+                <div>
+                    <input type="submit" name="" class="add-btn" value="Thêm">            
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="table-view body-item">
+        <span class="title">Danh sách tài khoản</span>
+        <table id="cate-table">
+            <thead>
+                <tr> 
+                    <td class="tdId">ID</td>
+                    <td class="tdName">Tên thể loại</td>
+                    <td class="tdBtn"></td>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <div class="popup" id="popup-rmv">
     <img src="./icon/remove1.png" alt="">
     <span class="title">Bạn có chắc chắn muốn xoá sản phẩm này hay ko?</span>
@@ -188,6 +240,7 @@
         <button class="cancel">Huỷ bỏ</button>
     </div>
 </div>
+
 
 <div class="popup" id="popup-rmv-account">
     <img src="./icon/remove1.png" alt="">
@@ -288,5 +341,42 @@
     <div class="btn">
         <button class="ok">Đồng ý</button>
         <button class="cancel">Huỷ bỏ</button>           
+    </div>
+</div>
+
+
+<div class="popup" id="popup-edt-cate">
+    <img src="./icon/setting.png" alt="">
+    <span class="title">Thay đổi thông tin</span>
+    <div class="body product-add body-item">
+        <form method="get" class="feature-form" autocomplete="off" 
+        action="" onsubmit="return addProduct()"
+        id="form-cate">
+            <div class="container">
+                <label for="">Mã thể loại:</label>
+                <input type="text" readonly name="id-product">
+            </div>
+            <div class="container">
+                <label for="" >Tên thể loại:</label>
+                <input type="text" autocomplete="off">
+            </div>
+        </form>
+    </div>
+    <div class="btn">
+        <button class="ok">Đồng ý</button>
+        <button class="cancel">Huỷ bỏ</button>           
+    </div>
+</div>
+
+<div class="popup" id="popup-rmv-cate">
+    <img src="./icon/remove1.png" alt="">
+    <span class="title">Bạn có chắc chắn muốn xoá tài khoản này hay ko?</span>
+    <div class="body">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="btn">
+        <button class="ok">Đồng ý</button>
+        <button class="cancel">Huỷ bỏ</button>
     </div>
 </div>

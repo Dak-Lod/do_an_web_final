@@ -281,7 +281,7 @@ input[number]{
     width: 112px;
 }
 .table-view .tdCate {
-    width: 70px;
+    width: 100px;
 }
 
 .table-view .tdPrice {
@@ -518,3 +518,4 @@ input[number]{
     width: max-content;
     margin-bottom: 10px;
 }
+
