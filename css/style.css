@@ -28,7 +28,9 @@ body {
     box-sizing:inherit;
 }
 
-
+a:visited {
+    color: var(--color-text-grey);
+}
 
 /* Header */
 header{
@@ -49,7 +51,7 @@ header a {
 }
 
 
-header a:hover, a:focus {
+header a:hover, a:focus, a.active {
     color: var(--color-primary-dark);
     text-decoration: none;
     outline: none;

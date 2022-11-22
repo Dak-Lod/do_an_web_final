@@ -1,101 +1,172 @@
-<div class="feature">
-    <div class="product-search body-item">
-        <form class="feature-form" action="" autocomplete="off">
-            <span class="title">Tìm Kiếm Sản Phẩm</span>
-            <div class="container">
-                <select name="" id="searchSlt">
-                    <option value="0">Tên sản phẩm</option>
-                    <option value="1">Mã sản phẩm</option>
-                </select>
-                <input type="text" id="product-id-search" placeholder="Nhập tên sản phẩm" oninput="searchChange()">
-            </div>
-            <div class="container">
-                <label for="">Khoảng giá:</label>
-                <div class="container-price">
-                    <input type="number" class="price-product-input" id="product-price-min" placeholder="0"
-                    oninput="searchChange()">
-                    <div>Kđ</div>
-                    <div class="price-product-line"></div>
-                    <input type="number" class="price-product-input" id="product-price-max" placeholder="2.000"
-                    oninput="searchChange()">
-                    <div>Kđ</div>
+
+<div class="manager product">
+    <div class="feature">
+        <div class="product-search body-item">
+            <form class="feature-form" action="" autocomplete="off">
+                <span class="title">Tìm Kiếm Sản Phẩm</span>
+                <div class="container">
+                    <select name="" id="searchSlt">
+                        <option value="0">Tên sản phẩm</option>
+                        <option value="1">Mã sản phẩm</option>
+                    </select>
+                    <input type="text" id="product-id-search" placeholder="Nhập tên sản phẩm" oninput="searchChange()">
                 </div>
-            </div>
-            <div class="container">
-            </div>
-            <!-- <div>
-                <input type="submit" name="" class="search-btn" value="Tìm">            
-            </div> -->
-        </form>
+                <div class="container">
+                    <label for="">Khoảng giá:</label>
+                    <div class="container-price">
+                        <label for="">Từ: </label>
+                        <input type="number" class="price-product-input" id="product-price-min" placeholder="0K đồng"
+                        oninput="searchChange()">
+    
+                        <label for="">Đến: </label>
+                        <input type="number" class="price-product-input" id="product-price-max" placeholder="2.000K đồng"
+                        oninput="searchChange()">
+                        <!-- <div>Đơn vị ngìn đồng</div> -->
+                    </div>
+                </div>
+                <!-- <div>
+                    <input type="submit" name="" class="search-btn" value="Tìm">            
+                </div> -->
+            </form>
+        </div>
+    
+        <div class="product-add body-item">
+            <form method="get" class="feature-form" autocomplete="off" 
+            action="" onsubmit="return addProduct()">
+                <span class="title">Thêm Sản Phẩm</span>
+                <div class="container">
+                    <label for="">Mã sản phẩm:</label>
+                    <input type="text" readonly name="id-product" id="id-product">
+                </div>
+                <div class="container">
+                    <label for="" >Tên sản phẩm:</label>
+                    <input type="text" name="name-product" id="name-product" autocomplete="off">
+                </div>
+                <div class="container">
+                    <label for="" >Giá sản phẩm:</label>
+                    <input type="number" name="price-product" id="price-product" autocomplete="off">
+                </div>
+                <div class="container">
+                    <label for="">Thể loại:</label>
+                    <input type="search" id="cate-product" class="cate-product">
+                </div>
+                <div class="container">
+                    <label for="">Ảnh:</label>
+                    <div>
+                        <input type="file" name="status-product" class="img-product" id="img-product">
+    
+                        <img class="img-preview" >
+                    </div>
+                </div>
+                <div>
+                </div>
+                <div class="container">
+                    <label for="">Mô tả:</label>
+                    <!-- <input autocomplete="off" type="text" name="des-product" id="des-product"> -->
+                    <textarea name="des-product" id="des-product" rows="7"></textarea>
+    
+                </div>
+                <div>
+                    <input type="submit" name="" class="add-btn" value="Thêm">            
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="product-add body-item">
-        <form method="get" class="feature-form" autocomplete="off" 
-        action="" onsubmit="return addProduct()">
-            <span class="title">Thêm Sản Phẩm</span>
-            <div class="container">
-                <label for="">Mã sản phẩm:</label>
-                <input type="text" readonly name="id-product" id="id-product">
-            </div>
-            <div class="container">
-                <label for="" >Tên sản phẩm:</label>
-                <input type="text" name="name-product" id="name-product" autocomplete="off">
-            </div>
-            <div class="container">
-                <label for="" >Giá sản phẩm:</label>
-                <input type="number" name="price-product" id="price-product" autocomplete="off">
-            </div>
-            <div class="container">
-                <label for="">Thể loại:</label>
-                <input type="search" id="cate-product">
-            </div>
-            <div class="container">
-                <label for="">Ảnh:</label>
-                <input type="file" name="status-product" id="img-product">
-            </div>
-            <div class="img-preview">
-                <img id="img-preview" >
-            </div>
-            <div class="container">
-                <label for="">Mô tả:</label>
-                <!-- <input autocomplete="off" type="text" name="des-product" id="des-product"> -->
-                <textarea name="des-product" id="des-product" rows="7"></textarea>
-
-            </div>
-            <div>
-                <input type="submit" name="" class="add-btn" value="Thêm">            
-            </div>
-        </form>
+    
+    <div class="table-view body-item">
+        <span class="title">Danh sách sản phẩm</span>
+        <div class="container">
+            <!-- <div class="item">
+                <img class="product-img" src="../img/product1.webp" alt="">
+                <div class="des">
+                    <span class="product-title">Giày Thể Thao Nam Hunter Street Cream DSMH10400KEM (Kem)</span><br>
+                    <span class="product-money">Giá: </span> <span>780.000đ</span><br>
+                    <span class="product-qty">Số lượng: </span><span>10</span><br>
+                </div>
+            </div> -->
+        </div>
+        <table>
+            <thead>
+                <tr> 
+                    <td class="tdId">ID</td>
+                    <td class="tdImg">Ảnh</td>
+                    <td class="tdName">Tên sản phẩm</td>
+                    <td class="tdCate">Phân loại</td>
+                    <td class="tdPrice">Giá</td>
+                    <td class="tdBtn"></td>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
     </div>
 </div>
 
-<div class="product-view body-item">
-    <span class="title">Danh sách sản phẩm</span>
-    <div class="container">
-        <!-- <div class="item">
-            <img class="product-img" src="../img/product1.webp" alt="">
-            <div class="des">
-                <span class="product-title">Giày Thể Thao Nam Hunter Street Cream DSMH10400KEM (Kem)</span><br>
-                <span class="product-money">Giá: </span> <span>780.000đ</span><br>
-                <span class="product-qty">Số lượng: </span><span>10</span><br>
-            </div>
-        </div> -->
+<div class="manager account">
+    <div class="feature">
+        <div class="product-search body-item">
+            <form class="feature-form" action="" autocomplete="off">
+                <span class="title">Tìm Kiếm Tài Khoản</span>
+                <div class="container">
+                    <select name="">
+                        <option value="0">Tên tài khoản</option>
+                        <option value="1">Mã tài khoản</option>
+                    </select>
+                    <input type="text" oninput="searchChange()">
+                </div>
+                
+            </form>
+        </div>
+        <div class="product-add body-item">
+            <form method="get" class="feature-form" autocomplete="off" 
+            action="" onsubmit="return addProduct()">
+                <span class="title">Thêm Tài Khoản</span>
+                <div class="container">
+                    <label for="">Mã tài khoản:</label>
+                    <input type="text" readonly name="id-product" id="id-account">
+                </div>
+                <div class="container">
+                    <label for="" >Tên tài khoản:</label>
+                    <input type="text" id="name-account" autocomplete="off">
+                </div>
+                <div class="container">
+                    <label for="" >Tên đăng nhập:</label>
+                    <input type="text" id="user-account" autocomplete="off">
+                </div>
+                <div class="container">
+                    <label for="">Mật khẩu:</label>
+                    <input type="password" id="pass-account">
+                    <i class="fa-sharp fa-solid fa-eye toggle-pass" ></i>               
+                </div>
+                <div class="container">
+                    <label for="">Loại tài khoản:</label>
+                    <input type="search">
+                </div>
+                <div>
+                    <input type="submit" name="" class="add-btn" value="Thêm">            
+                </div>
+            </form>
+        </div>
     </div>
-    <table>
-        <thead>
-            <tr> 
-                <td class="tdId">ID</td>
-                <td class="tdImg">Ảnh</td>
-                <td class="tdName">Tên sản phẩm</td>
-                <td class="tdCate">Phân loại</td>
-                <td class="tdPrice">Giá</td>
-                <td class="tdBtn"></td>
-            </tr>
-        </thead>
-        <tbody>
-            
-        </tbody>
-    </table>
+    
+    <div class="table-view body-item">
+        <span class="title">Danh sách tài khoản</span>
+        <table id="account-table">
+            <thead>
+                <tr> 
+                    <td class="tdId">ID</td>
+                    <td class="tdName">Tên tài khoản</td>
+                    <td class="tdUser">Tên đăng nhập</td>
+                    <td class="tdRole">Loại tài khoản</td>
+                    <td class="tdBtn"></td>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="popup" id="popup-rmv">
@@ -104,7 +175,22 @@
     <div class="body">
         <span></span>
         <span>Giày Thể Thao Bé Trai</span>
-        <img src="./img/product1.webp" alt="">
+        <img src="" alt="">
+    </div>
+    <div class="btn">
+        <button class="ok">Đồng ý</button>
+        <button class="cancel">Huỷ bỏ</button>
+    </div>
+</div>
+
+<div class="popup" id="popup-rmv-account">
+    <img src="./icon/remove1.png" alt="">
+    <span class="title">Bạn có chắc chắn muốn xoá tài khoản này hay ko?</span>
+    <div class="body">
+        <span></span>
+        <span></span>
+        <br>
+        <span></span>
     </div>
     <div class="btn">
         <button class="ok">Đồng ý</button>
@@ -115,5 +201,82 @@
 <div class="popup" id="popup-edt">
     <img src="./icon/setting.png" alt="">
     <span class="title">Thay đổi thông tin</span>
+    <div class="body product-add body-item">
+        <form method="get" class="feature-form" autocomplete="off" 
+        action="" onsubmit="return changeProduct()">
+            <div class="container">
+                <label for="">Mã sản phẩm:</label>
+                <input type="text" readonly name="id-product" >
+            </div>
+            <div class="container">
+                <label for="" >Tên sản phẩm:</label>
+                <input type="text" name="name-product"  autocomplete="off">
+            </div>
+            <div class="container">
+                <label for="" >Giá sản phẩm:</label>
+                <input type="number" name="price-product"  autocomplete="off">
+            </div>
+            <div class="container">
+                <label for="">Thể loại:</label>
+                <input type="search" class="cate-product">
+            </div>
+            <div class="container">
+                <label for="">Ảnh:</label>
+                <div>
+                    <input type="file" name="status-product" class="img-product">
+
+                    <img class="img-preview" >
+                </div>
+            </div>
+            <!-- <div style="text-align: center;">
+            </div> -->
+            <div class="container">
+                <label for="">Mô tả:</label>
+                <!-- <input autocomplete="off" type="text" name="des-product" id="des-product"> -->
+                <textarea name="des-product"  rows="7"></textarea>
+
+            </div>
+        </form>
+    </div>
+    <div class="btn">
+        <button class="ok">Đồng ý</button>
+        <button class="cancel">Huỷ bỏ</button>           
+    </div>
 </div>
 
+
+
+
+<div class="popup" id="popup-edt-account">
+    <img src="./icon/setting.png" alt="">
+    <span class="title">Thay đổi thông tin</span>
+    <div class="body product-add body-item">
+        <form method="get" class="feature-form" autocomplete="off" 
+            action="" onsubmit="return addProduct()">
+                <div class="container">
+                    <label for="">Mã tài khoản:</label>
+                    <input type="text" readonly name="id-product">
+                </div>
+                <div class="container">
+                    <label for="" >Tên tài khoản:</label>
+                    <input type="text" autocomplete="off">
+                </div>
+                <div class="container">
+                    <label for="" >Tên đăng nhập:</label>
+                    <input type="text" autocomplete="off">
+                </div>
+                <div class="container">
+                    <label for="">Mật khẩu:</label>
+                    <input type="password">
+                </div>
+                <div class="container">
+                    <label for="">Loại tài khoản:</label>
+                    <input type="search">
+                </div>
+            </form>
+    </div>
+    <div class="btn">
+        <button class="ok">Đồng ý</button>
+        <button class="cancel">Huỷ bỏ</button>           
+    </div>
+</div>

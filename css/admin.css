@@ -1,27 +1,37 @@
-#body{
-    --color-button-add: #64dd17;
-    --color-button-rmv: #f50057;
-    display: flex;
+#body {
+    background-color: transparent;
     border: none;
     padding-top: 0px;
     padding: unset;
-    color: var(--color-text-grey);
-    background-color: transparent;
+    --color-button-add: #64dd17;
+    --color-button-rmv: #f50057;
 }
+
+#body > *:not(.popup){
+    display: none;
+}
+
+.manager{
+    /* display: flex; */
+    color: var(--color-text-grey);
+}
+
+
+
 
 .fake-body{
     all: unset;
 }
 
-#body::before {
+.manager::before {
     all: unset;
 }
 
-#body > div {
+.manager > div {
     margin-right: 10px;
 }
 
-#body > div + div {
+.manager > div + div {
     margin-right: 0px;
 }
 
@@ -33,15 +43,15 @@
     margin-top: 0px;
 }
 
-#body form .search-btn{
+.manager form .search-btn{
     background-color: var(--color-primary-dark);
 }
 
-#body form .add-btn{
+.manager form .add-btn{
     background-color: var(--color-button-add);
 }
 
-#body form .dele-btn {
+.manager form .dele-btn {
     background-color:var(--color-button-dele);
 }
 
@@ -68,25 +78,23 @@
 
 /* Form */
 
-#body form .container{
-    display: flex;
+.manager form .container{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 150px auto;
     margin-bottom: 10px;
     padding: auto;
 }
 
-#body form .container > *{
+.manager form .container > *{
     margin-top: auto;
     margin-bottom: auto;
 }
-/* form .container > *:first-child{
-    margin-right: 10px;
-} */
+
+
 
 .feature-form select {
-    margin-right: 10px;
-    display: inline-block;
     width: 100%;
-    max-width: 150px;
     height: 30px;
 }
 
@@ -94,9 +102,8 @@
     color: var(--color-text-dark);
     text-align: left;
     margin-top: 5px;
-    margin-right: 10px;
-    width: 150px;
 }
+
 .feature-form input {
     height: 30px;
 }
@@ -105,7 +112,6 @@
 
 
 #des-product {
-    max-width: calc(100% - 160px);
     min-height: 100px;
     width: 100%;
 }
@@ -126,26 +132,20 @@
     border-radius: 5px;
     
 }
-.feature-form input[type = "text"], input[type = "search"]
-,input[type= "number"]{
-    width: calc(100% - 160px);
-}
+
 
 /* Product add */
 .product-add {
     margin-top: 10px;
 }
 
-.img-preview {
-    width: 100%;
-    height: max-content;
-}
 
-#img-preview {
-    display: none;
+
+.img-preview {
+    /* display: none; */
     max-width: 100px;
     margin: auto;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 .product-add input[type = "submit"] {
@@ -174,20 +174,16 @@ input[number]{
 }
 
 .product-search .price-product-input {
-    max-width: 100px;
     text-align: right;
+    width: 100%;
 }
 
 .product-search .container-price {
-    display: flex;
-    justify-content: space-between;
-    width:  calc(100% - 160px);
+    display: grid;
+    grid-template-columns: auto auto 30px auto;
+    gap: 10px;
 }
 
-.product-search .container-price > * {
-    margin-top: auto;
-    margin-bottom: auto;
-}
 
 .product-search .price-product-line{
     background-color: var(--color-text-grey);
@@ -200,37 +196,33 @@ input[number]{
     /* margin: auto 20px; */
 }
 
-.price-product-input:after{
-    content: "đ";
-    width: inherit;
-    height: inherit;
-}
+
 
 
 
 /* Product view */
-.product-view {
+.table-view {
     height: max-content;
     width: 100%;
 }
 
-/* .product-view .container {
+/* .table-view .container {
     display: flex;
     flex-direction: column;
 }
 
-.product-view .container .item {
+.table-view .container .item {
     width: 100%;
     border: 2px solid var(--color-text-dark);
     padding: 5px;
     border-radius: 7px;
     display: flex;
 } */
-/* .product-view .item img {
+/* .table-view .item img {
     max-width: 10%;
 }
 
-.product-view .item .des{
+.table-view .item .des{
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 15px;
@@ -254,55 +246,55 @@ input[number]{
 
 
 
-.product-view table {
+.table-view table {
     table-layout: auto;
     border-collapse: collapse;
     width: 100%;
 
 }
 
-.product-view td {
+.table-view td {
     padding: 5px;
     max-width: max-content;
 }
 
-.product-view thead td {
+.table-view thead td {
     height: 35px;
     background-color: var(--color-primary-dark);
     color: white;
 }
 
-.product-view td{
+.table-view td{
     border: 2px solid var(--color-primary-dark);
     background-color: white;
     color: var(--color-primary-dark);
 }
 
 
-.product-view .tdId {
+.table-view .tdId {
     width: 60px;
 }
 
-.product-view .tdImg {
+.table-view .tdImg {
     width: 112px;
 }
-.product-view .tdCate {
+.table-view .tdCate {
     width: 70px;
 }
 
-.product-view .tdPrice {
+.table-view .tdPrice {
     width: 90px;
 }
 
-.product-view .tdBtn{
+.table-view .tdBtn{
     width: 50px;
 }
 
-.product-view td > img {
+.table-view td > img {
     max-width: 100px;
 }
 
-.product-view table button {
+.table-view table button {
     padding: 5px;
     border-radius: 3px;
     background-color: white;
@@ -311,55 +303,55 @@ input[number]{
     transition: 0.2;
 }
 
-/* .product-view .btn-edt{
+/* .table-view .btn-edt{
     border-color: var(--color-button-add);
     background-color: var(--color-button-add);
     color: white;
     margin-bottom: 10px;
 }
-.product-view .btn-edt:hover{
+.table-view .btn-edt:hover{
     color: var(--color-button-add);
     background-color: white;
 }
 
 
-.product-view .btn-rmv {
+.table-view .btn-rmv {
     background-color: var(--color-button-rmv);
     color: white;
     border-color: var(--color-button-rmv);
 }
 
-.product-view .btn-rmv:hover{
+.table-view .btn-rmv:hover{
     color: var(--color-button-rmv);
     background-color: white;
 } */
-.product-view .btn-edt{
+.table-view .btn-edt{
     color: var(--color-button-add);
     margin-bottom: 5px;
 }
-.product-view .btn-edt:hover{
+.table-view .btn-edt:hover{
     color: white;
     background-color: var(--color-button-add);
 }
 
-.product-view .btn-edt:active {
+.table-view .btn-edt:active {
     transform: translateY(2px);
     filter: brightness(0.85);
 }
 
 
 
-.product-view .btn-rmv {
+.table-view .btn-rmv {
     color: var(--color-button-rmv);
     margin-bottom: 5px;
 }
 
-.product-view .btn-rmv:hover{
+.table-view .btn-rmv:hover{
     color: white;
     background-color: var(--color-button-rmv);
 }
 
-.product-view .btn-rmv:active {
+.table-view .btn-rmv:active {
     transform: translateY(2px);
     filter: brightness(0.85);
 }
@@ -375,7 +367,7 @@ input[number]{
     z-index: 10001;
     background-color: white;
     position: fixed;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-51%);
     top: 0;
     left: 50%;
     width: 470px;
@@ -395,7 +387,7 @@ input[number]{
 }
 
 
-#body #popup-rmv > img {
+#body .popup > img {
     max-width: 110px;
     position: absolute;
     left: 50%;
@@ -406,6 +398,30 @@ input[number]{
 }
 
 /* Body */
+
+.popup form .container > *{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.popup form .container{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 150px auto;
+    margin-bottom: 10px;
+    padding: auto;
+}.popup form .container > *{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.popup form .container{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 150px auto;
+    margin-bottom: 10px;
+    padding: auto;
+}
 
 #body #popup-rmv .body {
     padding: 10px;
@@ -441,18 +457,27 @@ input[number]{
     column-gap: 20px;
 }
 
+
 #body .popup .btn > button {
     height: 45px;
     font-size: 15px;
     border: none;
     border-radius: 5px;
     font-weight: 700;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+#body .popup .btn > button:hover{
+    filter: brightness(0.85);
+}
+
+#body .popup .btn > button:active{
+    transform: translateY(2px);
 }
 
 #body .popup .btn > .ok {
-    background-color: white;
-    color: var(--color-button-add);
+    background-color: var(--color-button-add);
+    color: white;
     border: 2px solid var(--color-button-add);
 }
 
@@ -463,11 +488,31 @@ input[number]{
 }
 
 #body .popup .btn > .ok:hover{
-    background-color: var(--color-button-add);
-    color: white;
+    filter: brightness(0.85);
 }
 
 #body .popup .btn > .cancel:hover{
     background-color: var(--color-button-rmv);
     color: white;
+}
+
+/* Popup edt */
+
+#body #popup-edt 
+
+/* Popup remove */
+#body #popup-edt .body{
+    padding-bottom: 0px;
+}
+
+
+.table-view thead * {
+    border: 0px solid white;
+    text-align: center;
+}
+
+.toggle-pass {
+    float: left;
+    margin-right: -25px;
+    position: relative;
 }

@@ -1,3 +1,8 @@
+const role = [
+    'Quản trị',
+    'Khách hàng'
+]
+
 function disablePopup(e){
     setTimeout(()=>{
         blur.classList.toggle('active')
@@ -49,6 +54,8 @@ class Account {
 if (accounts == null) {
     accounts = []
     accounts.push(new Account('Trần Dương Đắc Lộc', 'admin', 'admin', 0))
+    accounts.push(new Account('Trần Dương Đắc Lộc', 'user', 'user', 1))
+
     localStorage.setItem('acc', JSON.stringify(accounts))
 }else {
     Account.count = accounts.length
@@ -85,7 +92,6 @@ function renData(){
     // Search selection
     var srchSelect =  document.querySelector('.input-select')
     categories.forEach((ele, index) => {
-        if (index == 0) return
         var tmp = document.createElement('option');
         tmp.setAttribute('value', index)
         tmp.innerText = ele
