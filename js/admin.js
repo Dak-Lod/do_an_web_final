@@ -35,8 +35,7 @@ let popup_edt;
 const currentView = location.href.split('?')
 let popup_rmv_account;
 let popup_edt_account;
-let popup_rmv_cate;
-let popup_edt_cate;
+
 
 function cate_ren(categories){
     var table = document.querySelector('#cate-table > tbody')
