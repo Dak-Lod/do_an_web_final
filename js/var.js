@@ -99,7 +99,6 @@ if (products == null) {
 
 function renData(){
     blur = document.getElementById('blur')
-    $('#body').load('./home.html', renHome)
 
 
 

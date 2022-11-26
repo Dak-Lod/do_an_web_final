@@ -722,3 +722,7 @@ function changeAccount(e){
 }
 
 
+window.onload = ()=>{
+    renData()
+    adminRen()
+}
