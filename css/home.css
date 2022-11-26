@@ -1,5 +1,5 @@
 
-article {
+#home {
     width: calc(100% - 200px);
     margin: 200px 100px 0px 100px;
     background-color: var(--color-background-white);
@@ -7,7 +7,7 @@ article {
     border-radius: 10px;
 }
 
-article:before {
+#home:before {
     content: "";
     position: absolute;
     inset: 0;
@@ -17,27 +17,27 @@ article:before {
     border-radius: inherit;
 }
 
-article .menu a {
+#home .menu a {
     color: #333;
     font-size: medium;
 }
-article .topBanner  {
+#home .topBanner  {
     display: flex;
     margin-bottom: 20px;
     
 }
-article .banner-item{
+#home .banner-item{
     overflow: hidden;
     width: auto;
     height: auto;
 }
-article #item1{
+#home #item1{
     margin: 30px 15px 30px 30px;
 }
-article #item2{
+#home #item2{
     margin: 30px 15px 30px 15px;
 }
-article #item3{
+#home #item3{
     margin: 30px 30px 30px 15px;
 }
 .banner-item img{
@@ -45,33 +45,33 @@ article #item3{
     max-height: 100%;
     border-radius: 5px;
 }
-article .tieuDeMucSP{
+#home .tieuDeMucSP{
     font-weight: 600;
     font-size: larger;
 }
-article .sanPhamMoi{
+#home .sanPhamMoi{
     display: flex;
     justify-content: space-between;
 }
-article .menu{
+#home .menu{
     margin-top: 2px;
     
 }
-article .item-menu{
+#home .item-menu{
     display: inline-block;
     cursor: pointer;
     margin:  0 10px 0 10px;
 }
-/* article .sanPhamMoi li{
+/* #home .sanPhamMoi li{
     display: inline-block;
 }
-article .sanPhamMoi ul{
+#home .sanPhamMoi ul{
     float: right;
 }
-article .sanPhamMoi li{
+#home .sanPhamMoi li{
     margin: 8px;
 } */
-article .container-SanPhamMoi{
+#home .container-SanPhamMoi{
     /* display: flex; */
     display: block;
     /* flex-wrap: wrap; */
@@ -118,8 +118,9 @@ article .container-SanPhamMoi{
     transition: 0.8s ease;
 }
 
+ 
 
-article .container-SanPhamMoi .item-SanPhamMoi{
+#home .container-SanPhamMoi .item-SanPhamMoi{
     line-height: 1;
     margin: 5px 15px;
     width: 14.8vw;
@@ -128,30 +129,30 @@ article .container-SanPhamMoi .item-SanPhamMoi{
     transition: 0.5s ease;
 }
 
-article .container-SanPhamMoi .item-SanPhamMoi:hover {
+#home .container-SanPhamMoi .item-SanPhamMoi:hover {
     transform: translateY(-10px);
     box-shadow: 0 2px 12px rgb(0 0 0 / 10%);
 }
 
-article .container-SanPhamMoi .item-SanPhamMoi img{
+#home .container-SanPhamMoi .item-SanPhamMoi img{
     width: 100%;
     max-height: 100%;
 }
-article .item-size-color{
+#home .item-size-color{
     display: flex!important;
     justify-content: space-between ;
     margin: 5px 0px 5px 0px ;
 }
-article .font-product{
+#home .font-product{
     font-size: small;
 }
 
-article .item-SanPhamMoi__footer {
+#home .item-SanPhamMoi__footer {
     min-height: 52px;
     position: relative;
 }
 
-article .item-SanPhamMoi__btn {
+#home .item-SanPhamMoi__btn {
     position: absolute;
     top: 25%;
     left: 20%;
@@ -168,18 +169,18 @@ article .item-SanPhamMoi__btn {
     display: none;
 }
 
-article .item-SanPhamMoi:hover .item-SanPhamMoi__footer .item-SanPhamMoi__btn {
+#home .item-SanPhamMoi:hover .item-SanPhamMoi__footer .item-SanPhamMoi__btn {
     display: block;
 }
 
-article a{
+#home a{
     text-decoration: none;
     color: #333;
 }
-/* article .product-box-title{
+/* #home .product-box-title{
     line-height: 1;
 } */
-article .price-product{     
+#home .price-product{     
     margin-top: 5px;
 }
 .bannerMid img{
@@ -188,11 +189,11 @@ article .price-product{
     margin-top: 50px;
     margin-bottom: 50px;
 }
-article .item-menu a{
+#home .item-menu a{
     position: relative;
     padding-bottom: 5px;
 }
-article .item-menu a::after{
+#home .item-menu a::after{
     content: "";
     width: 0;
     height: 3px;
@@ -202,17 +203,17 @@ article .item-menu a::after{
     left: 0;
     transition: all 0.5s ease;
 }
-article .item-menu a:hover::after{
+#home .item-menu a:hover::after{
     width: 50%;
     transform: translateX(100%);
 }
 
-article .btn-ul{
+#home .btn-ul{
     display: flex;
     list-style: none;
 }
 
-article .btn-li{
+#home .btn-li{
     margin: 2px 4px;
     font-size: 20px;
     padding: 8px;
@@ -227,7 +228,7 @@ article .btn-li{
     justify-content: center;
     
 }
-article .btn--active{
+#home .btn--active{
     background-color: rgb(110, 146, 129);
 
 }
