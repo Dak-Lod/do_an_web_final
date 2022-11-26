@@ -3,12 +3,6 @@ const role = [
     'Khách hàng'
 ]
 
-var login_info = localStorage.getItem('signed')
-login_info = JSON.parse(login_info)
-if (login_info != null){
-    document.getElementById('login-name').innerText = login_info.name
-    document.getElementById('login-option').style.display = "flex"
-}
 
 function disablePopup(e){
     setTimeout(()=>{
@@ -132,6 +126,35 @@ function renData(){
     blur = document.getElementById('blur')
     popup_login = document.getElementById('popup-login')
 
+    var login_info = localStorage.getItem('signed')
+    login_info = JSON.parse(login_info)
+    if (login_info != null){
+        let tmp = document.getElementById('login-name')
+        tmp.innerText = login_info.name
+        tmp.classList.add('signed')
+        let logout_btn = document.getElementById('btn-logout')
+        logout_btn.addEventListener('click', ()=>{
+            localStorage.removeItem('signed')
+            location.reload()
+        })
+
+        if (login_info.role == '0'){
+            let btn = document.createElement('button')
+            btn.innerText = "Admin"
+            btn.onclick = function (){
+                window.open('./admin.html')
+            }
+            logout_btn.parentNode.appendChild(btn)
+        }
+    }else {
+        //Popup login
+        document.getElementById('btn-login').addEventListener('click',
+        (event)=>{
+            blur.classList.toggle('active')
+            popup_login.classList.toggle('active')
+            popup_login.style.top = "50%"
+        })
+    }
 
 
     // $('#body').load('./admin.html', adminRen) //Sửa admin.html thành tên file của mình
@@ -146,7 +169,7 @@ function renData(){
     });
 
     let link = location.href.split('?')
-
+    // console.log(link[0].includes('admin.html'));
     
     if (!link[0].includes('admin.html')){
         switch (link[1]){
@@ -177,13 +200,7 @@ function renData(){
             navBar.appendChild(a)
         })
 
-        //Popup login
-        document.getElementById('btn-login').addEventListener('click',
-        (event)=>{
-            blur.classList.toggle('active')
-            popup_login.classList.toggle('active')
-            popup_login.style.top = "50%"
-        })
+        
 
         //Button login
         document.getElementById('login-btn').addEventListener('click',
@@ -199,9 +216,14 @@ function renData(){
                 }
                 errText.style.display = 'none'
                 accounts.forEach((ele) => {
-                    ele.username == user
-                    ele.password == pass
+                    if (ele.username == user && ele.password == pass){
+                        localStorage.setItem('signed',JSON.stringify(ele))
+                        location.reload()
+                        return
+                    }
                 })
+
+
             }
         )
     }
