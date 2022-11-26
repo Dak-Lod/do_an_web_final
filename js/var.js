@@ -120,7 +120,7 @@ function renData(){
             document.getElementById('search').style.display = 'block'
             renSearch(-1)
             break
-        case 'home' :
+        case '' :
             document.getElementById('home').style.display = 'block'
             renderNew(-1)
             renderPrt(-1)
