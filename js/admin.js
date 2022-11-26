@@ -191,7 +191,7 @@ function account_ren(accounts){
             popup_info[0].textContent = id_rmv
             popup_info[1].textContent = accounts[index].name
             
-
+            
 
         })
         td.appendChild(btn)
@@ -338,58 +338,48 @@ function adminRen(){
             formAccount.children[1].children[1].value = Account.count + 10001
             // Input check
             formAccount.children[2].children[1].addEventListener('input', function (e){
-                if (e.target.value == "" || e.target.value.trim() == ""){
-                    e.target.setCustomValidity("Tên tài khoản không được trống!")
-                    e.target.reportValidity()   
+                if (e.currentTarget.value == "" || e.currentTarget.value.trim() == ""){
+                    e.currentTarget.setCustomValidity("Tên tài khoản không được trống!")
+                    e.currentTarget.reportValidity()   
                 }else
-                    e.target.setCustomValidity("")
+                    e.currentTarget.setCustomValidity("")
             })
 
+           
+
             formAccount.children[3].children[1].addEventListener('input', function (e){
-                if (e.target.value == "" || e.target.value.trim() == ""){
-                    e.target.setCustomValidity("Tên đăng nhập không được trống!")
-                    e.target.reportValidity()   
+                if (e.currentTarget.value == "" || e.currentTarget.value.trim() == ""){
+                    e.currentTarget.setCustomValidity("Tên đăng nhập không được trống!")
+                    e.currentTarget.reportValidity()   
                 }else
-                    e.target.setCustomValidity("")
+                    e.currentTarget.setCustomValidity("")
             })
             
-            formAccount.children[4].children[1].addEventListener('input', function (e){
-                if (e.target.value == ""){
-                    e.target.setCustomValidity("Mật khẩu không được trống!")
-                    e.target.reportValidity()   
-                }else
-                    e.target.setCustomValidity("")
+            formAccount.children[4].children[1].children[0].addEventListener('input', function (e){
+
+                    if (e.currentTarget.value == "" ){
+                        e.currentTarget.setCustomValidity("Mật khẩu không được trống!")
+                        e.currentTarget.reportValidity()   
+                    }else
+                        e.currentTarget.setCustomValidity("")
             })
 
             formAccount.children[5].children[1].addEventListener('input', function (e){
-                if (e.target.value == "" || e.target.value.trim() == ""){
-                    e.target.setCustomValidity("Loại tài khoản không được trống!")
-                    e.target.reportValidity()   
+                if (e.currentTarget.value == "" || e.currentTarget.value.trim() == ""){
+                    e.currentTarget.setCustomValidity("Loại tài khoản không được trống!")
+                    e.currentTarget.reportValidity()   
                 }else
-                    e.target.setCustomValidity("")
+                    e.currentTarget.setCustomValidity("")
             })
             
-            formAccount.children[6].children[0].addEventListener('click', e=>{
-                
-                for (let i = 2; i < 6; i++){
-                    formAccount.children[i].children[1].dispatchEvent(new Event('input'))
-                }
-                
-                const name = formAccount.children[2].children[1].value
-                const user = formAccount.children[3].children[1].value
-                const pass = formAccount.children[4].children[1].value
-                const role = formAccount.children[5].children[1].value
-
-                accounts.push(new Account(name, user, pass, role))
-                
-                localStorage.setItem('acc', JSON.stringify(accounts))
-                location.reload()
-
+            formAccount.children[6].children[0].addEventListener('click',e=>{
+                formAccount.dispatchEvent(new Event('submit'))
             })
+            
             
             // Popup btn remove
             popup_rmv_account.children[3].children[0].onclick = function(){
-                const id_rmv =  popup_rmv.children[2].children[0].textContent
+                const id_rmv =  popup_rmv_account.children[2].children[0].textContent
                 const index = accounts.findIndex(({id})=>{
                     return id == id_rmv
                 })
@@ -403,6 +393,8 @@ function adminRen(){
                 const form = document.querySelector('#popup-edt-account form')
                 form.dispatchEvent(new Event('submit'))
             }
+
+
             break
             
             case '3':
@@ -417,17 +409,20 @@ function adminRen(){
                 if (e.target.value == "" || e.target.value.trim() == ""){
                     e.target.setCustomValidity("Tên thể loại không được trống!")
                     e.target.reportValidity()   
-                }else
+                }else{
                     e.target.setCustomValidity("")
+                    
+                }
             })
 
             
             formCate.children[3].children[0].addEventListener('click', e=>{
                 
                 formCate.children[2].children[1].dispatchEvent(new Event('input'))
-                
                 const name = formCate.children[2].children[1].value
-
+                if (name.trim() == null){
+                    return false;
+                }
                 categories.push(name)
                 
                 localStorage.setItem('cate', JSON.stringify(categories))
@@ -553,19 +548,6 @@ function adminRen(){
     
     
     
-
-
-
-
-
-    
-
-
-
-
-    
-   
-
     
 
 
@@ -661,23 +643,14 @@ function addProduct(){
         let cate = document.querySelector(".product-add  #cate-product")   
         const des = document.querySelector(".product-add  #des-product").value
     
-        let err = false
-    
-        if (name.value == "" || name.value.trim() == ""){
-            name.dispatchEvent(new Event('input'))
-            err = true
-        }
-    
-        if (cate.value == "" || cate.value.trim() == ""){
-            cate.dispatchEvent(new Event('input'))
-            err = true
-        }
-    
-        if (err) return false
-    
+       
         name = name.value
         price = price.value
         cate = cate.value
+
+        if (name.trim() == null || price.trim() == null || cate.trim() == null){
+            return false
+        }
         
         if (categories.indexOf(cate) == -1){
             categories.push(cate)
@@ -687,11 +660,11 @@ function addProduct(){
             cate = categories.indexOf(cate)
      
         const file = document.getElementById("img-product").files[0]
-        const data = new FormData()
-        data.append('photo', file)
+        let img = 'noimg.png'
+        if (file != null)
+            img = file.name
         
-        
-        products.push(new Product(name, cate, price, des, './img/' + file.name))
+        products.push(new Product(name, cate, price, des, './img/' + img))
         localStorage.setItem('products', JSON.stringify(products))
         // return false
         location.reload()
@@ -706,28 +679,29 @@ function addProduct(){
 
 }
 
-function changeProduct(e){
-    const popup_info = popup_edt.children[2].children[0].children
-    const id_change  = popup_info[0].children[1].value
 
-    const index = products.findIndex(({id})=>{
-        return id == id_change
-    })
-
-    products[index].name = popup_info[1].children[1].value
-    products[index].price = popup_info[2].children[1].value 
-    products[index].cate = popup_info[3].children[1].value
-    if (categories.indexOf(products[index]) == -1){
-        categories.push(products[index].cate)
-        localStorage.setItem('cate', JSON.stringify(categories))
+function addAccount(){
+    let formAccount = document.getElementById('form-account')
+    
+    for (let i = 0; i < 6; i++){
+        formAccount.children[2].children[1]
     }
 
-    if (popup_info[4].children[1].children[0].files.length != 0){
-        products[index].img = './img/' + popup_info[4].children[1].children[0].files[0].name
+    const name = formAccount.children[2].children[1].value
+    const user = formAccount.children[3].children[1].value
+    const pass = formAccount.children[4].children[1].value
+    const role = formAccount.children[5].children[1].value
+
+    if (name.trim() == "" || user.trim() == "" || pass.trim() == ""){
+        return false;
     }
-    products[index].des = popup_info[5].children[0].value 
-    localStorage.setItem('products', JSON.stringify(products))
+
+
+    accounts.push(new Account(name, user, pass, role))
+    
+    localStorage.setItem('acc', JSON.stringify(accounts))
     location.reload()
+    return false
 }
 
 function changeAccount(e){

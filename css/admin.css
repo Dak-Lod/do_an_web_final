@@ -264,6 +264,7 @@ input[number]{
     height: 35px;
     background-color: var(--color-primary-dark);
     color: white;
+    border-right: 1px solid white;
 }
 
 .table-view td{
