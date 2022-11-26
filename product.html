@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a46d659aa4.js" crossorigin="anonymous"></script>
+    <title>Sản Phẩm</title>
+    <script src="./js/var.js"></script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/product.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/product.css"
+    <link rel="stylesheet" href="./css/admin.css"> 
+</head> 
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+                <!-- logo -->
+            <div class="header-logo">
+                <a href="" class="logo">
+                    <img src="./docs/img/logo.png" alt="">
+                </a>
+            </div>
+                <!-- /Logo -->
+
+                <!-- Search bar -->
+
+            <div class="header-search">
+                <form>
+                    <select class="input-select"></select>
+                    <input type="text"
+                    placeholder="Tìm kiếm" class="input">
+                    <button class="search-btn"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+                <!-- /Search bar -->
+
+                <!-- Account -->
+                    <div class="header-ctn">
+                        <div class="container">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" href="#">
+                                    <i class="fa fa-shopping-cart">
+                                    </i>
+                                    <span>
+                                        Giỏ Hàng
+                                    </span>
+                                    <div class="qty">
+                                        3
+                                    </div>
+                                </a>
+                                <!-- <div class="cart-dropdown">
+                                    <div class="cart-list">
+                                        <div class="product-widget">
+                                            <div class="product-img">
+                                                <img src="./img/product02.png" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-name">
+                                                    <a href="">product name</a>
+                                                </h3>
+                                                <h4 class="product-price">
+                                                    <span class="qty">3x</span>
+                                                    money
+                                                </h4>
+                                            </div>
+                                            <button class="delete">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+    
+                                </div> -->
+                            </div>
+                            <!-- /Cart -->
+    
+                            <!-- Login -->
+    
+                            <div>
+                                <a href="">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span>Đăng Nhập</span>
+                                </a>
+                            </div>
+    
+                            <!-- /Login -->
+    
+                            <!-- Menu toggle -->
+                            <div class="menu-toggle">
+                                <a href="">
+                                    <i class="fa fa-bars"></i>
+                                    <span>Menu</span>
+                                </a>
+                            </div>
+                            <!-- /Menu toggle -->
+                            
+                        </div>
+                        <!-- Cart -->
+
+                    </div>
+                <!-- /Account -->
+
+                
+            </div>
+        </div>
+        <!-- Navigation -->
+        <nav id="navigation">
+            <div class="container">
+            </div>
+        </nav>
+        <!-- /Navigation  -->
+        <div class="fake-body"></div>
+    </header>
+    
+    
+    <!-- Body -->
+
+    <article id="body" class="border-gradient">
+        <div class="ProductContainer">
+            <div class="imageBox">
+                <div class="viewPic">
+                    <img class="viewPic" src="" alt="product.png" id="bannerImg">   <!--Phần ảnh lớn-->
+                </div>
+            </div>
+            <div class="contentBox">
+                <form action="submit">
+                <div class="productName">Tên Sản Phẩm</div> <!--Tên sản phẩm sản phẩm -->
+                <div class="productDetail">Chi tiết sản phẩm <br></div> <!--Thông tin sản phẩm -->   
+                <br>
+                <b><div class="productPrice">Giá cả</div></b>  <!--Gia ca -->
+                <div class="buttonBox">
+                <a href="#"><button class="btn_add" type="submit" onclick="" value=""> Thêm Vào Giỏ Hàng </button></a> <!--Nút thêm vào giỏ hàng -->
+                </div>
+                </form> 
+            </div>
+        </div>
+
+        
+    </article>
+
+    <!-- /Body -->
+
+    <!-- Footer -->
+
+    <footer class="section">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-3 col-xs-6">
+                    <div class="footer-content">
+                        <h3 class="footer-title">About us</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quia, voluptas itaque tenetur nemo rerum adipisci quod? Repellat iste minima animi assumenda quos cupiditate provident perspiciatis esse necessitatibus, adipisci culpa!</p>
+                        <ul class="footer-links">
+                            <li><a href=""><i class="fa fa-phone"></i>+84337961759</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-3 col-xs-6">
+                    <div class="footer-content">
+                        <h3 class="footer-title">Danh mục sản phẩm</h3>
+                        <ul class="footer-links">
+                            <li><a href="">Nam</a></li>
+                            <li><a href="">Nữ</a></li>
+                            <li><a href="">Trẻ em</a></li>
+                            <li><a href="">Khuyến mãi</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            
+
+        </div>
+    </footer>
+
+</body>
+</html>
