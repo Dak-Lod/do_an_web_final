@@ -86,8 +86,11 @@ if (products == null) {
 
 function renData(){
     blur = document.getElementById('blur')
+    $('#body').load('./home.html')
 
-    $('#body').load('./admin.html', adminRen) //Sửa admin.html thành tên file của mình
+
+
+    // $('#body').load('./admin.html', adminRen) //Sửa admin.html thành tên file của mình
     // $('#body').load('./shopee.html') //Sửa admin.html thành tên file của mình
     // Search selection
     var srchSelect =  document.querySelector('.input-select')
