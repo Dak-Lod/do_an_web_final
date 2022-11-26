@@ -38,40 +38,6 @@ function btnRightBottom() {
     containerWrap.style.marginLeft = y + 'vw'
 }
 
-const lists = [
-    {
-        img: './img2/SPmoi_1.jpg',
-        classify: 'giay the thao'
-    },
-    {
-        img: './img2/SPmoi_2.jpg',
-        classify: 'giay the thao'
-    },
-    {
-        img: './img2/SPmoi_3.jpg',
-        classify: 'giay the thao'
-    },
-    {
-        img: './img2/SPmoi_4.jpg',
-        classify: 'giay chay bo'
-    },
-    {
-        img: './img2/SPmoi_5.jpg',
-        classify: 'giay chay bo'
-    },
-    {
-        img: './img2/SPmoi_6.jpg',
-        classify: 'giay chay bo'
-    },
-    {
-        img: './img2/SPmoi_7.jpg',
-        classify: 'giay da'
-    },
-    {
-        img: './img2/SPmoi_8.jpg',
-        classify: 'giay da'
-    }
-]
 
 
 
@@ -99,41 +65,6 @@ function renderNew(n) {
     document.querySelectorAll('.container-SanPhamMoi')[0].innerHTML = s
 }
 
-// function render1(className = undefined) {
-//     if(className != undefined) {
-//         for(var i=0; i < lists.length ; i++) {
-//                 s1 = s1 + `<div class="item-SanPhamMoi">
-//                 <button style="border : 0; background-color: transparent"><img src="${products[i].img}" alt=""></button>
-//                 <div class="item-size-color">
-//                     <div class="font-product">+7 size</div>
-//                     <div class="font-product">+3 Màu sắc</div>
-//                 </div>
-//                 <button style="border : 0; background-color: transparent" class="font-product">${products[i].name}</button>
-//                 <div class="price-product"><span style="font-size: 15px;">${products[i].price}</span></div>            
-//                 <div class="item-SanPhamMoi__footer">
-//                     <button class="item-SanPhamMoi__btn">mua ngay</button>
-//                 </div>
-//                 </div>`
-//         }
-//     } else {
-//         for(var i=0; i < lists.length ; i++) {
-//             s1 = s1 + `<div class="item-SanPhamMoi">
-//             <button style="border : 0; background-color: transparent"><img src="${lists[i].img}" alt=""></button>
-//             <div class="item-size-color">
-//                 <div class="font-product">+7 size</div>
-//                 <div class="font-product">+3 Màu sắc</div>
-//             </div>
-//             <button style="border : 0; background-color: transparent" class="font-product">Giày Thể Thao Nam Hunter Street White</button>
-//             <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
-//             <div class="item-SanPhamMoi__footer">
-//                 <button class="item-SanPhamMoi__btn">mua ngay</button>
-//             </div>
-//             </div>`
-//         }
-//     }
-//     document.querySelectorAll('.container-wrap')[0].innerHTML = s1
-//     s1 = ''
-// }
 function renderPrt(n) {
     let s1=''
     products.forEach(

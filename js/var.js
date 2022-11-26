@@ -120,6 +120,19 @@ function renData(){
         srchSelect.appendChild(tmp)
     });
 
+    let link = location.href.split('?')
+
+    switch (link[1]){
+        case 'search' :
+            document.getElementById('search').style.display = 'block'
+            renSearch(-1)
+            break
+        case 'home' :
+            document.getElementById('home').style.display = 'block'
+            renderNew(-1)
+            renderPrt(-1)
+            break
+    }
 
 
 

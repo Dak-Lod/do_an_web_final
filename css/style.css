@@ -21,12 +21,13 @@
 }
 
 body {
-    margin: 0px;
+    margin-inline: 0px;
     margin-top: -25px;
+    margin-bottom: 10px;
 }
 
-#body {
-
+article {
+    display: none;
 }
 
 *{
