@@ -8,12 +8,13 @@
     <title>Trang chủ</title>
     <script src="./js/jquery.js"></script>
     <script src="./js/var.js"></script>
-    <script src="./js/admin.js"></script>
-    <script src="./js/home.js"></script>
+    <script src="./js/search.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <!-- Chỉnh tên file lại thành tên file của mình -->
     <!-- <link rel="stylesheet" href="./css/home.css">  -->
-    <link rel="stylesheet" href="./css/home.css"> 
+    <link rel="stylesheet" href="./css/search.css">
+
+    
     <!-- <link rel="stylesheet" href="./css/shopee.css"> -->
     <!-- <link rel="stylesheet" href="./css/home.css"> -->
 </head> 
@@ -121,8 +122,51 @@
     
     <!-- Body -->
 
-    <article id="body" >
+    <article id="search" >
+        <div class="container">
+            <div class="left-content">
+                <nav class="filter">
+                <div class="filter_text">
+                    BỘ LỌC TÌM KIẾM
+                </div>
+                <div class="search-list">
+                    <div class="category-filter">
+                        <div class="filter__header">Thể loại</div>
+                        <div class="category-wrapper">
+                            <div class="category-item">
+                                <input type="checkbox" id="check">
+                                <span class="checkbox__label">Nam</span>
+                            </div>
+                            <div class="category-item">
+                                <input type="checkbox" id="check">
+                                <span class="checkbox__label">Nữ</span>
+                            </div>
+                        </div>
+                    </div><!--category-filter-->
 
+                    <div class="price-filter">
+                        <div class="filter__header">Khoảng giá</div>
+                        <div class="price-wrapper">
+                            <div class="price-display">
+                                <div class="price-input">
+                                    <input type="text" placeholder="đ MIN" value>
+                                </div>
+                                <div class="separator">-</div>
+                                <div class="price-input">
+                                    <input type="text" placeholder="đ MAX" value>
+                                </div>
+                            </div><!--display-->
+                            <div class="input-error">&nbsp;</div>
+                            <button class="find-product">Tìm</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            </div><!--left-->
+            <div class="right-content">
+                
+            </div>        
+        </div>
         
         
     </article>

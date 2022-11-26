@@ -61,6 +61,21 @@ if (accounts == null) {
     Account.count = accounts.length
 }
 
+class dscart {
+    static count = 0
+    constructor (ds){
+        this.ds = ds
+    }
+}
+
+var cart = localStorage.getItem('cart')
+cart = JSON.parse(cart)
+if (cart == null){
+    cart = new dscart([])
+}
+
+
+
 class Product {
     static count = 0;
     constructor (name, cate, price, des, img, sell, newPrd){
@@ -89,12 +104,13 @@ if (products == null) {
 
 function renData(){
     blur = document.getElementById('blur')
-    $('#body').load('./home.html', renHome)
+    // adminRen()
 
-
+    if (location.href == '')
 
     // $('#body').load('./admin.html', adminRen) //Sửa admin.html thành tên file của mình
-    // $('#body').load('./shopee.html') //Sửa admin.html thành tên file của mình
+    // $('#body').load('./search.html')
+    renSearch(-1) //Sửa admin.html thành tên file của mình
     // Search selection
     var srchSelect =  document.querySelector('.input-select')
     categories.forEach((ele, index) => {
@@ -103,9 +119,6 @@ function renData(){
         tmp.innerText = ele
         srchSelect.appendChild(tmp)
     });
-
-
-
 
     // Navigation
     var navBar = document.querySelector('nav > .container')
@@ -118,7 +131,8 @@ function renData(){
         // link.appendChild(span)
         navBar.appendChild(link)
     })
-    
+
+   
     document.getElementById('blur').addEventListener('click',disablePopup)
 
 }

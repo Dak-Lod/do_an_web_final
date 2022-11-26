@@ -77,7 +77,7 @@ const lists = [
 
 var s = ''
 function renderNew(n) {
-
+    let s 
     products.forEach(
         function(ele){
             if ((categories[n].includes(ele.cate) && ele.new == 1) || n == -1)

@@ -98,7 +98,6 @@ function cate_ren(categories){
             popup_info[1].textContent = accounts[index].name
             
 
-
         })
         td.appendChild(btn)
         tr.append(td)
