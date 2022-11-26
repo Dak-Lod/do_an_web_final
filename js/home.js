@@ -221,11 +221,11 @@ function renHome() {
             })
             this.classList.add('btn--active')
             if(this.innerText == '2') {
-                render(1)
+                renderNew(1)
             }
 
             if(this.innerText == '1') {
-                render(0)
+                renderNew(2)
             }
             // if(this.innerText == '3') {
             //     render(2)

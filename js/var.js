@@ -90,6 +90,13 @@ if (products == null) {
     products.push(new Product('Giày Thể Thao Nam Hunter Tennis', 0, 853000 , 'Mô tả: ', './img/Nam5.webp',1,1))
     products.push(new Product('Giày Thể Thao Nữ Hunter Street ', 1, 1540000 , 'Mô tả: ', './img/nu1.webp',1,1))
     products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1187000 , 'Mô tả: ', './img/nu3.webp',1,1))
+
+    products.push(new Product('Giày Thể Thao Nữ Hunter X Dune ', 1, 1187000 , 'Mô tả: ', './img/nu4.webp',1,1))
+    products.push(new Product('Giày Búp Bê Nữ', 1, 457000 , 'Mô tả: ', './img/nu5.webp',1,1))
+
+    products.push(new Product('Dép Eva Phun Trẻ Em', 2, 226000 , 'Mô tả: ', './img/treEm3.webp',1,1))
+    products.push(new Product('Giày Thể Thao Bé Trai Hunter X Junior', 2, 643000 , 'Mô tả: ', './img/treEm4.webp',1,1))
+    products.push(new Product('Giày Thể Thao Bé Trai DSB141800XAM', 2, 457000 , 'Mô tả: ', './img/treEm5.webp',1,1))
     // products.push(new Product())
     localStorage.setItem('products', JSON.stringify(products))
 }else{
