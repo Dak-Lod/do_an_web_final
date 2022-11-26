@@ -8,7 +8,7 @@ function renSearch(n){
             if (n == -1 ||categories[n].includes(ele.cate))
 
                 if (ele.new == 1)
-                    isNew = '<span class="product-status">NEW</span>'
+                    isNew = '<span class="product-status">MỚI</span>'
                     s += `<div class="product-item">
                     <img class="product-img" src = "${ele.img}"></img>
                     <div class="product-label">
