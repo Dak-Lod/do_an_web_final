@@ -115,24 +115,24 @@ function renData(){
 
     let link = location.href.split('?')
     
-
+    
     if (link[0] != 'admin.html'){
         switch (link[1]){
             case 'search' :
                 document.getElementById('search').style.display = 'block'
                 renSearch(-1)
                 break
-            case '' :
+            case undefined:
                 document.getElementById('home').style.display = 'block'
                 renderNew(-1)
                 renderPrt(-1)
                 break
+
             
         }
 
         // Navigation
         var navBar = document.querySelector('nav > .container')
-        console.log(navBar);
         categories.forEach(ele => {
             var span = document.createElement('span');
             span.setAttribute('class', 'active');
