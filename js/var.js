@@ -91,7 +91,7 @@ if (products == null) {
 
 function renData(){
     blur = document.getElementById('blur')
-    $('#body').load('./home.html', renHome)
+    
 
 
 
@@ -107,7 +107,7 @@ function renData(){
     });
 
 
-
+    renSearch(-1)
 
     // Navigation
     var navBar = document.querySelector('nav > .container')
