@@ -448,6 +448,8 @@ footer > * {
     margin-top: 10px;
     width: 250px;
     /* border-radius: 5px; */
+    border: none;
+    border-bottom: 1px solid black;
 }
 
 
@@ -464,4 +466,11 @@ footer > * {
 #popup-login .btn .signup {
     background-color: var(--color-btn-signup);
     color: white;
+}
+
+.input-error {
+    color: red;
+    font-size: 15px;
+    margin-top: 15px;
+    display: none;
 }

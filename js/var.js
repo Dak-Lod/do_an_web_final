@@ -167,6 +167,26 @@ function renData(){
             popup_login.classList.toggle('active')
             popup_login.style.top = "50%"
         })
+
+        //Button login
+        document.getElementById('login-btn').addEventListener('click',
+            (event)=>{
+                const form_login = event.currentTarget.parentNode.parentNode.children[2].children[0]
+                const user = form_login.children[0].value
+                const pass = form_login.children[1].value
+                const errText = form_login.children[2]
+                if (user == "" || pass == ""){
+                    errText.innerText = "Tài khoản mật khẩu không được trống!"
+                    errText.style.display = "block"
+                    return
+                }
+                errText.style.display = 'none'
+                accounts.forEach((ele) => {
+                    ele.username == user
+                    ele.password == pass
+                })
+            }
+        )
     }
 
 
