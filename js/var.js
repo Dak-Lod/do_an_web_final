@@ -75,6 +75,23 @@ class Product {
         this.new = newPrd
     }
 }
+class Cart {
+    static count = 0;
+    constructor (prd){
+        this.products = prd
+    }
+}
+
+let carts = localStorage.getItem('cart')
+carts = JSON.parse(carts)
+if (carts == null){
+    carts = new Cart([])
+    localStorage.setItem('carts', JSON.stringify(carts))
+}
+
+
+
+
 var products = localStorage.getItem('products')
 products = JSON.parse(products)
 if (products == null) {
