@@ -61,7 +61,7 @@ header a {
 header a:hover, a:focus, a.active {
     color: var(--color-primary-dark) !important;
     text-decoration: none;
-    outline: none;
+    border-bottom: 2px solid var(--color-primary-dark);
 }
 
 
@@ -233,6 +233,7 @@ nav > .container {
     align-items: stretch;
     /* align-items: center; */
     flex-wrap: wrap;
+    padding-block: 20px;
 }
 
 nav > .container a {
@@ -240,12 +241,11 @@ nav > .container a {
     /* margin: 0px 15px 0px 15px; */
     padding: auto;
     text-align: center;
-    padding: 20px 0px 20px;
+    /* padding: 20px 0px 20px; */
     text-transform: uppercase;
     font-weight: 700;
     font-size: 15px;
     color: var(--color-text-grey);
-    outline: 2px solid var(--color-primary-dark);
     height: fit-content;
 }
 
