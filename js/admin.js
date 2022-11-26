@@ -37,6 +37,7 @@ let popup_rmv_account;
 let popup_edt_account;
 
 
+
 function cate_ren(categories){
     var table = document.querySelector('#cate-table > tbody')
     table.parentElement.childNodes[4].remove()
@@ -63,7 +64,6 @@ function cate_ren(categories){
         td.appendChild(btn) 
 
         btn.addEventListener('click', function(e){
-            const blur = document.getElementById('blur')
             blur.classList.toggle('active')
             popup_edt_cate.classList.toggle('active')
             popup_edt_cate.style.top = "50%"

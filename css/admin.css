@@ -367,41 +367,7 @@ input[number]{
 
 /* POPUP */
 
-#body .popup{
-    transition: 0.2s;
-    visibility: hidden;
-    z-index: 10001;
-    background-color: white;
-    position: fixed;
-    transform: translate(-51%,-51%);
-    top: 0;
-    left: 50%;
-    width: 470px;
-    border-radius: 10px;
-}
-#body .popup > .title {
-    display: block;
-    margin-bottom: 10px;
-    word-wrap: break-word;
-    width: 430px;
-    text-align: center;
-    margin-top: 70px;
-    color: black;
-    font-size: 25px;
-    font-weight: 700;
-    margin-inline: auto;
-}
 
-
-#body .popup > img {
-    max-width: 110px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    /* background-color: white; */
-    /* border-radius: 50%; */
-    /* border: 5px solid white; */
-}
 
 /* Body */
 
@@ -504,7 +470,6 @@ input[number]{
 
 /* Popup edt */
 
-#body #popup-edt 
 
 /* Popup remove */
 #body #popup-edt .body{

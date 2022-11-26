@@ -14,8 +14,8 @@ function disablePopup(e){
         ele.classList.remove('active')
     }))
 }
-
-let blur;
+let blur
+let popup_login
 
 var categories = localStorage.getItem('cate')
 categories = JSON.parse(categories)
@@ -116,6 +116,7 @@ if (products == null) {
 
 function renData(){
     blur = document.getElementById('blur')
+    popup_login = document.getElementById('popup-login')
 
 
 
@@ -132,7 +133,6 @@ function renData(){
 
     let link = location.href.split('?')
 
-    console.log(link);
     
     if (!link[0].includes('admin.html')){
         switch (link[1]){
@@ -159,11 +159,21 @@ function renData(){
             // link.appendChild(span)
             navBar.appendChild(link)
         })
+
+        //Popup login
+        document.getElementById('btn-login').addEventListener('click',
+        (event)=>{
+            blur.classList.toggle('active')
+            popup_login.classList.toggle('active')
+            popup_login.style.top = "50%"
+        })
     }
 
 
+    //Disable blur
     document.getElementById('blur').addEventListener('click',disablePopup)
 
+   
     
 
 }
