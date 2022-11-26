@@ -8,6 +8,7 @@
 }
 
 #home:before {
+    
     content: "";
     position: absolute;
     inset: 0;
@@ -222,7 +223,7 @@
     cursor: pointer;
     border-radius: 5px;
 }
-.gagination{
+#home .gagination{
     width: 100%;
     display: flex;
     justify-content: center;
