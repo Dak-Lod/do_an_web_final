@@ -113,10 +113,10 @@ function renData(){
         srchSelect.appendChild(tmp)
     });
 
-    let link = location.href.split('?')
+    let link = location.pathname.split('?')
+
     
-    
-    if (link[0] != 'admin.html'){
+    if (link[0] != '/admin.html'){
         switch (link[1]){
             case 'search' :
                 document.getElementById('search').style.display = 'block'
