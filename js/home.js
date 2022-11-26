@@ -73,70 +73,48 @@ const lists = [
     }
 ]
 
+
+
 var s = ''
-function render(n,className = undefined) {
-    var idx = 0
-    if(className != undefined) {
-        for(var i=n*5; i < lists.length ; i++) {
-            if(idx < 5) {
-                if(lists[i].classify == className) {
-                    s = s + `<div class="item-SanPhamMoi">
-                    <button style="border : 0; background-color: transparent"><img src="${lists[i].img}" alt=""></button>
-                    <div class="item-size-color">
-                        <div class="font-product">+7 size</div>
-                        <div class="font-product">+3 Màu sắc</div>
-                    </div>
-                    <button style="border : 0; background-color: transparent" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-                    <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
-                    <div class="item-SanPhamMoi__footer">
-                        <button class="item-SanPhamMoi__btn">mua ngay</button>
-                    </div>
-                    </div>`
-                }
-                idx +=1
-            }
-        }
-    } else {
-        for(var i=n*5; i < lists.length ; i++) {
-            if(idx < 5) {
+function renderNew(n) {
+
+    products.forEach(
+        function(ele){
+            if ((categories[n].includes(ele.cate) && ele.new == 1) || n == -1)
                 s = s + `<div class="item-SanPhamMoi">
-                <button style="border : 0; background-color: transparent"><img src="${lists[i].img}" alt=""></button>
-                <div class="item-size-color">
+                <button style="border : 0; background-color: transparent"><img src="${ele.img}" alt=""></button>
+            <div class="item-size-color">
                     <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
+                <div class="font-product">+3 Màu sắc</div>
                 </div>
-                <button style="border : 0; background-color: transparent" class="font-product">Giày Thể Thao Nam Hunter Street White</button>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
+            <button style="border : 0; background-color: transparent" class="font-product">${ele.name}</a>
+                <div class="price-product"><span style="font-size: 15px;">${ele.price}</span></div>            
                 <div class="item-SanPhamMoi__footer">
                     <button class="item-SanPhamMoi__btn">mua ngay</button>
-                </div>
+            </div>
                 </div>`
-                idx +=1
-            }
-        }
-    }
+        } 
+        )
     document.querySelectorAll('.container-SanPhamMoi')[0].innerHTML = s
-    s= ''
+    s = ''
 }
 
 var s1 = ''
 function render1(className = undefined) {
     if(className != undefined) {
         for(var i=0; i < lists.length ; i++) {
-            if(lists[i].classify == className) {
                 s1 = s1 + `<div class="item-SanPhamMoi">
-                <button style="border : 0; background-color: transparent"><img src="${lists[i].img}" alt=""></button>
+                <button style="border : 0; background-color: transparent"><img src="${products[i].img}" alt=""></button>
                 <div class="item-size-color">
                     <div class="font-product">+7 size</div>
                     <div class="font-product">+3 Màu sắc</div>
                 </div>
-                <button style="border : 0; background-color: transparent" class="font-product">Giày Thể Thao Nam Hunter Street White</button>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
+                <button style="border : 0; background-color: transparent" class="font-product">${products[i].name}</button>
+                <div class="price-product"><span style="font-size: 15px;">${products[i].price}</span></div>            
                 <div class="item-SanPhamMoi__footer">
                     <button class="item-SanPhamMoi__btn">mua ngay</button>
                 </div>
                 </div>`
-            }
         }
     } else {
         for(var i=0; i < lists.length ; i++) {
@@ -158,7 +136,7 @@ function render1(className = undefined) {
     s1 = ''
 }
 
-setTimeout(function () {
+function renHome() {
     var s = ''
     // function render(className = undefined) {
     //     if(className != undefined) {
@@ -235,6 +213,9 @@ setTimeout(function () {
             // }
         }
    })
+}   
+
+// setTimeout(
     
-},4000)
+// },4000)
 

@@ -63,7 +63,7 @@ if (accounts == null) {
 
 class Product {
     static count = 0;
-    constructor (name, cate, price, des, img){
+    constructor (name, cate, price, des, img, sell, newPrd){
         Product.count++;
         this.id = Product.count + 10000;
         this.name = name;
@@ -71,14 +71,17 @@ class Product {
         this.price = price;
         this.des = des;
         this.img = img
+        this.sell = sell
+        this.new = newPrd
     }
 }
 var products = localStorage.getItem('products')
 products = JSON.parse(products)
 if (products == null) {
     products = []
-    products.push(new Product('Giày Thể Thao Nam Hunter Street Cream',1,781000,'Mô tả:  ', './img/product1.webp'))
+    products.push(new Product('Giày Thể Thao Nam Hunter Street Cream',0,781000,'Mô tả:  ', './img/product1.webp'))
     products.push(new Product('Giày Thể Thao Bé Trai', 3, 437000, 'Mô tả: ', './img/product2.webp'))
+    // products.push(new Product())
 }else{
     Product.count = products.length    
 }
@@ -86,7 +89,7 @@ if (products == null) {
 
 function renData(){
     blur = document.getElementById('blur')
-    $('#body').load('./home.html')
+    $('#body').load('./home.html', renHome)
 
 
 

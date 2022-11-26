@@ -287,3 +287,11 @@ input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
     display: none;
 }
+
+
+footer {
+    background-color: black;
+}
+footer > * {
+    color: white;
+}
