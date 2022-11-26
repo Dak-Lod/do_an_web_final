@@ -8,6 +8,7 @@
 }
 
 #home:before {
+    
     content: "";
     position: absolute;
     inset: 0;
@@ -75,8 +76,9 @@
     /* display: flex; */
     display: block;
     /* flex-wrap: wrap; */
-
+    
     overflow: hidden;
+    
     margin-top: 20px;
     /* padding-left:5%; */
     padding-bottom: 50px;
@@ -222,7 +224,7 @@
     cursor: pointer;
     border-radius: 5px;
 }
-.gagination{
+#home .gagination{
     width: 100%;
     display: flex;
     justify-content: center;
