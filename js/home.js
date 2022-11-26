@@ -57,7 +57,7 @@ function renderNew(n) {
             <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${ele.name}</button>
                 <div class="price-product"><span style="font-size: 15px;">${ele.price}</span></div>            
                 <div class="item-SanPhamMoi__footer">
-                    <button class="item-SanPhamMoi__btn">mua ngay</button>
+                    <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
             </div>
                 </div>`
         } 
@@ -79,7 +79,7 @@ function renderPrt(n) {
             <button style="border : 0; background-color: transparent" class="font-product">${ele.name}</button>
                 <div class="price-product"><span style="font-size: 15px;">${ele.price}</span></div>            
                 <div class="item-SanPhamMoi__footer">
-                    <button class="item-SanPhamMoi__btn">mua ngay</button>
+                    <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
             </div>
                 </div>`
         } 
