@@ -1,17 +1,20 @@
 
+#search{
+    /* display: none; */
+}
 
 #search{
     background-color: white ;
 }
 
-.container
+#search .container
 {
     display: flex;
     flex-wrap: nowrap;
     max-width: 100%;
 }
 
-.left-content
+#search .left-content
 {
     width: 20%;
     overflow: hidden;
@@ -20,25 +23,23 @@
     overflow-y: auto;
 }
 
-.right-content
+#search .right-content
 {
     width: 80%;
-    height: 560px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     padding-left: 25px;
     align-items: center;
 }
 
-.filter
+#search .filter
 {
     border-radius: 5px;
     margin: 25px 10px;
     padding: 10px;
 }
 
-.filter_text
+#search .filter_text
 { 
     font-size: 20px;
     font-weight: bold;
@@ -48,27 +49,27 @@
     text-align: center;
 }
 
-.filter__header
+#search .filter__header
 {
     font-weight: 500;
     margin: 10px 0;
     font-size: 20px;
 }
 
-.category-item
+#search .category-item
 {
  display: flex; 
  align-items: center;
  margin-bottom: 10px;
 }
 
-.category-wrapper
+#search .category-wrapper
 {
     padding: 0px 10px;
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-input[type="checkbox"]
+#search input[type="checkbox"]
 {
   -webkit-appearance: none;
   appearance: none;
@@ -84,7 +85,7 @@ input[type="checkbox"]
   margin-right: 10px;
 }
 
-input[type="checkbox"]::after
+#search input[type="checkbox"]::after
 {
   content: "\f111";
   font-size: 50%;
@@ -95,18 +96,18 @@ input[type="checkbox"]::after
   border-radius: 50%;
 }
 
-input[type="checkbox"]:hover
+#search input[type="checkbox"]:hover
 {
   background-color: #a5a5a5;
 }
 
-input[type="checkbox"]:checked:after
+#search input[type="checkbox"]:checked:after
 {
   display: block;
   border-radius: 50%;
 }
 
-.checkbox__label
+#search .checkbox__label
 {
     font-size: 15px;
 }
@@ -114,7 +115,7 @@ input[type="checkbox"]:checked:after
 /*
     Price css
  */
- .price-display
+ #search .price-display
  {
      
      display: flex;
@@ -123,7 +124,7 @@ input[type="checkbox"]:checked:after
      align-items: center;
  }
  
- .price-display .separator
+ #search .price-display .separator
  {
      width: 130px;
      display: flex;
@@ -132,13 +133,13 @@ input[type="checkbox"]:checked:after
      justify-content: center;
  }
  
- .price-display .price-input
+ #search .price-display .price-input
  {
      height: 30px;
      display: flex;
  }
 
- .price-input input{
+ #search .price-input input{
      width: 100%;
      height: 100%;
      justify-content: center;
@@ -148,7 +149,7 @@ input[type="checkbox"]:checked:after
      border-radius: 5px;
  }
  
- .find-product
+ #search .find-product
  {
      text-align: center;
      padding: 10px;
@@ -161,13 +162,13 @@ input[type="checkbox"]:checked:after
      border-radius: 5px;
  }
  
- .price-wrapper
+ #search .price-wrapper
  {
      justify-content: center;
      text-align: center;
  }
  
- .input-error
+ #search .input-error
  {
      display: none;
  }
@@ -178,34 +179,33 @@ input[type="checkbox"]:checked:after
  
  */
 
- .product-item
+ #search .product-item
  {
     width: 20%;
     position: relative;
     background-color: white;
-    margin-top: 24px;
-    
+    margin-top: 24px;   
     margin-right: 24px;
+    padding-bottom: 15px;
     align-items: center;
     border: 1px solid #E4E7ED;
     cursor: pointer;
-    height: 400px;
     border-radius: 10px;
  }
 
- .product-item:hover
+ #search .product-item:hover
  {
     transform: scale(1.05);
  }
 
-.product-label
+ #search .product-label
 {
     position: absolute;
     right: 15px;
     top: 15px;
 }
 
-.product-status
+#search .product-status
 {
     background-color: #d31737;
     padding: 7px;
@@ -216,7 +216,7 @@ input[type="checkbox"]:checked:after
     font-size: 12px;
 }
 
-.product-discount
+#search .product-discount
 {
     border: 2px solid #d31737;
     color:#d31737;
@@ -227,15 +227,14 @@ input[type="checkbox"]:checked:after
     font-size: 12px;
 }
 
- .product-img
- {
-    padding-top: 100%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    
+#search .product-img
+ { 
+    max-width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
  }
 
-.product-category
+ #search .product-category
 {
     text-align: center;
     padding: 5px;
@@ -243,7 +242,7 @@ input[type="checkbox"]:checked:after
     font-size: 10px;
 }
 
-.product-name
+#search .product-name
 {
    font-size: 17px;
    font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -256,7 +255,7 @@ input[type="checkbox"]:checked:after
    color: #606369;
 }
 
- .price-box
+#search .price-box
  {
    /* display: flex;*/
     align-items: baseline;
@@ -264,14 +263,14 @@ input[type="checkbox"]:checked:after
     text-align: center;
  }
 
- .old-price
+ /*.old-price
  {
     font-size: 15px;
     color: #666;
     text-decoration: line-through;
- }
+ }*/
 
- .new-price
+ #search .product-price
  {
     font-size: 20px;
     color: crimson;
@@ -279,7 +278,7 @@ input[type="checkbox"]:checked:after
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
  }
 
-.product-rate {
+ #search .product-rate {
    position: relative;
    justify-content: center;
    text-align: center;
@@ -287,7 +286,7 @@ input[type="checkbox"]:checked:after
    padding: 5px;
   }
   
-  .product-rate>i {
+  #search .product-rate>i {
     position: relative;
     width: 14px;
     margin-right: -4px;
@@ -296,11 +295,11 @@ input[type="checkbox"]:checked:after
     z-index: 10;
   }
   
-  .product-rate>i.fa-star {
+  #search .product-rate>i.fa-star {
     color: #ef233c;
   }
   
-  .product-rate:after {
+  #search .product-rate:after {
     content: "";
     position: absolute;
     top: 50%;
@@ -313,14 +312,14 @@ input[type="checkbox"]:checked:after
     background-color: #d8dde2;
 }
 
-.addtocart
+#search .addtocart
 {
     margin-top: 10px;
     justify-content: center;
     text-align: center; 
 } 
 
-.cart-button
+#search .cart-button
  {
     font-size: 15px;
     padding: 10px;
@@ -386,19 +385,20 @@ input[type="checkbox"]:checked:after
     background-color: #d31737;
  }
  */
- .pagination {
+ #search.pagination {
     padding: 5px;
     text-align: center;
     list-style: none;
     font-size: 15px;
 }
-.pagination li{
+
+#search .pagination li{
     padding: 12px;
     display: inline-block;
     margin:0 10px;
     cursor: pointer;
 }
-.pagination .active{
+#search .pagination .active{
     background-color: #d31737;
     color:#fff;
     border-radius: 50%;

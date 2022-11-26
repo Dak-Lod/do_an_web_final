@@ -134,7 +134,7 @@ function renData(){
             break
     }
 
-
+    renSearch(-1)
 
     // Navigation
     var navBar = document.querySelector('nav > .container')
