@@ -57,7 +57,7 @@ header a {
 
 
 header a:hover, a:focus, a.active {
-    color: var(--color-primary-dark);
+    color: var(--color-primary-dark) !important;
     text-decoration: none;
     outline: none;
 }
@@ -209,7 +209,7 @@ nav > .container a {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 15px;
-    /* color: var(--color-text-dark); */
+    color: var(--color-text-grey);
 }
 
 nav > .container a span {
