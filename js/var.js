@@ -79,9 +79,11 @@ var products = localStorage.getItem('products')
 products = JSON.parse(products)
 if (products == null) {
     products = []
-    products.push(new Product('Giày Thể Thao Nam Hunter Street Cream',0,781000,'Mô tả:  ', './img/product1.webp'))
-    products.push(new Product('Giày Thể Thao Bé Trai', 3, 437000, 'Mô tả: ', './img/product2.webp'))
+    products.push(new Product('Giày Thể Thao Nam Hunter Street Cream',0,781000,'Mô tả:  ', './img/product1.webp',1,1))
+    products.push(new Product('Giày Thể Thao Bé Trai', 2, 437000, 'Mô tả: ', './img/product2.webp',1,1))
+    // products.push(new Product('Giày Thể Thao Bé Trai', 1, 437000, 'Mô tả: ', './img/product2.webp',1,1))
     // products.push(new Product())
+    localStorage.setItem('products', JSON.stringify(products))
 }else{
     Product.count = products.length    
 }
