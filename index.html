@@ -9,9 +9,10 @@
     <script src="./js/jquery.js"></script>
     <script src="./js/var.js"></script>
     <script src="./js/search.js"></script>
+    <script src="./js/home.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <!-- Chỉnh tên file lại thành tên file của mình -->
-    <!-- <link rel="stylesheet" href="./css/home.css">  -->
+    <link rel="stylesheet" href="./css/home.css"> 
     <link rel="stylesheet" href="./css/search.css">
 
     
@@ -109,7 +110,6 @@
 
                 
             </div>
-        </div>
         <!-- Navigation -->
         <nav id="navigation">
             <div class="container">
@@ -179,6 +179,258 @@
         
     </article>
     <!-- /Body -->
+
+    <article id="home">
+        
+<div class="topBanner">
+    <div class="banner-item" id="item1"><a href="#"><img src="./img2/banner1.jpg" alt=""></a></div>
+    <div class="banner-item" id="item2"><a href="#"><img src="./img2/banner2.jpg" alt=""></a></div>
+    <div class="banner-item" id="item3"><a href="#"><img src="./img2/banner3.jpg" alt=""></a></div>
+</div>
+<div class="sanPhamMoi">
+    <span class="tieuDeMucSP"> SẢN PHẨM MỚI</span>
+    <ul class="menu">
+        <li onclick="renderNew(-1)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
+        <li onclick="renderNew(0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
+        <li onclick="renderNew(1)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
+        <li onclick="renderNew(2)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
+        <li onclick="renderNew(3)" class="item-menu"><span class="item-menu1"> Khuyến mãi</span></li>
+    </ul>
+</div>
+<div class="container-SanPhamMoi">
+    
+    <!-- <div onclick="btnLeftTop()" class="btn-left"><</div>
+    <div onclick="btnRightTop()" class="btn-right">></div>
+    <div class="container-wrap"> -->
+        <!-- <div class="item-SanPhamMoi">
+            <a href="#"><img src="./img2/SPmoi_1.jpg" alt=""></a>
+            <div class="item-size-color">
+                <div class="font-product">+7 size</div>
+                <div class="font-product">+3 Màu sắc</div>
+            </div>
+            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
+            <div class="item-SanPhamMoi__footer">
+                <button class="item-SanPhamMoi__btn">mua ngay</button>
+            </div>
+        </div>
+
+
+        <div class="item-SanPhamMoi">
+            <a href="#"><img src="./img2/SPmoi_2.jpg" alt=""></a>
+            <div class="item-size-color">
+                <div class="font-product">+7 size</div>
+                <div class="font-product">+3 Màu sắc</div>
+            </div>
+            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+            <div class="item-SanPhamMoi__footer">
+                <button class="item-SanPhamMoi__btn">mua ngay</button>
+            </div>
+        </div>
+
+        <div class="item-SanPhamMoi">
+            <a href="#"><img src="./img2/SPmoi_3.jpg" alt=""></a>
+            <div class="item-size-color">
+                <div class="font-product">+7 size</div>
+                <div class="font-product">+3 Màu sắc</div>
+            </div>
+            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+            <div class="item-SanPhamMoi__footer">
+                <button class="item-SanPhamMoi__btn">mua ngay</button>
+            </div>
+        </div>
+
+        <div class="item-SanPhamMoi">
+            <a href="#"><img src="./img2/SPmoi_4.jpg" alt=""></a>
+            <div class="item-size-color">
+                <div class="font-product">+7 size</div>
+                <div class="font-product">+3 Màu sắc</div>
+            </div>
+            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+            <div class="item-SanPhamMoi__footer">
+                <button class="item-SanPhamMoi__btn">mua ngay</button>
+            </div>
+        </div>
+
+        <div class="item-SanPhamMoi">
+            <a href="#"><img src="./img2/SPmoi_5.jpg" alt=""></a>
+            <div class="item-size-color">
+                <div class="font-product">+7 size</div>
+                <div class="font-product">+3 Màu sắc</div>
+            </div>
+            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+            <div class="item-SanPhamMoi__footer">
+                <button class="item-SanPhamMoi__btn">mua ngay</button>
+            </div>
+        </div>
+
+        <div class="item-SanPhamMoi">
+            <a href="#"><img src="./img2/SPmoi_6.jpg" alt=""></a>
+            <div class="item-size-color">
+                <div class="font-product">+7 size</div>
+                <div class="font-product">+3 Màu sắc</div>
+            </div>
+            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+            <div class="item-SanPhamMoi__footer">
+                <button class="item-SanPhamMoi__btn">mua ngay</button>
+            </div>
+        </div>
+
+        <div class="item-SanPhamMoi">
+            <a href="#"><img src="./img2/SPmoi_7.jpg" alt=""></a>
+            <div class="item-size-color">
+                <div class="font-product">+7 size</div>
+                <div class="font-product">+3 Màu sắc</div>
+            </div>
+            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+            <div class="item-SanPhamMoi__footer">
+                <button class="item-SanPhamMoi__btn">mua ngay</button>
+            </div>
+        </div>
+
+        <div class="item-SanPhamMoi">
+            <a href="#"><img src="./img2/SPmoi_8.jpg" alt=""></a>
+            <div class="item-size-color">
+                <div class="font-product">+7 size</div>
+                <div class="font-product">+3 Màu sắc</div>
+            </div>
+            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+            <div class="item-SanPhamMoi__footer">
+                <button class="item-SanPhamMoi__btn">mua ngay</button>
+            </div>
+        </div> -->
+    <!-- </div> -->
+</div>
+<div class="gagination">
+    <ul class="btn-ul">
+        <li class="btn-li btn--active">1</li>
+        <li class="btn-li">2</li>
+        <li class="btn-li">3</li>
+    </ul>
+</div>
+
+
+    <div class="bannerMid">
+        <img src="./img2/web_banner___phien_ban_40_nam_c7.jpg" alt="">
+    </div>
+
+
+    <div class="sanPhamMoi">
+    <span class="tieuDeMucSP"> SẢN PHẨM BÁN CHẠY</span>
+    <ul class="menu">
+        <li onclick="renderPrt(-1)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
+        <li onclick="renderPrt(0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
+        <li onclick="renderPrt(1)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
+        <li onclick="renderPrt(2)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
+        <li onclick="renderPrt(3)" class="item-menu"><span class="item-menu1"> Khuyến mãi</span></li>
+    </ul>
+</div>
+<div  class="container-SanPhamMoi" >
+    
+    <div onclick="btnLeftBottom()" class="btn-left"><</div>
+    <div onclick="btnRightBottom()" class="btn-right">></div>
+    <div class="container-wrap">
+            <!-- <div class="item-SanPhamMoi">
+                <a href="#"><img src="./img2/SPmoi_1.jpg" alt=""></a>
+                <div class="item-size-color">
+                    <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                </div>
+                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
+            </div>
+    
+    
+            <div class="item-SanPhamMoi">
+                <a href="#"><img src="./img2/SPmoi_2.jpg" alt=""></a>
+                <div class="item-size-color">
+                    <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                </div>
+                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+            </div>
+    
+            <div class="item-SanPhamMoi">
+                <a href="#"><img src="./img2/SPmoi_3.jpg" alt=""></a>
+                <div class="item-size-color">
+                    <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                </div>
+                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+                
+            </div>
+    
+            <div class="item-SanPhamMoi">
+                <a href="#"><img src="./img2/SPmoi_4.jpg" alt=""></a>
+                <div class="item-size-color">
+                    <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                </div>
+                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+                
+            </div>
+    
+            <div class="item-SanPhamMoi">
+                <a href="#"><img src="./img2/SPmoi_5.jpg" alt=""></a>
+                <div class="item-size-color">
+                    <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                </div>
+                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+                
+            </div>
+    
+            <div class="item-SanPhamMoi">
+                <a href="#"><img src="./img2/SPmoi_6.jpg" alt=""></a>
+                <div class="item-size-color">
+                    <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                </div>
+                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+                
+            </div>
+    
+            <div class="item-SanPhamMoi">
+                <a href="#"><img src="./img2/SPmoi_7.jpg" alt=""></a>
+                <div class="item-size-color">
+                    <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                </div>
+                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+                
+            </div>
+    
+            <div class="item-SanPhamMoi">
+                <a href="#"><img src="./img2/SPmoi_8.jpg" alt=""></a>
+                <div class="item-size-color">
+                    <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                </div>
+                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
+                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
+            </div>
+        </div> -->
+    </div>
+    <div class="showcart-wrap">
+        <div class="showcart"></div>
+    </div>
+
+    </div>
+    
+    </article>
 
     <!-- Footer -->
 

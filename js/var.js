@@ -81,7 +81,15 @@ if (products == null) {
     products = []
     products.push(new Product('Giày Thể Thao Nam Hunter Street Cream',0,781000,'Mô tả:  ', './img/product1.webp',1,1))
     products.push(new Product('Giày Thể Thao Bé Trai', 2, 437000, 'Mô tả: ', './img/product2.webp',1,1))
-    // products.push(new Product('Giày Thể Thao Bé Trai', 1, 437000, 'Mô tả: ', './img/product2.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1000000 , 'Mô tả: ', './img/nu2.webp',1,1))
+    products.push(new Product('Giày Thể Thao Bé Gái Hunter X Junior', 2, 643000 , 'Mô tả: ', './img/treEm2.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nam Hunter Street', 0, 1540000 , 'Mô tả: ', './img/nam2.webp',1,1))
+
+    products.push(new Product('Giày Thể Thao Nam Bitis Hunter X 2k22',0,1781000,'Mô tả:  ', './img/nam3.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nam Hunter Street Bloomin', 0, 1354000, 'Mô tả: ', './img/nam4.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nam Hunter Tennis', 0, 853000 , 'Mô tả: ', './img/Nam5.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nữ Hunter Street ', 1, 1540000 , 'Mô tả: ', './img/nu1.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1187000 , 'Mô tả: ', './img/nu3.webp',1,1))
     // products.push(new Product())
     localStorage.setItem('products', JSON.stringify(products))
 }else{
@@ -91,7 +99,6 @@ if (products == null) {
 
 function renData(){
     blur = document.getElementById('blur')
-    
 
 
 
@@ -106,6 +113,19 @@ function renData(){
         srchSelect.appendChild(tmp)
     });
 
+    let link = location.href.split('?')
+
+    switch (link[1]){
+        case 'search' :
+            document.getElementById('search').style.display = 'block'
+            renSearch(-1)
+            break
+        case 'home' :
+            document.getElementById('home').style.display = 'block'
+            renderNew(-1)
+            renderPrt(-1)
+            break
+    }
 
     renSearch(-1)
 
