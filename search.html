@@ -1,0 +1,102 @@
+           <div class="container">
+                <div class="left-content">
+                    <nav class="filter">
+                    <div class="filter_text">
+                        BỘ LỌC TÌM KIẾM
+                    </div>
+                    <div class="search-list">
+                        <div class="category-filter">
+                            <div class="filter__header">Thể loại</div>
+                            <div class="category-wrapper">
+                                <div class="category-item">
+                                    <input type="checkbox" id="check">
+                                    <span class="checkbox__label">Nam</span>
+                                </div>
+                                <div class="category-item">
+                                    <input type="checkbox" id="check">
+                                    <span class="checkbox__label">Nữ</span>
+                                </div>
+                            </div>
+                        </div><!--category-filter-->
+
+                        <div class="price-filter">
+                            <div class="filter__header">Khoảng giá</div>
+                            <div class="price-wrapper">
+                                <div class="price-display">
+                                    <div class="price-input">
+                                        <input type="text" placeholder="đ MIN" value>
+                                    </div>
+                                    <div class="separator">-</div>
+                                    <div class="price-input">
+                                        <input type="text" placeholder="đ MAX" value>
+                                    </div>
+                                </div><!--display-->
+                                <div class="input-error">&nbsp;</div>
+                                <button class="find-product">Tìm</button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                </div><!--left-->
+                <div class="right-content">
+                    
+                </div>        
+            </div>
+             <!--container-->
+ <!--           <script>
+                var currentPage = 1;
+                var perPage = 4;
+                var paginationSize= 5;
+                var list = document.querySelectorAll(' .product-item');//ds san pham
+
+                //hien thi sp
+                function loadItem(){
+                    var beginGet = perPage * (currentPage - 1);
+                    var endGet = perPage * currentPage - 1;
+                    list.forEach((item, key)=>{
+                        if(key >= beginGet && key <= endGet){
+                            item.style.display = 'block';
+                        }else{
+                            item.style.display = 'none';
+                        }
+                    })
+                    pagination();// tinh lai vi tri trang
+                }
+                loadItem();
+                
+                function pagination(){
+                    var totalPages = Math.ceil(list.length / perPage);
+                    document.querySelector('.pagination').innerHTML = '';
+
+                    //prev page
+                    if(currentPage != 1){
+                        var prev = document.createElement('li');
+                        prev.innerHTML = '<i class="fa-solid fa-less-than"></i>';
+                        prev.setAttribute('onclick', "changePage(" + (currentPage - 1) + ")");
+                        document.querySelector('.pagination').appendChild(prev);//them vao cuoi
+                    }
+                    //current page
+                    for(i = 1; i <= totalPages; i++){
+                        var newPage = document.createElement('li');
+                        newPage.innerText = i;
+                        if(i == currentPage){
+                            newPage.classList.add('active');
+                        }
+                        newPage.setAttribute('onclick', "changePage(" + i + ")");
+                        document.querySelector('.pagination').appendChild(newPage);
+                    }
+                    //next page
+                    if(currentPage != totalPages){
+                        var next = document.createElement('li');
+                        next.innerHTML = '<i class="fa-solid fa-greater-than"></i>';
+                        next.setAttribute('onclick', "changePage(" + (currentPage + 1) + ")");
+                        document.querySelector('.pagination').appendChild(next);
+                    }
+                }
+
+                function changePage(i){
+                    currentPage = i;
+                    loadItem();
+                }
+            </script>-->
+        
