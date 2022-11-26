@@ -75,6 +75,23 @@ class Product {
         this.new = newPrd
     }
 }
+class Cart {
+    static count = 0;
+    constructor (prd){
+        this.products = prd
+    }
+}
+
+let carts = localStorage.getItem('cart')
+carts = JSON.parse(carts)
+if (carts == null){
+    carts = new Cart([])
+    localStorage.setItem('carts', JSON.stringify(carts))
+}
+
+
+
+
 var products = localStorage.getItem('products')
 products = JSON.parse(products)
 if (products == null) {
@@ -113,35 +130,40 @@ function renData(){
         srchSelect.appendChild(tmp)
     });
 
-    let link = location.href.split('?')
+    let link = location.pathname.split('?')
 
-    switch (link[1]){
-        case 'search' :
-            document.getElementById('search').style.display = 'block'
-            renSearch(-1)
-            break
-        case 'home' :
-            document.getElementById('home').style.display = 'block'
-            renderNew(-1)
-            renderPrt(-1)
-            break
+    
+    if (link[0] != '/admin.html'){
+        switch (link[1]){
+            case 'search' :
+                document.getElementById('search').style.display = 'block'
+                renSearch(-1)
+                break
+            case undefined:
+                document.getElementById('home').style.display = 'block'
+                renderNew(-1)
+                renderPrt(-1)
+                break
+
+            
+        }
+
+        // Navigation
+        var navBar = document.querySelector('nav > .container')
+        categories.forEach(ele => {
+            var span = document.createElement('span');
+            span.setAttribute('class', 'active');
+            var link = document.createElement('a');
+            link.innerText = ele
+            // link.appendChild(span)
+            navBar.appendChild(link)
+        })
     }
 
-    renSearch(-1)
 
-    // Navigation
-    var navBar = document.querySelector('nav > .container')
-    console.log(navBar);
-    categories.forEach(ele => {
-        var span = document.createElement('span');
-        span.setAttribute('class', 'active');
-        var link = document.createElement('a');
-        link.innerText = ele
-        // link.appendChild(span)
-        navBar.appendChild(link)
-    })
-    
     document.getElementById('blur').addEventListener('click',disablePopup)
+
+    
 
 }
 
