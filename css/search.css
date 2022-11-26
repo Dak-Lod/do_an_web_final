@@ -91,7 +91,7 @@
   font-size: 50%;
   font-weight: 900;
   font-family: "Font Awesome 5 Free";
-  color:green;
+  color:#d31737;
   display: none;
   border-radius: 50%;
 }
@@ -251,8 +251,13 @@
    padding: 0 5px;
    margin: 0 5px;
    overflow: hidden;
+   height: 40px;
    display: block;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2;
    color: #606369;
+   
 }
 
 #search .price-box

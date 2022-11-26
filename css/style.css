@@ -295,6 +295,7 @@ input[type="password"]::-ms-clear {
 
 
 footer {
+    margin-top: 20px;
     background-color: black;
 }
 footer > * {

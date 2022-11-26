@@ -134,19 +134,19 @@
                         <div class="filter__header">Thể loại</div>
                         <div class="category-wrapper">
                             <div class="category-item">
-                                <input type="checkbox" id="check" checked="checked">
+                                <input type="checkbox" id="check" checked="checked" onclick="renderSearch(-1)">
                                 <span class="checkbox__label">Tất cả</span>
                             </div>
                             <div class="category-item">
-                                <input type="checkbox" id="check">
+                                <input type="checkbox" id="check" onclick="renderSearch(0)">
                                 <span class="checkbox__label">Nam</span>
                             </div>
                             <div class="category-item">
-                                <input type="checkbox" id="check">
+                                <input type="checkbox" id="check" onclick="renderSearch(1)">
                                 <span class="checkbox__label">Nữ</span>
                             </div>
                             <div class="category-item">
-                                <input type="checkbox" id="check">
+                                <input type="checkbox" id="check" onclick="renderSearch(2)">
                                 <span class="checkbox__label">Khuyến mãi</span>
                             </div>
                         </div>
@@ -532,6 +532,20 @@
         </div> -->
     </footer>
     <div id="blur"></div>
+
+    <div class="popup" id="popup-login">
+        <img src="./icon/remove1.png" alt="">
+        <span class="title">Bạn có chắc chắn muốn xoá sản phẩm này hay ko?</span>
+        <div class="body">
+            <span></span>
+            <span>Giày Thể Thao Bé Trai</span>
+            <img>
+        </div>
+        <div class="btn">
+            <button class="ok">Đồng ý</button>
+            <button class="cancel">Huỷ bỏ</button>
+        </div>
+    </div>
 
 </body>
 </html>
