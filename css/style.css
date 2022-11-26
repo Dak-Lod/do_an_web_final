@@ -135,6 +135,36 @@ header > .container {
 
 /* Header right content */
 
+#login-option {
+    display: none;
+    position: absolute;
+    transition: top 0.2s;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 100px;
+    background-color: white;
+}
+
+#login-option button {
+    width: 100%;
+    border: none;
+    background-color: inherit;
+    height: 30px;
+}
+
+#login-option button:hover {
+    filter: brightness(0.85);
+}
+
+
+#btn-login:hover .signed + #login-option {
+    display: block;
+    top: 100%;
+}
+
+
+
 .header-ctn {
     margin: auto;
     flex-grow: 1;
@@ -155,6 +185,9 @@ header > .container {
     width: 90px;
     text-align: center;
     color: var(--color-text-white);
+}
+.header-ctn > .container div > a:hover{
+    cursor: pointer;
 }
 
 .header-ctn > .container div > a > i {
@@ -212,6 +245,8 @@ nav > .container a {
     font-weight: 700;
     font-size: 15px;
     color: var(--color-text-grey);
+    outline: 2px solid var(--color-primary-dark);
+    height: fit-content;
 }
 
 nav > .container a span {

@@ -3,6 +3,13 @@ const role = [
     'Khách hàng'
 ]
 
+var login_info = localStorage.getItem('signed')
+login_info = JSON.parse(login_info)
+if (login_info != null){
+    document.getElementById('login-name').innerText = login_info.name
+    document.getElementById('login-option').style.display = "flex"
+}
+
 function disablePopup(e){
     setTimeout(()=>{
         blur.classList.toggle('active')
@@ -150,14 +157,17 @@ function renData(){
         }
 
         // Navigation
-        var navBar = document.querySelector('nav > .container')
+        let navBar = document.querySelector('nav > .container')
+        let a = document.createElement('a');
+        a.innerText = "Trang chủ"
+        a.classList.add('active')
+        a.focus()
+        navBar.appendChild(a)
+        
         categories.forEach(ele => {
-            var span = document.createElement('span');
-            span.setAttribute('class', 'active');
-            var link = document.createElement('a');
-            link.innerText = ele
-            // link.appendChild(span)
-            navBar.appendChild(link)
+            a = document.createElement('a');
+            a.innerText = ele
+            navBar.appendChild(a)
         })
 
         //Popup login
