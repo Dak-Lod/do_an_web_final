@@ -85,9 +85,12 @@
                             <!-- Login -->
     
                             <div>
-                                <a href="">
+                                <a id="btn-login">
                                     <i class="fa-solid fa-user"></i>
-                                    <span>Đăng Nhập</span>
+                                    <span id="login-name" class="signed">Đăng Nhập</span>
+                                    <div id="login-option">
+                                        <button>Đăng xuất</button>
+                                    </div>
                                 </a>
                             </div>
     
@@ -534,16 +537,18 @@
     <div id="blur"></div>
 
     <div class="popup" id="popup-login">
-        <img src="./icon/remove1.png" alt="">
-        <span class="title">Bạn có chắc chắn muốn xoá sản phẩm này hay ko?</span>
+        <img src="./icon/user-icon.png" alt="">
+        <span class="title">Đăng nhập</span>
         <div class="body">
-            <span></span>
-            <span>Giày Thể Thao Bé Trai</span>
-            <img>
+            <form action="">
+                <input type="text" placeholder="Tài khoản">
+                <input type="password" name="" id="" placeholder="Mật khẩu">
+                <div class="input-error"></div>
+            </form>
         </div>
         <div class="btn">
-            <button class="ok">Đồng ý</button>
-            <button class="cancel">Huỷ bỏ</button>
+            <button class="login" id="login-btn">Đăng nhập</button>
+            <button class="signup" id="signup-btn">Đăng ký</button>
         </div>
     </div>
 

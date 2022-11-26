@@ -3,6 +3,13 @@ const role = [
     'Khách hàng'
 ]
 
+var login_info = localStorage.getItem('signed')
+login_info = JSON.parse(login_info)
+if (login_info != null){
+    document.getElementById('login-name').innerText = login_info.name
+    document.getElementById('login-option').style.display = "flex"
+}
+
 function disablePopup(e){
     setTimeout(()=>{
         blur.classList.toggle('active')
@@ -14,8 +21,8 @@ function disablePopup(e){
         ele.classList.remove('active')
     }))
 }
-
-let blur;
+let blur
+let popup_login
 
 var categories = localStorage.getItem('cate')
 categories = JSON.parse(categories)
@@ -123,6 +130,7 @@ if (products == null) {
 
 function renData(){
     blur = document.getElementById('blur')
+    popup_login = document.getElementById('popup-login')
 
 
 
@@ -139,7 +147,6 @@ function renData(){
 
     let link = location.href.split('?')
 
-    console.log(link);
     
     if (!link[0].includes('admin.html')){
         switch (link[1]){
@@ -157,20 +164,53 @@ function renData(){
         }
 
         // Navigation
-        var navBar = document.querySelector('nav > .container')
+        let navBar = document.querySelector('nav > .container')
+        let a = document.createElement('a');
+        a.innerText = "Trang chủ"
+        a.classList.add('active')
+        a.focus()
+        navBar.appendChild(a)
+        
         categories.forEach(ele => {
-            var span = document.createElement('span');
-            span.setAttribute('class', 'active');
-            var link = document.createElement('a');
-            link.innerText = ele
-            // link.appendChild(span)
-            navBar.appendChild(link)
+            a = document.createElement('a');
+            a.innerText = ele
+            navBar.appendChild(a)
         })
+
+        //Popup login
+        document.getElementById('btn-login').addEventListener('click',
+        (event)=>{
+            blur.classList.toggle('active')
+            popup_login.classList.toggle('active')
+            popup_login.style.top = "50%"
+        })
+
+        //Button login
+        document.getElementById('login-btn').addEventListener('click',
+            (event)=>{
+                const form_login = event.currentTarget.parentNode.parentNode.children[2].children[0]
+                const user = form_login.children[0].value
+                const pass = form_login.children[1].value
+                const errText = form_login.children[2]
+                if (user == "" || pass == ""){
+                    errText.innerText = "Tài khoản mật khẩu không được trống!"
+                    errText.style.display = "block"
+                    return
+                }
+                errText.style.display = 'none'
+                accounts.forEach((ele) => {
+                    ele.username == user
+                    ele.password == pass
+                })
+            }
+        )
     }
 
 
+    //Disable blur
     document.getElementById('blur').addEventListener('click',disablePopup)
 
+   
     
 
 }
