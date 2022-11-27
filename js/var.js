@@ -4,6 +4,17 @@ const role = [
 ]
 
 
+class bill {
+    constructor (id, name, date, info, address){
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.info = info;
+        this.address = address
+        this.numberPhone
+    }
+}
+
 function disablePopup(e){
     setTimeout(()=>{
         blur.classList.toggle('active')
@@ -44,19 +55,21 @@ var accounts = localStorage.getItem('acc')
 accounts = JSON.parse(accounts)
 class Account {
     static count = 0;
-    constructor (name, user, pass, role){
+    constructor (name, user, pass, role, address, numberPhone){
         Account.count++;
         this.id = Account.count + 10000
         this.name = name
         this.username = user
         this.password = pass
         this.role = role // 0 = admin, 1 = user
+        this.address = address
+        this.numberPhone = numberPhone
     }
 }
 if (accounts == null) {
     accounts = []
-    accounts.push(new Account('Trần Dương Đắc Lộc', 'admin', 'admin', 0))
-    accounts.push(new Account('Trần Dương Đắc Lộc', 'user', 'user', 1))
+    accounts.push(new Account('Trần Dương Đắc Lộc', 'admin', 'admin', 0, '776/3', '0337961759'))
+    accounts.push(new Account('Trần Dương Đắc Lộc', 'user', 'user', 1, '776/3', '0337961759'))
 
     localStorage.setItem('acc', JSON.stringify(accounts))
 }else {
@@ -184,6 +197,9 @@ function renData(){
     
     if (!link[0].includes('admin.html')){
         switch (link[1]){
+            case 'checkout':
+                document.getElementById('checkout').style.display = 'block'
+                break
             case 'search' :
                 document.getElementById('search').style.display = 'block'
                 renSearch(-1)

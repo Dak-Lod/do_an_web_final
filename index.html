@@ -10,14 +10,12 @@
     <script src="./js/var.js"></script>
     <script src="./js/search.js"></script>
     <script src="./js/home.js"></script>
+    <script src="./js/checkout.js"></script>
     <link rel="stylesheet" href="./css/style.css">
-    <!-- Chỉnh tên file lại thành tên file của mình -->
     <link rel="stylesheet" href="./css/home.css"> 
     <link rel="stylesheet" href="./css/search.css">
-
+    <link rel="stylesheet" href="./css/checkout.css">
     
-    <!-- <link rel="stylesheet" href="./css/shopee.css"> -->
-    <!-- <link rel="stylesheet" href="./css/home.css"> -->
 </head> 
 <body>
     <!-- Header -->
@@ -426,6 +424,22 @@
 
     </div>
     
+    </article>
+
+    <article id="checkout">
+		<div class="bill">
+			<div id="bilcontain">
+				<div id="bill" style="display: none;">
+				</div>u
+				<table id="carttable"><tbody><tr><th></th><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr><tr><td><img src="" alt="test.png"></td><td><div>Air max 1 Just do it</div><div>Size: 36</div></td><td>5.700.000 VND</td><td><button onclick="countDown()">-</button><input id="count" type="text" disabled="" value="1" onchange=""><button onclick="countUp()">+</button></td><td>5.700.000 VND</td><td><button onclick="removeItem()">×</button></td></tr></tbody></table>
+				<div class="total">Thành tiền: <span id="totalprice">5.700.000 VND</span></div>
+				<button onclick="deleteCart()">Xóa tất cả</button>
+				<button onclick="">Thanh toán</button>
+				
+			</div>
+        </div>
+            
+
     </article>
 
     <!-- Footer -->
