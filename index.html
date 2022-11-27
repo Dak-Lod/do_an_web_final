@@ -430,11 +430,36 @@
 		<div class="bill">
 			<div id="bilcontain">
 				<div id="bill" style="display: none;">
-				</div>u
-				<table id="carttable"><tbody><tr><th></th><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr><tr><td><img src="" alt="test.png"></td><td><div>Air max 1 Just do it</div><div>Size: 36</div></td><td>5.700.000 VND</td><td><button onclick="countDown()">-</button><input id="count" type="text" disabled="" value="1" onchange=""><button onclick="countUp()">+</button></td><td>5.700.000 VND</td><td><button onclick="removeItem()">×</button></td></tr></tbody></table>
-				<div class="total">Thành tiền: <span id="totalprice">5.700.000 VND</span></div>
+				</div>
+                <table id="cartTable">
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Tổng</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><img src="" alt="test.png"></td>
+                            <td>
+                                <div>Air max 1 Just do it</div>
+                            </td>
+                            <td>5.700.000 VND</td>
+                            <td>
+                                <button onclick="countDown()">-</button>
+                                <input id="quantity" type="text" disabled="" value="1">
+                                <button onclick="countUp()">+</button>
+                            </td>
+                            <td>5.700.000 VND</td>
+                            <td><button onclick="removeItem()">×</button></td>
+                        </tr>
+                    </tbody>
+                </table>				
+                <div class="total">Thành tiền: <span id="totalPrice">0</span></div>
 				<button onclick="deleteCart()">Xóa tất cả</button>
-				<button onclick="">Thanh toán</button>
+				<button onclick="PayCart()">Thanh toán</button>
 				
 			</div>
         </div>
