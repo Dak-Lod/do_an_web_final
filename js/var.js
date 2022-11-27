@@ -13,6 +13,7 @@ function disablePopup(e){
     Array.prototype.forEach.call(popup, (ele=>{
         ele.style.top = 0;
         ele.classList.remove('active')
+        
     }))
 }
 let blur
@@ -83,12 +84,13 @@ class Cart {
     }
 }
 
-let carts = localStorage.getItem('cart')
+let carts = localStorage.getItem('carts')
 carts = JSON.parse(carts)
 if (carts == null){
-    carts = new Cart([])
+    carts = []
     localStorage.setItem('carts', JSON.stringify(carts))
 }
+
 
 
 
@@ -121,8 +123,16 @@ if (products == null) {
     Product.count = products.length    
 }
 
+function updateQty(){
+    if (carts.length > 0){
+        let qty = document.getElementById("qty")
+        qty.style.display = "block"
+        qty.innerText = carts.length
+    }
+}
 
 function renData(){
+    updateQty()
     blur = document.getElementById('blur')
     popup_login = document.getElementById('popup-login')
 
@@ -145,6 +155,7 @@ function renData(){
                 window.open('./admin.html')
             }
             logout_btn.parentNode.appendChild(btn)
+            logout_btn.parentNode.appendChild(logout_btn)
         }
     }else {
         //Popup login
@@ -214,18 +225,26 @@ function renData(){
                     errText.style.display = "block"
                     return
                 }
+                let isLogin = false
                 errText.style.display = 'none'
                 accounts.forEach((ele) => {
                     if (ele.username == user && ele.password == pass){
                         localStorage.setItem('signed',JSON.stringify(ele))
+                        isLogin = true
                         location.reload()
                         return
                     }
                 })
-
-
+                if (!isLogin){
+                    errText.innerText = "Tài khoản mật khẩu không đúng!"
+                    errText.style.display = "block"
+                }
+                
             }
         )
+    }else {
+        if (login_info == null || login_info.role != 0)
+            window.location.href = "./index.html"
     }
 
 
@@ -239,3 +258,36 @@ function renData(){
 
 
 window.onload = renData
+
+function renMoney(money){
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'VND',
+      
+        // These options are needed to round to whole numbers if that's what you want.
+        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+        maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+      });
+      
+      return formatter.format(money)
+}
+
+var messHide = null
+
+function addCart(id){
+    products.forEach((ele)=>{
+        if (id == ele.id){
+            carts.push(ele)
+            localStorage.setItem('carts',JSON.stringify(carts))
+        }
+
+    })
+    updateQty()
+    if (messHide != null) 
+        clearTimeout(messHide)
+    messHide = setTimeout(()=>{
+        document.getElementById('popup-addCart').classList.remove('active')
+    }, 1000)
+    document.getElementById('popup-addCart').classList.add('active')
+
+}

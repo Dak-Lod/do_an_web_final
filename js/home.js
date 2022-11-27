@@ -48,17 +48,20 @@ function renderNew(n) {
     products.forEach(
         function(ele){
             if (n == -1 || (categories[n].includes(ele.cate) && ele.new == 1))
-                s = s + `<div style="text-align: center" class="item-SanPhamMoi">
-                <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${ele.img}" alt=""></button>
-            <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
-                </div>
-            <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${ele.name}</button>
-                <div class="price-product"><span style="font-size: 15px;">${ele.price}</span></div>            
-                <div class="item-SanPhamMoi__footer">
-                    <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
-            </div>
+                s = s + 
+                `<div style="text-align: center" class="item-SanPhamMoi">
+                    <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${ele.img}" alt=""></button>
+                        <div class="item-size-color">
+                            <div class="font-product">+7 size</div>
+                            <div class="font-product">+3 Màu sắc</div>
+                        </div>
+                        <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${ele.name}</button>
+                        <div class="price-product">
+                            <span style="font-size: 15px;">${renMoney(ele.price)}</span>
+                        </div>            
+                        <div class="item-SanPhamMoi__footer">
+                            <button class="item-SanPhamMoi__btn" onclick="addCart(${ele.id})">thêm vào giỏ</button>
+                        </div>
                 </div>`
         } 
         )
@@ -79,7 +82,7 @@ function renderPrt(n) {
             <button style="border : 0; background-color: transparent" class="font-product">${ele.name}</button>
                 <div class="price-product"><span style="font-size: 15px;">${ele.price}</span></div>            
                 <div class="item-SanPhamMoi__footer">
-                    <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
+                    <button class="item-SanPhamMoi__btn"  onclick="addCart(${ ele.id})">thêm vào giỏ</button>
             </div>
                 </div>`
         } 

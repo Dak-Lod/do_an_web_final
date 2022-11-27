@@ -53,7 +53,7 @@
                                     <span>
                                         Giỏ Hàng
                                     </span>
-                                    <div class="qty">
+                                    <div class="qty" id="qty">
                                         3
                                     </div>
                                 </a>
@@ -311,13 +311,6 @@
         </div> -->
     <!-- </div> -->
 </div>
-<div class="gagination">
-    <ul class="btn-ul">
-        <li class="btn-li btn--active">1</li>
-        <li class="btn-li">2</li>
-        <li class="btn-li">3</li>
-    </ul>
-</div>
 
 
     <div class="bannerMid">
@@ -541,6 +534,7 @@
         <span class="title">Đăng nhập</span>
         <div class="body">
             <form action="">
+                <input type="text" placeholder="Tên tài khoản">
                 <input type="text" placeholder="Tài khoản">
                 <input type="password" name="" id="" placeholder="Mật khẩu">
                 <div class="input-error"></div>
@@ -550,6 +544,10 @@
             <button class="login" id="login-btn">Đăng nhập</button>
             <button class="signup" id="signup-btn">Đăng ký</button>
         </div>
+    </div>
+
+    <div id="popup-addCart" class="popup">
+        Thêm sản phẩm thành công!
     </div>
 
 </body>
