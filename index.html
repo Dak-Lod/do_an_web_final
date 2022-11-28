@@ -543,14 +543,13 @@
     </footer>
     <div id="blur"></div>
 
-    <div class="popup" id="popup-login">
+    <div class="popup sign" id="popup-login">
         <img src="./icon/user-icon.png" alt="">
         <span class="title">Đăng nhập</span>
         <div class="body">
             <form action="">
-                <input type="text" placeholder="Tên tài khoản">
                 <input type="text" placeholder="Tài khoản">
-                <input type="password" name="" id="" placeholder="Mật khẩu">
+                <input type="password" placeholder="Mật khẩu">
                 <div class="input-error"></div>
             </form>
         </div>
@@ -560,9 +559,31 @@
         </div>
     </div>
 
+    <div class="popup sign" id="popup-signup">
+        <img src="./icon/user-icon.png" alt="">
+        <span class="title">Đăng ký</span>
+        <div class="body">
+            <form>
+                <input type="text" placeholder="Tài khoản">
+                <input type="password" placeholder="Mật khẩu">
+                <input type="text" placeholder="Tên tài khoản">
+                <input type="text" placeholder="Địa chỉ">
+                <input type="text" placeholder="Số điện thoại">
+                <div class="input-error"></div>
+            </form>
+        </div>
+        <div class="btn">
+            <button class="login">Đăng nhập</button>
+            <button class="signup">Đăng ký</button>
+        </div>
+    </div>
+
+
     <div id="popup-addCart" class="popup">
         Thêm sản phẩm thành công!
     </div>
+
+    
 
 </body>
 </html>

@@ -5,30 +5,36 @@ const role = [
 
 
 class bill {
-    constructor (id, name, date, info, address){
+    constructor (id, user, date, info){
         this.id = id;
-        this.name = name;
+        this.user = user;
         this.date = date;
         this.info = info;
-        this.address = address
-        this.numberPhone
     }
 }
 
-function disablePopup(e){
+
+var bills = localStorage.getItem('bills')
+bills = JSON.parse(bills)
+
+
+
+function disablePopup(){
     setTimeout(()=>{
         blur.classList.toggle('active')
     }, 200)
     
     const popup = document.getElementsByClassName('popup')
     Array.prototype.forEach.call(popup, (ele=>{
-        ele.style.top = 0;
+        // ele.style.top = 0;
         ele.classList.remove('active')
         
     }))
 }
 let blur
 let popup_login
+let popup_signup
+
 
 var categories = localStorage.getItem('cate')
 categories = JSON.parse(categories)
@@ -38,24 +44,14 @@ if (categories == null){
     localStorage.setItem('cate', JSON.stringify(categories))
 }
 
-var info = localStorage.getItem('info')
-info = JSON.parse(info)
 
-if (!info) {
-    info = {
-        'phone-num' : "+84337961759",
-        'email' : 'trandacloc123@gmail.com',
-        'address' : 'Đại học Sài Gòn'
-    }
-    localStorage.setItem('info', JSON.stringify(info))
-}
 
 
 var accounts = localStorage.getItem('acc')
 accounts = JSON.parse(accounts)
 class Account {
     static count = 0;
-    constructor (name, user, pass, role, address, numberPhone){
+    constructor (name, user, pass, role, address, phoneNumber){
         Account.count++;
         this.id = Account.count + 10000
         this.name = name
@@ -63,7 +59,7 @@ class Account {
         this.password = pass
         this.role = role // 0 = admin, 1 = user
         this.address = address
-        this.numberPhone = numberPhone
+        this.phoneNumber = this.phoneNumber
     }
 }
 if (accounts == null) {
@@ -148,6 +144,9 @@ function renData(){
     updateQty()
     blur = document.getElementById('blur')
     popup_login = document.getElementById('popup-login')
+    popup_signup = document.getElementById('popup-signup')
+
+
 
     var login_info = localStorage.getItem('signed')
     login_info = JSON.parse(login_info)
@@ -176,8 +175,15 @@ function renData(){
         (event)=>{
             blur.classList.toggle('active')
             popup_login.classList.toggle('active')
-            popup_login.style.top = "50%"
+            // popup_login.style.top = "50%"
         })
+
+        // document.querySelector('#btn-signup').addEventListener('click', (event)=>{
+        //     blur.classList.toggle('active')
+        //     popup_signup.toggle('active')
+        //     popup_signup.style.top = "50%"
+        // })
+
     }
 
 
@@ -258,6 +264,88 @@ function renData(){
                 
             }
         )
+
+        document.getElementById('signup-btn').addEventListener('click', event =>{
+            popup_login.classList.remove('active')
+            setTimeout(() => {
+                popup_signup.classList.add('active')
+            }, 200);
+            // popup_signup.top = "50%"
+        })
+
+        document.querySelector('#popup-signup .login').addEventListener('click', event =>{
+            popup_signup.classList.remove('active')
+            setTimeout(() => {
+                popup_login.classList.add('active')
+            }, 200);
+        })
+
+        const signup_form = document.querySelector('#popup-signup .body form')
+        const signup_err = document.querySelector('#popup-signup .input-error')
+        let signup_info = new Account()
+        signup_form.children[0].addEventListener('input', event=>{
+            if (event.target.value == "" || event.target.value.trim() == ""){
+                signup_err.textContent = "Tài khoản không được trống!"
+                signup_err.style.display = 'block'
+                event.target.style.borderColor = 'red'
+            }else {
+                signup_err.style.display = 'none'
+                event.target.style.borderColor = 'unset'
+                signup_info.username = event.target.value
+            }
+        })
+        signup_form.children[1].addEventListener('input', event=>{
+            if (event.target.value == ""){
+                signup_err.textContent = "Mật khẩu không được trống!"
+                signup_err.style.display = 'block'
+                event.target.style.borderColor = 'red'
+            }else {
+                signup_err.style.display = 'none'
+                event.target.style.borderColor = 'unset'
+                signup_info.password = event.target.value
+            }
+        })
+        signup_form.children[2].addEventListener('input', event=>{
+            if (event.target.value == "" || event.target.value.trim() == ""){
+                signup_err.textContent = "Tên tài khoản không được trống!"
+                signup_err.style.display = 'block'
+                event.target.style.borderColor = 'red'
+            }else {
+                signup_err.style.display = 'none'
+                event.target.style.borderColor = 'unset'
+                signup_info.name = event.target.value
+            }
+        })
+        signup_form.children[3].addEventListener('input', event=>{
+            if (event.target.value == "" || event.target.value.trim() == ""){
+                signup_err.textContent = "Địa chỉ không được trống!"
+                signup_err.style.display = 'block'
+                event.target.style.borderColor = 'red'
+            }else {
+                signup_err.style.display = 'none'
+                event.target.style.borderColor = 'unset'
+                signup_info.address = event.target.value
+            }
+        })
+        signup_form.children[4].addEventListener('input', event=>{
+            if (event.target.value == "" || event.target.value.trim() == ""){
+                signup_err.textContent = "Số điện thoại không được trống!"
+                signup_err.style.display = 'block'
+                event.target.style.borderColor = 'red'
+            }else {
+                signup_err.style.display = 'none'
+                event.target.style.borderColor = 'unset'
+                signup_info.phoneNumber = event.target.value
+            }
+        })
+
+        //Button sign up
+        document.querySelector('#popup-signup > signup').addEventListener('click', ()=>{
+            if (signup_err.style.display != 'none'){
+                
+            }
+        })
+
     }else {
         if (login_info == null || login_info.role != 0)
             window.location.href = "./index.html"

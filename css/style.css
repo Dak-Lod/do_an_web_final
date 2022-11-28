@@ -338,6 +338,7 @@ article {
 
 .active {
     visibility: unset !important;
+    top: 50% !important;
 }
 
 .toggle-pass {
@@ -457,9 +458,6 @@ footer > * {
     transition: background-color 0.2s, transform 0.2s;
 }
 
-.popup .btn > button:hover{
-    filter: brightness(0.85);
-}
 
 .popup .btn > button:active{
     transform: translateY(2px);
@@ -486,46 +484,7 @@ footer > * {
     color: white;
 }
 
-#popup-login .body{
-    margin-inline: auto;
-    width: max-content;
-    margin-bottom: 20px;
-}
 
-#popup-login .title{
-    margin-top: 0px;
-}
-
-#popup-login > img {
-    transform: translate(-50%,0);
-    position: relative;
-}
-
-#popup-login input {
-    display: block;
-    height: 35px;
-    margin-top: 10px;
-    width: 250px;
-    /* border-radius: 5px; */
-    border: none;
-    border-bottom: 1px solid black;
-}
-
-
-
-#popup-login .btn button {
-    width: 150px;
-    margin-inline: auto;
-}
-
-#popup-login .btn .login {
-    background-color: var(--color-primary-dark);
-    color: white;
-}
-#popup-login .btn .signup {
-    background-color: var(--color-btn-signup);
-    color: white;
-}
 
 .input-error {
     color: red;
@@ -541,5 +500,53 @@ footer > * {
     padding: 10px;
     color: white;
     
+}
+
+
+.sign .body{
+    margin-inline: auto;
+    width: max-content;
+    margin-bottom: 20px;
+}
+
+.sign .title{
+    margin-top: 0px;
+}
+
+.sign > img {
+    transform: translate(-50%,0);
+    position: relative;
+}
+
+.sign input {
+    display: block;
+    height: 35px;
+    margin-top: 10px;
+    width: 250px;
+    /* border-radius: 5px; */
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+
+.sign .btn button {
+    width: 150px;
+    margin-inline: auto;
+}
+
+.sign .btn .login {
+    background-color: var(--color-primary-dark);
+    color: white;
+}
+
+
+.sign .btn .signup {
+    background-color: var(--color-btn-signup);
+    color: white;
+}
+
+.sign button:hover{
+    transform: translateY(-2px);
 }
 
