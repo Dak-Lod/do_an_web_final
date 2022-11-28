@@ -41,49 +41,97 @@
 
 
 
-
-function renderNew(n) {
-    let s=''
-
-    products.forEach(
-        function(ele){
-            if (n == -1 || (categories[n].includes(ele.cate) && ele.new == 1))
-                s = s + `<div style="text-align: center" class="item-SanPhamMoi">
-                <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${ele.img}" alt=""></button>
-            <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
+var fullItem = 0
+function renderNew(n,vt) {
+    let s= ''
+    for(var i = vt*5; i < products.length; i++) {
+        if(fullItem < 5) {
+                if (n == -1 || (categories[n].includes(products[i].cate) && products[i].new == 1)) {
+                    s = s + `<div style="text-align: center" class="item-SanPhamMoi">
+                    <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${products[i].img}" alt=""></button>
+                <div class="item-size-color">
+                        <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                    </div>
+                <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${products[i].name}</button>
+                    <div class="price-product"><span style="font-size: 15px;">${products[i].price}</span></div>            
+                    <div class="item-SanPhamMoi__footer">
+                        <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
                 </div>
-            <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${ele.name}</button>
-                <div class="price-product"><span style="font-size: 15px;">${ele.price}</span></div>            
-                <div class="item-SanPhamMoi__footer">
-                    <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
-            </div>
-                </div>`
-        } 
-        )
+                    </div>`
+                fullItem +=1
+            }
+        }
+    }
+    // products.forEach(
+    //     function(ele,idx){
+    //         if(fullItem < 5 && idx > vt * 5) {
+    //             if (n == -1 || (categories[n].includes(ele.cate) && ele.new == 1)) {
+    //                 s = s + `<div style="text-align: center" class="item-SanPhamMoi">
+    //                 <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${ele.img}" alt=""></button>
+    //             <div class="item-size-color">
+    //                     <div class="font-product">+7 size</div>
+    //                 <div class="font-product">+3 Màu sắc</div>
+    //                 </div>
+    //             <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${ele.name}</button>
+    //                 <div class="price-product"><span style="font-size: 15px;">${ele.price}</span></div>            
+    //                 <div class="item-SanPhamMoi__footer">
+    //                     <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
+    //             </div>
+    //                 </div>`
+    //             fullItem +=1
+    //             }
+    //         }
+    //     }
+    // )
+    fullItem = 0
+    document.querySelectorAll('.btn-li').forEach(
+        function(item,idx) {
+            if(idx <= 2) {
+                item.classList.remove('btn--active')
+            }
+    })
+
+    document.querySelectorAll('.btn-li')[vt].classList.add('btn--active')
     document.querySelectorAll('.container-SanPhamMoi')[0].innerHTML = s
 }
-
-function renderPrt(n) {
+function renderPrt(n,vt) {
+    var fullItem1 = 0
     let s1=''
-    products.forEach(
-        function(ele){
-            if ( n == -1 ||  (categories[n].includes(ele.cate) && ele.sell == 1) )
-                s1 = s1 + `<div class="item-SanPhamMoi">
-                <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${ele.img}" alt=""></button>
-            <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
+    let list = []
+    products.forEach(product => {
+        if(product.sell == 1) {
+            list.push(product)
+        }
+    })
+    for(var i = vt*5; i < list.length; i++) {
+        if(fullItem1 < 5) {
+            if (n == -1 || (categories[n].includes(list[i].cate) && list[i].sell == 1)) {
+                    s1 = s1 + `<div style="text-align: center" class="item-SanPhamMoi">
+                    <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${list[i].img}" alt=""></button>
+                <div class="item-size-color">
+                        <div class="font-product">+7 size</div>
+                    <div class="font-product">+3 Màu sắc</div>
+                    </div>
+                <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${list[i].name}</button>
+                    <div class="price-product"><span style="font-size: 15px;">${list[i].price}</span></div>            
+                    <div class="item-SanPhamMoi__footer">
+                        <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
                 </div>
-            <button style="border : 0; background-color: transparent" class="font-product">${ele.name}</button>
-                <div class="price-product"><span style="font-size: 15px;">${ele.price}</span></div>            
-                <div class="item-SanPhamMoi__footer">
-                    <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
-            </div>
-                </div>`
-        } 
-    )
+                    </div>`
+                    console.log('chay')
+                    fullItem1 +=1
+            }
+        }
+    }
+    document.querySelectorAll('.btn-li').forEach(
+        function(item,idx) {
+            if(idx >=3) {
+                item.classList.remove('btn--active')
+            }
+    })
+
+    document.querySelectorAll('.btn-li')[vt+3].classList.add('btn--active')
     document.querySelectorAll('.container-SanPhamMoi')[1].innerHTML = s1
 }
 function renHome() {
@@ -146,26 +194,25 @@ function renHome() {
     //     }
     // })
    
-}   
-document.querySelectorAll('.btn-li').forEach(btn => {
-    btn.onclick = function () {
-        document.querySelectorAll('.btn-li').forEach(btn => {
-            btn.classList.remove('btn--active')
-        })
-        this.classList.add('btn--active')
-        if(this.innerText == '2') {
-            renderNew(1)
-        }
+}
 
-        if(this.innerText == '1') {
-            renderNew(2)
-        }
-        // if(this.innerText == '3') {
-        //     render(2)
-        // }
-    }
-})
-// setTimeout(
-    
-// },4000)
+// document.querySelectorAll('.btn-li').forEach(btn => {
+//     btn.onclick = function () {
+//         console.log('bam dc')
+//         document.querySelectorAll('.btn-li').forEach(btn => {
+//             btn.classList.remove('btn--active')
+//         })
+//         this.classList.add('btn--active')
+//         if(this.innerText == '2') {
+//             renderNew(1)
+//         }
+
+//         if(this.innerText == '1') {
+//             renderNew(2)
+//         }
+//         // if(this.innerText == '3') {
+//         //     render(2)
+//         // }
+//     }
+// })
 
