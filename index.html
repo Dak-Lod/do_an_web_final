@@ -191,10 +191,11 @@
 <div class="sanPhamMoi">
     <span class="tieuDeMucSP"> SẢN PHẨM MỚI</span>
     <ul class="menu">
-        <li onclick="renderNew(-1,0)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
-        <li onclick="renderNew(0,0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
-        <li onclick="renderNew(1,0)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
-        <li onclick="renderNew(2,0)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
+        <li onclick="renderNew(-1)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
+        <li onclick="renderNew(0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
+        <li onclick="renderNew(1)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
+        <li onclick="renderNew(2)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
+        <li onclick="renderNew(3)" class="item-menu"><span class="item-menu1"> Khuyến mãi</span></li>
     </ul>
 </div>
 <div class="container-SanPhamMoi">
@@ -308,13 +309,6 @@
         </div> -->
     <!-- </div> -->
 </div>
-<div class="gagination">
-    <ul class="btn-ul">
-        <li onclick="renderNew(-1,0)" class="btn-li btn--active">1</li>
-        <li onclick="renderNew(-1,1)" class="btn-li">2</li>
-        <li onclick="renderNew(-1,2)" class="btn-li">3</li>
-    </ul>
-</div>
 
 
     <div class="bannerMid">
@@ -325,17 +319,18 @@
     <div class="sanPhamMoi">
     <span class="tieuDeMucSP"> SẢN PHẨM BÁN CHẠY</span>
     <ul class="menu">
-        <li onclick="renderPrt(-1,0)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
-        <li onclick="renderPrt(0,0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
-        <li onclick="renderPrt(1,0)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
-        <li onclick="renderPrt(2,0)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
+        <li onclick="renderPrt(-1)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
+        <li onclick="renderPrt(0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
+        <li onclick="renderPrt(1)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
+        <li onclick="renderPrt(2)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
+        <li onclick="renderPrt(3)" class="item-menu"><span class="item-menu1"> Khuyến mãi</span></li>
     </ul>
 </div>
 <div  class="container-SanPhamMoi" >
     
-    <!-- <div onclick="btnLeftBottom()" class="btn-left"><</div>
-    <div onclick="btnRightBottom()" class="btn-right">></div> -->
-    <!-- <div class="container-wrap"> -->
+    <div onclick="btnLeftBottom()" class="btn-left"><</div>
+    <div onclick="btnRightBottom()" class="btn-right">></div>
+    <div class="container-wrap">
             <!-- <div class="item-SanPhamMoi">
                 <a href="#"><img src="./img2/SPmoi_1.jpg" alt=""></a>
                 <div class="item-size-color">
@@ -423,13 +418,6 @@
             </div>
         </div> -->
     </div>
-    <div class="gagination">
-        <ul class="btn-ul">
-            <li onclick="renderPrt(-1,0)" class="btn-li btn--active">1</li>
-            <li onclick="renderPrt(-1,1)" class="btn-li">2</li>
-            
-        </ul>
-    </div>
     <div class="showcart-wrap">
         <div class="showcart"></div>
     </div>
@@ -442,36 +430,11 @@
 		<div class="bill">
 			<div id="bilcontain">
 				<div id="bill" style="display: none;">
-				</div>
-                <table id="cartTable">
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Tổng</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td><img src="" alt="test.png"></td>
-                            <td>
-                                <div>Air max 1 Just do it</div>
-                            </td>
-                            <td>5.700.000 VND</td>
-                            <td>
-                                <button onclick="countDown()">-</button>
-                                <input id="quantity" type="text" disabled="" value="1">
-                                <button onclick="countUp()">+</button>
-                            </td>
-                            <td>5.700.000 VND</td>
-                            <td><button onclick="removeItem()">×</button></td>
-                        </tr>
-                    </tbody>
-                </table>				
-                <div class="total">Thành tiền: <span id="totalPrice">0</span></div>
+				</div>u
+				<table id="carttable"><tbody><tr><th></th><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr><tr><td><img src="" alt="test.png"></td><td><div>Air max 1 Just do it</div><div>Size: 36</div></td><td>5.700.000 VND</td><td><button onclick="countDown()">-</button><input id="count" type="text" disabled="" value="1" onchange=""><button onclick="countUp()">+</button></td><td>5.700.000 VND</td><td><button onclick="removeItem()">×</button></td></tr></tbody></table>
+				<div class="total">Thành tiền: <span id="totalprice">5.700.000 VND</span></div>
 				<button onclick="deleteCart()">Xóa tất cả</button>
-				<button onclick="PayCart()">Thanh toán</button>
+				<button onclick="">Thanh toán</button>
 				
 			</div>
         </div>
