@@ -7,17 +7,6 @@
     border-radius: 10px;
 }
 
-#home:before {
-    
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    margin: -3px;
-    background-image: var(--color-gradient);
-    border-radius: inherit;
-}
-
 #home .menu a {
     color: #333;
     font-size: medium;

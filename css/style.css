@@ -57,11 +57,24 @@ header a {
     text-decoration: none;
 }
 
+header a::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: #3F72F4;
+    transition: width 0.5s;
+}
+
+header a:hover::after {
+    width: 100%;
+}
 
 header a:hover, a:focus, a.active {
     color: var(--color-primary-dark) !important;
     text-decoration: none;
-    border-bottom: 2px solid var(--color-primary-dark);
+    /* border-bottom: 2px solid var(--color-primary-dark); */
+    cursor: pointer;
 }
 
 
@@ -72,6 +85,10 @@ header > .container {
 }
 
 /* Logo */
+
+a.logo::after {
+    content: none;
+}
 
 .header-logo {
     flex-grow: 1;
@@ -144,17 +161,22 @@ header > .container {
     transform: translate(-50%,0);
     width: 100px;
     background-color: white;
+    z-index: 10000;
+    border-radius: 5px;
 }
 
 #login-option button {
-    width: 100%;
+    margin: 2px;
+    width: calc(100% - 4px);
     border: none;
     background-color: inherit;
     height: 30px;
+    border-radius: 5px;
 }
 
 #login-option button:hover {
-    filter: brightness(0.85);
+    background-color: var(--color-primary-dark);
+    color: white;
 }
 
 
@@ -211,6 +233,7 @@ header > .container {
     font-size: 10px;
     color: var(--color-text-white);
     background-color: var(--color-primary-dark);
+    display: none;
 }
 
 .header-ctn > .container .menu-toggle {
@@ -228,7 +251,8 @@ nav {
 }
 nav > .container {
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns:  repeat(5, minmax(max-content, 100px));
     justify-content: space-evenly;
     align-items: stretch;
     /* align-items: center; */
@@ -236,17 +260,17 @@ nav > .container {
     padding-block: 20px;
 }
 
+
 nav > .container a {
-    min-width: 100px;
-    /* margin: 0px 15px 0px 15px; */
+    /* min-width: 100px; */
     padding: auto;
     text-align: center;
-    /* padding: 20px 0px 20px; */
     text-transform: uppercase;
     font-weight: 700;
     font-size: 15px;
     color: var(--color-text-grey);
-    height: fit-content;
+    width: fit-content;
+    margin-inline: auto;
 }
 
 nav > .container a span {
@@ -509,3 +533,13 @@ footer > * {
     margin-top: 15px;
     display: none;
 }
+
+#popup-addCart {
+    top: unset !important;
+    bottom: 5%;
+    background-color: var(--color-gradient-1);
+    padding: 10px;
+    color: white;
+    
+}
+

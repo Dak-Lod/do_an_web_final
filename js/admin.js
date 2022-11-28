@@ -398,35 +398,35 @@ function adminRen(){
             case '3':
                 document.querySelector('.manager.cate').style.display = "flex"
                 cate_ren(categories)
-            // Account form add
+            // Cate form add
             let formCate = document.getElementById('form-cate')
-            console.log();
-            formCate.children[1].children[1].value = categories.length + 1
-            // Input check
-            formCate.children[2].children[1].addEventListener('input', function (e){
-                if (e.target.value == "" || e.target.value.trim() == ""){
-                    e.target.setCustomValidity("Tên thể loại không được trống!")
-                    e.target.reportValidity()   
-                }else{
-                    e.target.setCustomValidity("")
+            // console.log();
+            // formCate.children[1].children[1].value = categories.length + 1
+            // // Input check
+            // formCate.children[2].children[1].addEventListener('input', function (e){
+            //     if (e.target.value == "" || e.target.value.trim() == ""){
+            //         e.target.setCustomValidity("Tên thể loại không được trống!")
+            //         e.target.reportValidity()   
+            //     }else{
+            //         e.target.setCustomValidity("")
                     
-                }
-            })
+            //     }
+            // })
 
             
-            formCate.children[3].children[0].addEventListener('click', e=>{
+            // formCate.children[3].children[0].addEventListener('click', e=>{
                 
-                formCate.children[2].children[1].dispatchEvent(new Event('input'))
-                const name = formCate.children[2].children[1].value
-                if (name.trim() == null){
-                    return false;
-                }
-                categories.push(name)
+            //     formCate.children[2].children[1].dispatchEvent(new Event('input'))
+            //     const name = formCate.children[2].children[1].value
+            //     if (name.trim() == null){
+            //         return false;
+            //     }
+            //     categories.push(name)
                 
-                localStorage.setItem('cate', JSON.stringify(categories))
-                location.reload()
+            //     localStorage.setItem('cate', JSON.stringify(categories))
+            //     location.reload()
 
-            })
+            // })
 
             // Popup btn remove
             popup_rmv_account.children[3].children[0].onclick = function(){
@@ -448,6 +448,12 @@ function adminRen(){
         
             break
             
+        case 4:
+
+            
+
+            break
+
             default:
                 document.querySelector('.manager.product').style.display = "flex"
                 product_ren(products)

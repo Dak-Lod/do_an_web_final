@@ -172,8 +172,8 @@ function renHome() {
     //     } 
     //     document.querySelector('.container-wrap').innerHTML = s
     // }
-    renderNew(-1)
-    renderPrt(-1)
+    renderNew(-1,0)
+    renderPrt(-1,0)
     // renderGagination()
     // document.querySelectorAll('.item-SanPhamMoi').forEach(item => {
     //     item.onclick = function() {
