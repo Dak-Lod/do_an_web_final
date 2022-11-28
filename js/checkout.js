@@ -1,35 +1,35 @@
 function showCartTable(){
 	if (localStorage.getItem('carts')==null || localStorage.getItem('carts')=='[]')
 	{
-		var s='<tr><th>Không có sản phẩm nào trong giỏ hàng</th></tr>';
+		var s='<tr><th>Không có sản phẩm nào trong giỏ hàng</th></tr>';m
 		document.getElementById('cartTable').innerHTML=s;
 		document.getElementById('totalPrice').innerHTML=0;
 	}
 	else 
 	{
 			var s='<tr><th></th><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr>';
-			var cartsArray = JSON.parse(localStorage.getItem(carts));
 			var total = 0;
-			for (var i =1; i<= cartsArray.length; i++)
+			for (var i =0; i < carts.length; i++)
+			console.log(carts[i].img)
 				{
 					s+='<tr>'+
-					'<td><img src="./img/'+cartsArray[i].img+'"></td>'+
+					'<td><img src="'+carts[i].img+'"></td>'+
 					'<td>'+
-						'<div>'+cartsArray[i].name+'</div>'+
+						'<div>'+carts[i].name+'</div>'+
 					'</td>'+
-					'<td>'+currency(cartsArray[i].price)+'</td>'+
+					'<td>'+carts[i].price+'</td>'+
 					'<td>'+
 						'<button onClick="countDown()">-</button>'+
-						'<input id="quantity" type="text" disabled="" value="'+getElementByID('quantity')+'" onchange="updateCart('+getElementById('quantity')+','+cartsArray[i].id+')">'+
+						'<input id="quantity" type="text" disabled="" value="'+document.getElementById('quantity')+'" onchange="updateCart('+document.getElementById('quantity')+','+carts[i].id+')">'+
 						'<button onClick="countUp()">+</button>'+
 					'</td>'+
-					'<td>'+currency(cartsArray[i].price*getElementById(quantity))+'</td>'+
-					'<td><button onClick="removeItem('+cartsArray[i].id+')">&times;</buttom></td>'+
+					'<td>'+carts[i].price*document.getElementById('quantity')+'</td>'+
+					'<td><button onClick="removeItem('+carts[i].id+')">&times;</buttom></td>'+
 				'</tr>';
-			totalprice+=cartsArray[i].price*getElementById('quantity');	
+			total+=carts[i].price*document.getElementById('quantity');	
 	}
 		document.getElementById('cartTable').innerHTML=s;
-		document.getElementById('totalPrice').innerHTML=currency(total);
+		document.getElementById('totalPrice').innerHTML=total;
 	}	
 }
 
@@ -67,10 +67,12 @@ function countDown(){
 	if(document.getElementById('quantity').value > 1){
 		document.getElementById('quantity').value--;
 	}
+	showCartTable()
 }
 function countUp(){
 
 	document.getElementById('quantity').value++;
+	showCartTable();
 }
 
 
