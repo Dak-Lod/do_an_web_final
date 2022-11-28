@@ -93,24 +93,26 @@ function countUp(id){
 
 function PayCart()
 {
-	if (localStorage.getItem('signed')==null)
-		{alert('Xin Vui lòng đăng nhập để mua hàng');}
-	else
-	{
-		var tempacc = localStorage.getItem('signed')
-		var i =0;
-		var today =  new Date();
-		var tempbill = new bill();
-		tempbill.name = tempacc.name;
-		tempbill.date = today.getDate();
-		while (i<=bills.length)
+	if (checkLogin())
+	{	
+		var tempBillArray = JSON.parse(localStorage.getItem('bills'))
+		var tempAcc = JSON.parse(localStorage.getItem('signed'));
+		var tempBill = new bill;
+		var today = new date;
+		tempBill.date = today.getdate();
+		tempBill.name = tempAcc.name;
+		tempBill.address = tempAcc.address;
+		if (tempBillArray==null)
 			{
-				i++;
+				tempBillArray=[];
+				tempBillArray[0]=tempBill;
 			}
-		tempbill.address = tempacc.address;
-		tempbill.NumPhone = tempacc.NumPhone;
-		bills[i]=tempbill;
-		localStorage.setItem('bills',JSON.stringify(bills))
+		else
+			{
+				var i = tempBillArray.length+1;
+				tempBillArray[i]=tempBill
+			}
+		localStorage.setItem('bills',JSON.stringify(tempArray));
 	}
 }
 
