@@ -28,7 +28,6 @@ function disablePopup(){
     Array.prototype.forEach.call(popup, (ele=>{
         // ele.style.top = 0;
         ele.classList.remove('active')
-        
     }))
 }
 let blur
@@ -64,8 +63,8 @@ class Account {
 }
 if (accounts == null) {
     accounts = []
-    accounts.push(new Account('Trần Dương Đắc Lộc', 'admin', 'admin', 0, '776/3', '0337961759'))
-    accounts.push(new Account('Trần Dương Đắc Lộc', 'user', 'user', 1, '776/3', '0337961759'))
+    accounts.push(new Account('Trần Dương Đắc Lộc', 'admin', 'admin', 0))
+    accounts.push(new Account('Trần Dương Đắc Lộc', 'user', 'user', 1))
 
     localStorage.setItem('acc', JSON.stringify(accounts))
 }else {
@@ -93,13 +92,12 @@ class Cart {
     }
 }
 
-let carts = localStorage.getItem('carts')
+let carts = localStorage.getItem('cart')
 carts = JSON.parse(carts)
 if (carts == null){
-    carts = []
+    carts = new Cart([])
     localStorage.setItem('carts', JSON.stringify(carts))
 }
-
 
 
 
@@ -109,15 +107,15 @@ products = JSON.parse(products)
 if (products == null) {
     products = []
     products.push(new Product('Giày Thể Thao Nam Hunter Cream',0,781000,'Mô tả:  ', './img/product1.webp',1,1))
-    products.push(new Product('Giày Thể Thao Bé Trai', 2, 437000, 'Mô tả: ', './img/product2.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1000000 , 'Mô tả: ', './img/nu2.webp',1,1))
-    products.push(new Product('Giày Thể Thao Bé Gái Hunter', 2, 643000 , 'Mô tả: ', './img/treEm2.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nam Hunter Street', 0, 1540000 , 'Mô tả: ', './img/nam2.webp',1,1))
+    products.push(new Product('Giày Thể Thao Bé Trai', 2, 437000, 'Mô tả: ', './img/product2.webp',0,1))
+    products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1000000 , 'Mô tả: ', './img/nu2.webp',0,1))
+    products.push(new Product('Giày Thể Thao Bé Gái Hunter', 2, 643000 , 'Mô tả: ', './img/treEm2.webp',0,1))
+    products.push(new Product('Giày Thể Thao Nam Hunter Street', 0, 1540000 , 'Mô tả: ', './img/nam2.webp',0,1))
 
     products.push(new Product('Giày Thể Thao Nam Hunter X 2k22',0,1781000,'Mô tả:  ', './img/nam3.webp',1,1))
     products.push(new Product('Giày Thể Thao Nam Bloomin', 0, 1354000, 'Mô tả: ', './img/nam4.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nam Hunter Tennis', 0, 853000 , 'Mô tả: ', './img/Nam5.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nữ Hunter Street ', 1, 1540000 , 'Mô tả: ', './img/nu1.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nam Hunter Tennis', 0, 853000 , 'Mô tả: ', './img/Nam5.webp',0,1))
+    products.push(new Product('Giày Thể Thao Nữ Hunter Street ', 1, 1540000 , 'Mô tả: ', './img/nu1.webp',0,1))
     products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1187000 , 'Mô tả: ', './img/nu3.webp',1,1))
 
     products.push(new Product('Giày Thể Thao Nữ Hunter X Dune ', 1, 1187000 , 'Mô tả: ', './img/nu4.webp',1,1))
@@ -132,16 +130,8 @@ if (products == null) {
     Product.count = products.length    
 }
 
-function updateQty(){
-    if (carts.length > 0){
-        let qty = document.getElementById("qty")
-        qty.style.display = "block"
-        qty.innerText = carts.length
-    }
-}
 
 function renData(){
-    updateQty()
     blur = document.getElementById('blur')
     popup_login = document.getElementById('popup-login')
     popup_signup = document.getElementById('popup-signup')
@@ -193,21 +183,17 @@ function renData(){
     });
 
     let link = location.href.split('?')
-    // console.log(link[0].includes('admin.html'));
+
     
     if (!link[0].includes('admin.html')){
         switch (link[1]){
-            case 'checkout':
-                document.getElementById('checkout').style.display = 'block'
-                break
             case 'search' :
                 document.getElementById('search').style.display = 'block'
                 renSearch(-1)
                 break
             case undefined:
                 document.getElementById('home').style.display = 'block'
-                renderNew(-1)
-                renderPrt(-1)
+                renHome()
                 break
 
             
@@ -227,7 +213,13 @@ function renData(){
             navBar.appendChild(a)
         })
 
-        
+        //Popup login
+        document.getElementById('btn-login').addEventListener('click',
+        (event)=>{
+            blur.classList.toggle('active')
+            popup_login.classList.toggle('active')
+            popup_login.style.top = "50%"
+        })
 
         //Button login
         document.getElementById('login-btn').addEventListener('click',
@@ -241,21 +233,11 @@ function renData(){
                     errText.style.display = "block"
                     return
                 }
-                let isLogin = false
                 errText.style.display = 'none'
                 accounts.forEach((ele) => {
-                    if (ele.username == user && ele.password == pass){
-                        localStorage.setItem('signed',JSON.stringify(ele))
-                        isLogin = true
-                        location.reload()
-                        return
-                    }
+                    ele.username == user
+                    ele.password == pass
                 })
-                if (!isLogin){
-                    errText.innerText = "Tài khoản mật khẩu không đúng!"
-                    errText.style.display = "block"
-                }
-                
             }
         )
 
@@ -363,36 +345,3 @@ function renData(){
 
 
 window.onload = renData
-
-function renMoney(money){
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'VND',
-      
-        // These options are needed to round to whole numbers if that's what you want.
-        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-        maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-      });
-      
-      return formatter.format(money)
-}
-
-var messHide = null
-
-function addCart(id){
-    products.forEach((ele)=>{
-        if (id == ele.id){
-            carts.push(ele)
-            localStorage.setItem('carts',JSON.stringify(carts))
-        }
-
-    })
-    updateQty()
-    if (messHide != null) 
-        clearTimeout(messHide)
-    messHide = setTimeout(()=>{
-        document.getElementById('popup-addCart').classList.remove('active')
-    }, 1000)
-    document.getElementById('popup-addCart').classList.add('active')
-
-}

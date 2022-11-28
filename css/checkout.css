@@ -24,23 +24,23 @@ img{
     ;
   }
 
- #carttable{
+ #cartTable{
     border-spacing: 0;
     width: 100%;
   }
-#carttable th, td{
+#cartTable th, td{
     border-bottom: 1px solid #000;
     padding: 10px;
     vertical-align: middle;
   }
-#carttable td:not(:nth-child(2)){
+#cartTable td:not(:nth-child(2)){
     width: 150px;
     text-align: center;
   }
-#carttable td img{
+#cartTable td img{
     height: 50px;
   }
-  #carttable td button{
+#cartTable td button{
     height: auto;
     width: 30px;
     line-height: 25px;
@@ -51,11 +51,11 @@ img{
     cursor: pointer;
     outline: none;
   }
-#carttable td button:active{
+#cartTable td button:active{
     border: 2px solid #ff4700;
     color: #ff4700;
   }
-#carttable td input{
+#cartTable td input{
     height: 25px;
     width: 50px;
     font-size: 12pt;
