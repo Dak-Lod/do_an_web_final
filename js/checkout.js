@@ -1,50 +1,58 @@
-function showCartTable(){
+function currency(num) {
+
+	return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' VND';
+  }
+
+  function showCartTable()
+{
 	if (localStorage.getItem('carts')==null || localStorage.getItem('carts')=='[]')
 	{
-		var s='<tr><th>Không có sản phẩm nào trong giỏ hàng</th></tr>';m
+		var s='<tr><th>Không có sản phẩm nào trong giỏ hàng</th></tr>';
 		document.getElementById('cartTable').innerHTML=s;
 		document.getElementById('totalPrice').innerHTML=0;
 	}
 	else 
 	{
-			var s='<tr><th></th><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr>';
-			var total = 0;
-			for (var i =0; i < carts.length; i++)
-			console.log(carts[i].img)
-				{
-					s+='<tr>'+
-					'<td><img src="'+carts[i].img+'"></td>'+
-					'<td>'+
-						'<div>'+carts[i].name+'</div>'+
-					'</td>'+
-					'<td>'+carts[i].price+'</td>'+
-					'<td>'+
-						'<button onClick="countDown()">-</button>'+
-						'<input id="quantity" type="text" disabled="" value="'+document.getElementById('quantity')+'" onchange="updateCart('+document.getElementById('quantity')+','+carts[i].id+')">'+
-						'<button onClick="countUp()">+</button>'+
-					'</td>'+
-					'<td>'+carts[i].price*document.getElementById('quantity')+'</td>'+
-					'<td><button onClick="removeItem('+carts[i].id+')">&times;</buttom></td>'+
-				'</tr>';
-			total+=carts[i].price*document.getElementById('quantity');	
-	}
+		var s='<tr><th></th><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr>';
+		var total =0;
+		carts.forEach(
+			function makeTable(ele)
+			{
+				s+=`<tr>
+				<td><img src="${ele.img}" alt="${ele.img}"></td>
+					<td>
+						<div>${ele.name}</div>
+					</td>
+					<td>${currency(ele.price)}</td>
+					<td>
+						<button onclick="countDown(${ele.id})">-</button>
+						<input id="${ele.id}" type="text" disabled="" value="${ele.sell}">
+						<button onclick="countUp(${ele.id})">+</button>
+					</td>
+					<td i>${currency(ele.price*ele.sell)}</td>
+					<td><button onclick="removeItem(${ele.id})">×</button></td>
+			</tr>`
+				total+=ele.price*ele.sell;
+			}
+		)
 		document.getElementById('cartTable').innerHTML=s;
-		document.getElementById('totalPrice').innerHTML=total;
-	}	
+		document.getElementById('totalPrice').innerHTML=currency(total);	
+	}
 }
 
-function removeItem (itemid)
-{
-	var cartsArray = JSON.parse(localStorage.getItem('carts'));
-	for (var i = 0;i<=cartsArray.length;i++)
-	{
-		if(itemid==cartsArray[i].id)
-		{
-			cartsArray[i].slice(i,1);
-			localStorage.setItem('carts',JSON.stringify(cartsArray));
-	}
-	}
-	showCartTable();
+function removeItem (id){
+	if(carts.length<1) 
+		{deleteCart();}
+	else{
+		for(var i=0; i< carts.length;i++)
+			{if (carts[i].id==id)
+				{	
+					carts.splice(i,1);
+					localStorage.setItem('carts',JSON.stringify(carts));
+				}
+			}
+		showCartTable();
+		}
 }
 
 function deleteCart(){
@@ -52,26 +60,33 @@ function deleteCart(){
 	showCartTable();
 }
 
-function updateCart(count,id){
-	var cartsArray = JSON.parse(localStorage.getItem('carts'));
-	for (var i = 0; i < cartsArray.length; i++) {
-		if(cartsArray[i].productId==id){
-			cartsArray[i].count=count;
+
+function countDown(id){
+	for(var i = 0; i<carts.length; i++)
+		{
+			if ( id == carts[i].id)
+				{
+					if(carts[i].sell > 1)
+					{
+						carts[i].sell--;
+						showCartTable();
+					}
+					else  
+					{ 
+						removeItem(id);
+					}
+						
+				}
 		}
-	}
-	localStorage.setItem('carts',JSON.stringify(cartsArray));
-	showCartTable();
 }
-
-function countDown(){
-	if(document.getElementById('quantity').value > 1){
-		document.getElementById('quantity').value--;
-	}
-	showCartTable()
-}
-function countUp(){
-
-	document.getElementById('quantity').value++;
+function countUp(id){
+	for(var i = 0; i<carts.length; i++)
+		{
+			if ( id == carts[i].id)
+				{
+					carts[i].sell++;
+				}
+		}
 	showCartTable();
 }
 
@@ -82,14 +97,20 @@ function PayCart()
 		{alert('Xin Vui lòng đăng nhập để mua hàng');}
 	else
 	{
-		var tempArray = JSON.parse(localStorage.getItem('bills'));
-		var tempAcc = JSON.parse(localStorage.getItem('signed'));
-		var tempbill = new bill;
-		var today = new date;
-		tempbill.date = today.getdate();
-		tempbill.name = tempAcc.name;
-		tempbill.address = tempAcc.address;
-		tempArray[tempArray.length+1]= tempbill;
-		localStorage.setItem('bills',JSON.stringify(tempArray));
+		var tempacc = localStorage.getItem('signed')
+		var i =0;
+		var today =  new Date();
+		var tempbill = new bill();
+		tempbill.name = tempacc.name;
+		tempbill.date = today.getDate();
+		while (i<=bills.length)
+			{
+				i++;
+			}
+		tempbill.address = tempacc.address;
+		tempbill.NumPhone = tempacc.NumPhone;
+		bills[i]=tempbill;
+		localStorage.setItem('bills',JSON.stringify(bills))
 	}
 }
+
