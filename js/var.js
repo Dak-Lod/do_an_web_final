@@ -206,8 +206,7 @@ function renData(){
                 break
             case undefined:
                 document.getElementById('home').style.display = 'block'
-                renderNew(-1)
-                renderPrt(-1)
+                renHome()
                 break
 
             

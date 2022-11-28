@@ -191,11 +191,10 @@
 <div class="sanPhamMoi">
     <span class="tieuDeMucSP"> SẢN PHẨM MỚI</span>
     <ul class="menu">
-        <li onclick="renderNew(-1)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
-        <li onclick="renderNew(0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
-        <li onclick="renderNew(1)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
-        <li onclick="renderNew(2)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
-        <li onclick="renderNew(3)" class="item-menu"><span class="item-menu1"> Khuyến mãi</span></li>
+        <li onclick="renderNew(-1,0)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
+        <li onclick="renderNew(0,0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
+        <li onclick="renderNew(1,0)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
+        <li onclick="renderNew(2,0)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
     </ul>
 </div>
 <div class="container-SanPhamMoi">
@@ -310,6 +309,13 @@
     <!-- </div> -->
 </div>
 
+<div class="gagination">
+    <ul class="btn-ul">
+        <li onclick="renderNew(-1,0)" class="btn-li btn--active">1</li>
+        <li onclick="renderNew(-1,1)" class="btn-li">2</li>
+        <li onclick="renderNew(-1,2)" class="btn-li">3</li>
+    </ul>
+</div>
 
     <div class="bannerMid">
         <img src="./img2/web_banner___phien_ban_40_nam_c7.jpg" alt="">
@@ -317,20 +323,16 @@
 
 
     <div class="sanPhamMoi">
-    <span class="tieuDeMucSP"> SẢN PHẨM BÁN CHẠY</span>
-    <ul class="menu">
-        <li onclick="renderPrt(-1)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
-        <li onclick="renderPrt(0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
-        <li onclick="renderPrt(1)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
-        <li onclick="renderPrt(2)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
-        <li onclick="renderPrt(3)" class="item-menu"><span class="item-menu1"> Khuyến mãi</span></li>
-    </ul>
-</div>
+        <span class="tieuDeMucSP"> SẢN PHẨM BÁN CHẠY</span>
+        <ul class="menu">
+            <li onclick="renderPrt(-1,0)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
+            <li onclick="renderPrt(0,0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
+            <li onclick="renderPrt(1,0)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
+            <li onclick="renderPrt(2,0)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
+        </ul>
+    </div>
 <div  class="container-SanPhamMoi" >
     
-    <div onclick="btnLeftBottom()" class="btn-left"><</div>
-    <div onclick="btnRightBottom()" class="btn-right">></div>
-    <div class="container-wrap">
             <!-- <div class="item-SanPhamMoi">
                 <a href="#"><img src="./img2/SPmoi_1.jpg" alt=""></a>
                 <div class="item-size-color">
@@ -418,11 +420,19 @@
             </div>
         </div> -->
     </div>
+
+    <div class="gagination">
+        <ul class="btn-ul">
+            <li onclick="renderPrt(-1,0)" class="btn-li btn--active">1</li>
+            <li onclick="renderPrt(-1,1)" class="btn-li">2</li>
+            
+        </ul>
+    </div>
+
     <div class="showcart-wrap">
         <div class="showcart"></div>
     </div>
 
-    </div>
     
     </article>
 
