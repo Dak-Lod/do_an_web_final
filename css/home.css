@@ -62,8 +62,7 @@
     margin: 8px;
 } */
 #home .container-SanPhamMoi{
-    /* display: flex; */
-    display: block;
+    display: flex;
     /* flex-wrap: wrap; */
     
     overflow: hidden;
@@ -180,11 +179,11 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
-#home .item-menu a{
+#home .item-menu1 {
     position: relative;
     padding-bottom: 5px;
 }
-#home .item-menu a::after{
+#home .item-menu1::after{
     content: "";
     width: 0;
     height: 3px;
@@ -194,7 +193,7 @@
     left: 0;
     transition: all 0.5s ease;
 }
-#home .item-menu a:hover::after{
+#home .item-menu1:hover::after{
     width: 50%;
     transform: translateX(100%);
 }
@@ -220,6 +219,10 @@
     
 }
 #home .btn--active{
+    background-color: rgb(110, 146, 129);
+
+}
+#home .btn1--active{
     background-color: rgb(110, 146, 129);
 
 }
