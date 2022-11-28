@@ -178,12 +178,6 @@ function renData(){
             // popup_login.style.top = "50%"
         })
 
-        // document.querySelector('#btn-signup').addEventListener('click', (event)=>{
-        //     blur.classList.toggle('active')
-        //     popup_signup.toggle('active')
-        //     popup_signup.style.top = "50%"
-        // })
-
     }
 
 
@@ -340,7 +334,7 @@ function renData(){
         })
 
         //Button sign up
-        document.querySelector('#popup-signup > signup').addEventListener('click', ()=>{
+        document.querySelector('#popup-signup .signup').addEventListener('click', ()=>{
             if (signup_err.style.display != 'none'){
                 
             }
