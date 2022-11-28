@@ -100,8 +100,7 @@ function PayCart()
 		var tempBill = new bill;
 		var today = new date;
 		tempBill.date = today.getdate();
-		tempBill.name = tempAcc.name;
-		tempBill.address = tempAcc.address;
+		tempBill.user = tempAcc.user;
 		if (tempBillArray==null)
 			{
 				tempBillArray=[];

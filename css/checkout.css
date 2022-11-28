@@ -1,75 +1,75 @@
 /* checkout */
 img{
-    max-width: 100%;
-    max-height: 100%;
-  }
-   
-  .bill{
-    width: 100%;
-    margin: 0 auto;
-    background-color: white;
-    padding: 10px;
-  }
+  max-width: 100%;
+  max-height: 100%;
+}
+ 
+.bill{
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 10px;
+}
 
-  #bill{
-    display: none;
-  }
+#bill{
+  display: none;
+}
 
-  #billcontain{
-    margin: 30px auto;
-    height: 900px;
-    width: 90%;
-    border: 2px solid #000;
-    padding: 20px;
-    ;
-  }
+#billcontain{
+  margin: 30px auto;
+  height: 900px;
+  width: 90%;
+  border: 2px solid #000;
+  padding: 20px;
+  ;
+}
 
- #cartTable{
-    border-spacing: 0;
-    width: 100%;
-  }
+#cartTable{
+  border-spacing: 0;
+  width: 100%;
+}
 #cartTable th, td{
-    border-bottom: 1px solid #000;
-    padding: 10px;
-    vertical-align: middle;
-  }
+  border-bottom: 1px solid #000;
+  padding: 10px;
+  vertical-align: middle;
+}
 #cartTable td:not(:nth-child(2)){
-    width: 150px;
-    text-align: center;
-  }
+  width: 150px;
+  text-align: center;
+}
 #cartTable td img{
-    height: 50px;
-  }
+  height: 50px;
+}
 #cartTable td button{
-    height: auto;
-    width: 30px;
-    line-height: 25px;
-    font-size: 15pt;
-    text-align: center;
-    border: 2px solid #000;
-    background: none;
-    cursor: pointer;
-    outline: none;
-  }
+  height: auto;
+  width: 30px;
+  line-height: 25px;
+  font-size: 15pt;
+  text-align: center;
+  border: 2px solid #000;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
 #cartTable td button:active{
-    border: 2px solid #ff4700;
-    color: #ff4700;
-  }
+  border: 2px solid #ff4700;
+  color: #ff4700;
+}
 #cartTable td input{
-    height: 25px;
-    width: 50px;
-    font-size: 12pt;
-    text-align: center;
-    border-left: none;
-    border-right: none;
-    background: none;
-  }
+  height: 25px;
+  width: 50px;
+  font-size: 12pt;
+  text-align: center;
+  border-left: none;
+  border-right: none;
+  background: none;
+}
 
-  .total{
-    text-align: right;
-    color: #ff4700;
-    font-weight: bold;
-    height: 50px;
-    font-size: 12pt;
-    margin-top: 20px;
-  }
+.total{
+  text-align: right;
+  color: #ff4700;
+  font-weight: bold;
+  height: 50px;
+  font-size: 12pt;
+  margin-top: 20px;
+}

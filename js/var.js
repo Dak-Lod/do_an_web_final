@@ -199,6 +199,7 @@ function renData(){
         switch (link[1]){
             case 'checkout':
                 document.getElementById('checkout').style.display = 'block'
+                renCheckout()
                 break
             case 'search' :
                 document.getElementById('search').style.display = 'block'
