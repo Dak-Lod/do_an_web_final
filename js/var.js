@@ -34,7 +34,7 @@ function disablePopup(){
 let blur
 let popup_login
 let popup_signup
-
+let popup_signup_complete
 
 var categories = localStorage.getItem('cate')
 categories = JSON.parse(categories)
@@ -59,7 +59,7 @@ class Account {
         this.password = pass
         this.role = role // 0 = admin, 1 = user
         this.address = address
-        this.phoneNumber = this.phoneNumber
+        this.phoneNumber = phoneNumber
     }
 }
 if (accounts == null) {
@@ -145,7 +145,7 @@ function renData(){
     blur = document.getElementById('blur')
     popup_login = document.getElementById('popup-login')
     popup_signup = document.getElementById('popup-signup')
-
+    popup_signup_complete = document.getElementById('popup-signup-complete')
 
 
     var login_info = localStorage.getItem('signed')
@@ -335,8 +335,15 @@ function renData(){
 
         //Button sign up
         document.querySelector('#popup-signup .signup').addEventListener('click', ()=>{
-            if (signup_err.style.display != 'none'){
-                
+            for (let i = 0; i < 5; i++){
+                signup_form.children[i].dispatchEvent(new Event('input'))
+            }
+            console.log(signup_info);
+            if (signup_err.style.display == 'none'){
+                accounts.push(new Account(signup_info.name, signup_info.username, signup_info.password, 1, signup_info.address, signup_info.phoneNumber))
+                localStorage.setItem('signed', JSON.stringify(accounts[accounts.length - 1]))
+                localStorage.setItem( 'acc' ,JSON.stringify(accounts))
+                location.reload()
             }
         })
 
