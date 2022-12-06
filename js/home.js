@@ -1,90 +1,91 @@
-// const btnLeft = document.querySelector('.btn-left')
-// const btnRight = document.querySelector('.btn-right')
-// var x = 0 
-// var y = 0
-// function btnLeftTop() {
-//     const containerWrap = document.querySelector('.container-wrap')
-//     x +=16.75
-//     if(x > 0) {
-//         x = -16.75*3
-//     }
-//     containerWrap.style.marginLeft = x + 'vw'
-// }
 
-// function btnRightTop() {
-//     const containerWrap = document.querySelector('.container-wrap')
-//     x -=16.75
-//     if(x <= -16.75*4) {
-//         x = 0
-//     }
-//     containerWrap.style.marginLeft = x + 'vw'
-// }
+let currentSelectCateNew = -1
+let currentSelectCateSell = -1
 
-// function btnLeftBottom() {
-//     const containerWrap = document.querySelectorAll('.container-wrap')[0]
-//     y +=16.75
-//     if(y > 0) {
-//         y = -16.75*3
-//     }
-//     containerWrap.style.marginLeft = y + 'vw'
-// }
+function renItem(prd){
+    const container = document.createElement('div')
+    container.className = "item-SanPhamMoi"
+        const img = document.createElement('img');
+            img.src = prd.img
+        const title = document.createElement('span')
+            title.className = "prd-title"
+            title.innerText = prd.name
+        const price = document.createElement('span')
+            price.className = "prd-price"
+            price.innerText = moneyFormat(prd.price) + 'đ'
+        const div = document.createElement('div')
+            div.className = 'item-SanPhamMoi__footer'
+            const btn = document.createElement('button')
+            div.appendChild(btn)
+            btn.className = "item-SanPhamMoi__btn"
+            btn.innerText = "Thêm vào giỏ"
 
-// function btnRightBottom() {
-//     const containerWrap = document.querySelectorAll('.container-wrap')[0]
-//     y -=16.75
-//     if(y <= -16.75*4) {
-//         y = 0
-//     }
-//     containerWrap.style.marginLeft = y + 'vw'
-// }
-
-
-
-
-var fullItem = 0
-function renderNew(n,vt) {
-    let s= ''
-    for(var i = vt*5; i < products.length; i++) {
-        if(fullItem < 5) {
-                if (n == -1 || (categories[n].includes(products[i].cate) && products[i].new == 1)) {
-                    s = s + `<div style="text-align: center" class="item-SanPhamMoi">
-                    <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${products[i].img}" alt=""></button>
-                <div class="item-size-color">
-                        <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                    </div>
-                <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${products[i].name}</button>
-                    <div class="price-product"><span style="font-size: 15px;">${products[i].price}</span></div>            
-                    <div class="item-SanPhamMoi__footer">
-                        <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
-                </div>
-                    </div>`
-                fullItem +=1
+            if (carts.findIndex(e => {
+                return e.prd.id == prd.id
+            }) > -1){
+                btn.classList.add('cartAdded')
+                btn.disabled = true
+                btn.innerText = "Đã thêm vào giỏ"
             }
-        }
+            else
+                btn.addEventListener('click', function (event){
+                    event.target.classList.add('cartAdded')
+                    event.target.innerText = "Đã thêm vào giỏ"
+                    event.target.disabled = true
+                    addCart(prd)
+                })
+    container.appendChild(img)
+    container.appendChild(title)
+    container.appendChild(price)
+    container.appendChild(div)
+    return container
+    
+}
+
+
+
+function renHome() {
+    renProduct(-1, 0, "new")
+    renProduct(-1, 0, "sell")
+   
+}
+
+
+
+function renProduct(n, index, type){
+    
+    let body
+    switch (type){
+        case "new":
+            body = document.querySelectorAll('.container-SanPhamMoi')[0]
+            if (n == null)
+                n = currentSelectCateNew
+            else 
+                currentSelectCateNew = n
+            break
+        case "sell":
+            body = document.querySelectorAll('.container-SanPhamMoi')[1]
+            if (n == null)
+                n = currentSelectCateSell
+            else 
+                currentSelectCateSell = n
+            break
+
+            
     }
-    // products.forEach(
-    //     function(ele,idx){
-    //         if(fullItem < 5 && idx > vt * 5) {
-    //             if (n == -1 || (categories[n].includes(ele.cate) && ele.new == 1)) {
-    //                 s = s + `<div style="text-align: center" class="item-SanPhamMoi">
-    //                 <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${ele.img}" alt=""></button>
-    //             <div class="item-size-color">
-    //                     <div class="font-product">+7 size</div>
-    //                 <div class="font-product">+3 Màu sắc</div>
-    //                 </div>
-    //             <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${ele.name}</button>
-    //                 <div class="price-product"><span style="font-size: 15px;">${ele.price}</span></div>            
-    //                 <div class="item-SanPhamMoi__footer">
-    //                     <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
-    //             </div>
-    //                 </div>`
-    //             fullItem +=1
-    //             }
-    //         }
-    //     }
-    // )
-    fullItem = 0
+
+    body.innerHTML = ''
+    let count = 0
+    products.every(ele =>{
+        if ((n == -1 || (categories[n].includes(ele.cate))) && ele[type] === 1) {
+            if (count >= index * 5)
+                body.appendChild(renItem(ele))
+            count ++ 
+        }
+        if (count == (5 * (index + 1))) return false;
+        return true;
+    })
+
     document.querySelectorAll('.btn-li').forEach(
         function(item,idx) {
             if(idx <= 2) {
@@ -92,127 +93,6 @@ function renderNew(n,vt) {
             }
     })
 
-    document.querySelectorAll('.btn-li')[vt].classList.add('btn--active')
-    document.querySelectorAll('.container-SanPhamMoi')[0].innerHTML = s
+    document.querySelectorAll('.btn-li')[index].classList.add('btn--active')
 }
-function renderPrt(n,vt) {
-    var fullItem1 = 0
-    let s1=''
-    let list = []
-    products.forEach(product => {
-        if(product.sell == 1) {
-            list.push(product)
-        }
-    })
-    for(var i = vt*5; i < list.length; i++) {
-        if(fullItem1 < 5) {
-            if (n == -1 || (categories[n].includes(list[i].cate) && list[i].sell == 1)) {
-                    s1 = s1 + `<div style="text-align: center" class="item-SanPhamMoi">
-                    <button style="border : 0; background-color: transparent; margin-inline: auto"><img src="${list[i].img}" alt=""></button>
-                <div class="item-size-color">
-                        <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                    </div>
-                <button style="border : 0; background-color: transparent" class="font-product"; margin-inline: auto>${list[i].name}</button>
-                    <div class="price-product"><span style="font-size: 15px;">${list[i].price}</span></div>            
-                    <div class="item-SanPhamMoi__footer">
-                        <button class="item-SanPhamMoi__btn">thêm vào giỏ</button>
-                </div>
-                    </div>`
-                    console.log('chay')
-                    fullItem1 +=1
-            }
-        }
-    }
-    document.querySelectorAll('.btn-li').forEach(
-        function(item,idx) {
-            if(idx >=3) {
-                item.classList.remove('btn--active')
-            }
-    })
-
-    document.querySelectorAll('.btn-li')[vt+3].classList.add('btn--active')
-    document.querySelectorAll('.container-SanPhamMoi')[1].innerHTML = s1
-}
-function renHome() {
-    let s = ''
-    // function render(className = undefined) {
-    //     if(className != undefined) {
-    //         for(var i=0; i < lists.length ; i++) {
-    //             if(lists[i].classify == className) {
-    //                 s = s + `<div class="item-SanPhamMoi">
-    //                 <a href="#"><img src="${lists[i].img}" alt=""></a>
-    //                 <div class="item-size-color">
-    //                     <div class="font-product">+7 size</div>
-    //                     <div class="font-product">+3 Màu sắc</div>
-    //                 </div>
-    //                 <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-    //                 <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
-    //                 <div class="item-SanPhamMoi__footer">
-    //                     <button class="item-SanPhamMoi__btn">mua ngay</button>
-    //                 </div>
-    //                 </div>`
-    //             }
-    //         }
-    //     } else {
-    //         for(var i=0; i < lists.length ; i++) {
-    //             s = s + `<div class="item-SanPhamMoi">
-    //             <a href="#"><img src="${lists[i].img}" alt=""></a>
-    //             <div class="item-size-color">
-    //                 <div class="font-product">+7 size</div>
-    //                 <div class="font-product">+3 Màu sắc</div>
-    //             </div>
-    //             <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-    //             <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
-    //             <div class="item-SanPhamMoi__footer">
-    //                 <button class="item-SanPhamMoi__btn">mua ngay</button>
-    //             </div>
-    //             </div>`
-    //         }
-    //     } 
-    //     document.querySelector('.container-wrap').innerHTML = s
-    // }
-    renderNew(-1,0)
-    renderPrt(-1,0)
-    // renderGagination()
-    // document.querySelectorAll('.item-SanPhamMoi').forEach(item => {
-    //     item.onclick = function() {
-    //         console.log(this)
-    //         document.querySelector('.showcart-wrap').classList.add('showcart-wrap--active')
-    //         document.querySelector('.showcart').innerHTML = `<div style="width: 300px;" class="item-SanPhamMoi">
-    //         <button style="border : 0; background-color: transparent"><img src="./img2/SPmoi_1.jpg" alt=""></button>
-    //         <div class="item-size-color">
-    //             <div class="font-product">+7 size</div>
-    //             <div class="font-product">+3 Màu sắc</div>
-    //         </div>
-    //         <button style="border : 0; background-color: transparent" class="font-product">Giày Thể Thao Nam Hunter Street White</button>
-    //         <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
-    //         <div class="item-SanPhamMoi__footer">
-    //             <button class="item-SanPhamMoi__btn">mua ngay</button>
-    //         </div>
-    //         </div>`
-    //     }
-    // })
-   
-}
-
-// document.querySelectorAll('.btn-li').forEach(btn => {
-//     btn.onclick = function () {
-//         console.log('bam dc')
-//         document.querySelectorAll('.btn-li').forEach(btn => {
-//             btn.classList.remove('btn--active')
-//         })
-//         this.classList.add('btn--active')
-//         if(this.innerText == '2') {
-//             renderNew(1)
-//         }
-
-//         if(this.innerText == '1') {
-//             renderNew(2)
-//         }
-//         // if(this.innerText == '3') {
-//         //     render(2)
-//         // }
-//     }
-// })
 

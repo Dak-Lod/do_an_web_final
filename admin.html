@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vn">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,7 +43,7 @@
                     <div class="header-ctn">
                         <div class="container">
                             <div class="dropdown">
-                                <a class="dropdown-toggle" href="#">
+                                <a class="dropdown-toggle" href="./?checkout">
                                     <i class="fa fa-shopping-cart">
                                     </i>
                                     <span>
@@ -162,20 +162,24 @@
                     </div>
                     <div class="container">
                         <label for="" >Tên sản phẩm:</label>
-                        <input type="text" name="name-product" id="name-product" autocomplete="off">
+                        <input type="text" name="name-product" id="name-product" autocomplete="off" oninput="checkNullPrd(this)">
                     </div>
                     <div class="container">
                         <label for="" >Giá sản phẩm:</label>
-                        <input type="number" name="price-product" id="price-product" autocomplete="off">
+                        <input type="number" name="price-product" id="price-product" autocomplete="off" oninput="checkNullPrd(this)">
                     </div>
                     <div class="container">
                         <label for="">Thể loại:</label>
-                        <input type="search" id="cate-product" class="cate-product">
+                        <select id="cate-product">
+                            <option value="0">Nam</option>
+                            <option value="1">Nữ</option>
+                            <option value="2">Trẻ em</option>
+                        </select>
                     </div>
                     <div class="container">
                         <label for="">Ảnh:</label>
                         <div>
-                            <input type="file" name="status-product" class="img-product" id="img-product">
+                            <input type="file" name="status-product" class="img-product" id="img-product" oninput="checkNullPrd(this)">
         
                             <img class="img-preview" >
                         </div>
@@ -186,7 +190,9 @@
                         <label for="">Mô tả:</label>
                         <!-- <input autocomplete="off" type="text" name="des-product" id="des-product"> -->
                         <textarea name="des-product" id="des-product" rows="7"></textarea>
-        
+                    </div>
+                    <div class="input-err">
+                        
                     </div>
                     <div>
                         <input type="submit" name="" class="add-btn" value="Thêm">            
@@ -299,7 +305,7 @@
     
     <div class="manager cate">
         <div class="feature">
-            <div class="product-search body-item">
+            <!-- <div class="product-search body-item">
                 <form class="feature-form" action="" autocomplete="off">
                     <span class="title">Tìm Kiếm Thể Loại</span>
                     <div class="container">
@@ -311,7 +317,7 @@
                     </div>
                     
                 </form>
-            </div>
+            </div> -->
             <!-- <div class="product-add body-item">
                 <form method="get" class="feature-form" autocomplete="off" 
                 action="" onsubmit="return addProduct()"
@@ -333,11 +339,11 @@
         </div>
         
         <div class="table-view body-item">
-            <span class="title">Danh sách tài khoản</span>
+            <span class="title">Danh sách thể loại</span>
             <table id="cate-table">
                 <thead>
                     <tr> 
-                        <td class="tdId">ID</td>
+                        <td class="tdId">STT</td>
                         <td class="tdName">Tên thể loại</td>
                         <td class="tdBtn"></td>
                     </tr>
@@ -382,22 +388,26 @@
         <span class="title">Thay đổi thông tin</span>
         <div class="body product-add body-item">
             <form method="get" class="feature-form" autocomplete="off" 
-            action="" onsubmit="return changeProduct()">
+            action="" onsubmit="return false">
                 <div class="container">
                     <label for="">Mã sản phẩm:</label>
                     <input type="text" readonly name="id-product" >
                 </div>
                 <div class="container">
                     <label for="" >Tên sản phẩm:</label>
-                    <input type="text" name="name-product"  autocomplete="off">
+                    <input type="text" name="name-product"  autocomplete="off" >
                 </div>
                 <div class="container">
                     <label for="" >Giá sản phẩm:</label>
-                    <input type="number" name="price-product"  autocomplete="off">
+                    <input type="number" name="price-product"  autocomplete="off" >
                 </div>
                 <div class="container">
                     <label for="">Thể loại:</label>
-                    <input type="search" class="cate-product">
+                    <select>
+                        <option value="0">Nam</option>
+                        <option value="1">Nữ</option>
+                        <option value="2">Trẻ em</option>
+                    </select>
                 </div>
                 <div class="container">
                     <label for="">Ảnh:</label>
@@ -415,10 +425,11 @@
                     <textarea name="des-product"  rows="7"></textarea>
     
                 </div>
+                <div class="input-err"></div>
             </form>
         </div>
         <div class="btn">
-            <button class="ok">Đồng ý</button>
+            <button class="ok" onclick="changePrd(this)">Đồng ý</button>
             <button class="cancel">Huỷ bỏ</button>           
         </div>
     </div>
@@ -466,8 +477,103 @@
         </div>
     </div>
     
+    <div class="manager bill">
+        <div class="feature">
+            <div class="product-search body-item">
+                <form class="feature-form" action="" autocomplete="off">
+                    <span class="title">Tìm Kiếm Đơn Hàng</span>
+                    <div class="container">
+                        <label for="">Tên khách hàng: </label>
+                        <input type="text" placeholder="Nhập tên khách hàng" oninput="searchChangeBill()">
+                    </div>
+                    <div class="container">
+                        <label for="">Ngày:</label>
+                        <input type="date" onchange="searchChangeBill()">
+                    </div>
+                    <div class="container">
+                        <label for="">Trạng thái:</label>
+                        <select id="bill-status-search" onchange="searchChangeBill()">
+                            <option value="-1">Tất cả</option>
+                            <option value="0">Chưa xử lý</option>
+                            <option value="1">Đã xử lý</option>
+                        </select>
+                    </div>
+                    <!-- <div>
+                        <input type="submit" name="" class="search-btn" value="Tìm">            
+                    </div> -->
+                </form>
+            </div>
+        </div>
+        
+        <div class="table-view body-item">
+            <span class="title">Danh sách hoá đơn</span>
+            <div class="container">
+                <!-- <div class="item">
+                    <img class="product-img" src="../img/product1.webp" alt="">
+                    <div class="des">
+                        <span class="product-title">Giày Thể Thao Nam Hunter Street Cream DSMH10400KEM (Kem)</span><br>
+                        <span class="product-money">Giá: </span> <span>780.000đ</span><br>
+                        <span class="product-qty">Số lượng: </span><span>10</span><br>
+                    </div>
+                </div> -->
+            </div>
+            <table id="bill_table">
+                <thead>
+                    <tr> 
+                        <td class="tdName">Khách hàng</td>
+                        <td class="tdDate">Ngày mua</td>
+                        <td class="tdInfo">Danh sách sản phẩm</td>
+                        <td class="tdTotal">Tổng</td>
+                        <td class="tdStatus">Trạng thái</td>
+                        <td class="tdBtn"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="popup" id="popup-edt-bill">
+        <img src="./icon/setting.png" alt="">
+        <span class="title">Thông tin hoá đơn</span>
+        <div class="body product-add body-item">
+            <form method="get" class="feature-form" autocomplete="off" 
+                action="">
+                    <div class="container">
+                        <label for="">Tên khách hàng: </label>
+                        <p></p>
+                    </div>
+                    <div class="container">
+                        <label for="" >Ngày mua:</label>
+                        <p></p>
+                    </div>
+                    <div class="container">
+                        <label for="" >Danh sách sản phẩm:</label>
+                        <p></p>
+                    </div>
+                    <div class="container">
+                        <label for="">Tổng:</label>
+                        <p></p>
+                    </div>
+                    <div class="container">
+                        <label for="">Tình trạng:</label>
+                        <p class="status"></p>
+                        <label for=""></label>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    
+                </form>
+        </div>
+        
+    </div>
     
     
+
 </article>
     
     <!-- /Body -->
@@ -544,34 +650,7 @@
         </div>
 
 
-        <!-- <div class="container">
-
-            <div class="row">
-                <div class="col-3 col-xs-6">
-                    <div class="footer-content">
-                        <h3 class="footer-title">About us</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quia, voluptas itaque tenetur nemo rerum adipisci quod? Repellat iste minima animi assumenda quos cupiditate provident perspiciatis esse necessitatibus, adipisci culpa!</p>
-                        <ul class="footer-links">
-                            <li><a href=""><i class="fa fa-phone"></i>+84337961759</a></li>
-
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-3 col-xs-6">
-                    <div class="footer-content">
-                        <h3 class="footer-title">Danh mục sản phẩm</h3>
-                        <ul class="footer-links">
-                            <li><a href="">Nam</a></li>
-                            <li><a href="">Nữ</a></li>
-                            <li><a href="">Trẻ em</a></li>
-                            <li><a href="">Khuyến mãi</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-            </div>
-        </div> -->
+        
     </footer>
     <div id="blur"></div>
 
@@ -581,13 +660,22 @@
         <div class="body">
             <form action="">
                 <input type="text" placeholder="Tài khoản">
-                <input type="password" name="" id="" placeholder="Mật khẩu">
+                <input type="password" placeholder="Mật khẩu">
                 <div class="input-error"></div>
             </form>
         </div>
         <div class="btn">
             <button class="login" id="login-btn">Đăng nhập</button>
             <button class="signup" id="signup-btn">Đăng ký</button>
+        </div>
+    </div>
+
+    <div id="popup-must-login" class="popup">
+        <img src="./icon/remove1.png" alt="">
+        <span class="title">Bạn cần phải đăng nhập để thực hiện chức năng này!</span>
+        <div class="btn">
+            <button class="login">Đăng nhập</button>
+            <button class="cancel">Huỷ</button>
         </div>
     </div>
 

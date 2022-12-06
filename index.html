@@ -32,11 +32,13 @@
                 <!-- Search bar -->
 
             <div class="header-search">
-                <form>
+                <form action="/?search">
                     <select class="input-select"></select>
                     <input type="text"
                     placeholder="Tìm kiếm" class="input">
-                    <button class="search-btn"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                    <button class="search-btn" onclick="callSearch()">
+                        <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </form>
             </div>
                 <!-- /Search bar -->
@@ -45,7 +47,7 @@
                     <div class="header-ctn">
                         <div class="container">
                             <div class="dropdown">
-                                <a class="dropdown-toggle" href="#">
+                                <a class="dropdown-toggle" href="./?checkout">
                                     <i class="fa fa-shopping-cart">
                                     </i>
                                     <span>
@@ -135,19 +137,19 @@
                         <div class="filter__header">Thể loại</div>
                         <div class="category-wrapper">
                             <div class="category-item">
-                                <input type="checkbox" id="check" checked="checked" onclick="renderSearch(-1)">
+                                <input type="checkbox" checked="checked" onclick="renderSearch(-1)">
                                 <span class="checkbox__label">Tất cả</span>
                             </div>
                             <div class="category-item">
-                                <input type="checkbox" id="check" onclick="renderSearch(0)">
+                                <input type="checkbox"  onclick="renderSearch(0)">
                                 <span class="checkbox__label">Nam</span>
                             </div>
                             <div class="category-item">
-                                <input type="checkbox" id="check" onclick="renderSearch(1)">
+                                <input type="checkbox"  onclick="renderSearch(1)">
                                 <span class="checkbox__label">Nữ</span>
                             </div>
                             <div class="category-item">
-                                <input type="checkbox" id="check" onclick="renderSearch(2)">
+                                <input type="checkbox" onclick="renderSearch(2)">
                                 <span class="checkbox__label">Khuyến mãi</span>
                             </div>
                         </div>
@@ -158,7 +160,7 @@
                         <div class="price-wrapper">
                             <div class="price-display">
                                 <div class="price-input">
-                                    <input type="text" placeholder="đ MIN" value>
+                                    <input type="text" placeholder="đ MIN" id="test" value>
                                 </div>
                                 <div class="separator">-</div>
                                 <div class="price-input">
@@ -191,129 +193,22 @@
 <div class="sanPhamMoi">
     <span class="tieuDeMucSP"> SẢN PHẨM MỚI</span>
     <ul class="menu">
-        <li onclick="renderNew(-1,0)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
-        <li onclick="renderNew(0,0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
-        <li onclick="renderNew(1,0)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
-        <li onclick="renderNew(2,0)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
+        <li onclick="renProduct(-1, 0, `new`)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
+        <li onclick="renProduct(0, 0, `new`)" class="item-menu"><span class="item-menu1"> Nam</span></li>
+        <li onclick="renProduct(1, 0, `new`)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
+        <li onclick="renProduct(2, 0, `new`)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
     </ul>
 </div>
 <div class="container-SanPhamMoi">
     
-    <!-- <div onclick="btnLeftTop()" class="btn-left"><</div>
-    <div onclick="btnRightTop()" class="btn-right">></div>
-    <div class="container-wrap"> -->
-        <!-- <div class="item-SanPhamMoi">
-            <a href="#"><img src="./img2/SPmoi_1.jpg" alt=""></a>
-            <div class="item-size-color">
-                <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
-            </div>
-            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
-            <div class="item-SanPhamMoi__footer">
-                <button class="item-SanPhamMoi__btn">mua ngay</button>
-            </div>
-        </div>
 
-
-        <div class="item-SanPhamMoi">
-            <a href="#"><img src="./img2/SPmoi_2.jpg" alt=""></a>
-            <div class="item-size-color">
-                <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
-            </div>
-            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-            <div class="item-SanPhamMoi__footer">
-                <button class="item-SanPhamMoi__btn">mua ngay</button>
-            </div>
-        </div>
-
-        <div class="item-SanPhamMoi">
-            <a href="#"><img src="./img2/SPmoi_3.jpg" alt=""></a>
-            <div class="item-size-color">
-                <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
-            </div>
-            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-            <div class="item-SanPhamMoi__footer">
-                <button class="item-SanPhamMoi__btn">mua ngay</button>
-            </div>
-        </div>
-
-        <div class="item-SanPhamMoi">
-            <a href="#"><img src="./img2/SPmoi_4.jpg" alt=""></a>
-            <div class="item-size-color">
-                <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
-            </div>
-            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-            <div class="item-SanPhamMoi__footer">
-                <button class="item-SanPhamMoi__btn">mua ngay</button>
-            </div>
-        </div>
-
-        <div class="item-SanPhamMoi">
-            <a href="#"><img src="./img2/SPmoi_5.jpg" alt=""></a>
-            <div class="item-size-color">
-                <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
-            </div>
-            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-            <div class="item-SanPhamMoi__footer">
-                <button class="item-SanPhamMoi__btn">mua ngay</button>
-            </div>
-        </div>
-
-        <div class="item-SanPhamMoi">
-            <a href="#"><img src="./img2/SPmoi_6.jpg" alt=""></a>
-            <div class="item-size-color">
-                <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
-            </div>
-            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-            <div class="item-SanPhamMoi__footer">
-                <button class="item-SanPhamMoi__btn">mua ngay</button>
-            </div>
-        </div>
-
-        <div class="item-SanPhamMoi">
-            <a href="#"><img src="./img2/SPmoi_7.jpg" alt=""></a>
-            <div class="item-size-color">
-                <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
-            </div>
-            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-            <div class="item-SanPhamMoi__footer">
-                <button class="item-SanPhamMoi__btn">mua ngay</button>
-            </div>
-        </div>
-
-        <div class="item-SanPhamMoi">
-            <a href="#"><img src="./img2/SPmoi_8.jpg" alt=""></a>
-            <div class="item-size-color">
-                <div class="font-product">+7 size</div>
-                <div class="font-product">+3 Màu sắc</div>
-            </div>
-            <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-            <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-            <div class="item-SanPhamMoi__footer">
-                <button class="item-SanPhamMoi__btn">mua ngay</button>
-            </div>
-        </div> -->
-    <!-- </div> -->
 </div>
 
 <div class="gagination">
     <ul class="btn-ul">
-        <li onclick="renderNew(-1,0)" class="btn-li btn--active">1</li>
-        <li onclick="renderNew(-1,1)" class="btn-li">2</li>
-        <li onclick="renderNew(-1,2)" class="btn-li">3</li>
+        <li onclick="renProduct(null, 0, 'new')" class="btn-li btn--active">1</li>
+        <li onclick="renProduct(null, 1, 'new')" class="btn-li">2</li>
+        <li onclick="renProduct(null, 2, 'new')" class="btn-li">3</li>
     </ul>
 </div>
 
@@ -325,106 +220,21 @@
     <div class="sanPhamMoi">
         <span class="tieuDeMucSP"> SẢN PHẨM BÁN CHẠY</span>
         <ul class="menu">
-            <li onclick="renderPrt(-1,0)" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
-            <li onclick="renderPrt(0,0)" class="item-menu"><span class="item-menu1"> Nam</span></li>
-            <li onclick="renderPrt(1,0)" class="item-menu"><span class="item-menu1"> Nữ</span></li>
-            <li onclick="renderPrt(2,0)" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
+            <li onclick="renProduct(-1, 0, 'sell')" class="item-menu"><span class="item-menu1"> Tất cả</span></li>
+            <li onclick="renProduct(0, 0, 'sell')" class="item-menu"><span class="item-menu1"> Nam</span></li>
+            <li onclick="renProduct(1, 0, 'sell')" class="item-menu"><span class="item-menu1"> Nữ</span></li>
+            <li onclick="renProduct(2, 0, 'sell')" class="item-menu"><span class="item-menu1"> Trẻ em</span></li>
         </ul>
     </div>
 <div  class="container-SanPhamMoi" >
     
-            <!-- <div class="item-SanPhamMoi">
-                <a href="#"><img src="./img2/SPmoi_1.jpg" alt=""></a>
-                <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                </div>
-                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>            
-            </div>
-    
-    
-            <div class="item-SanPhamMoi">
-                <a href="#"><img src="./img2/SPmoi_2.jpg" alt=""></a>
-                <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                </div>
-                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-            </div>
-    
-            <div class="item-SanPhamMoi">
-                <a href="#"><img src="./img2/SPmoi_3.jpg" alt=""></a>
-                <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                </div>
-                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-                
-            </div>
-    
-            <div class="item-SanPhamMoi">
-                <a href="#"><img src="./img2/SPmoi_4.jpg" alt=""></a>
-                <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                </div>
-                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-                
-            </div>
-    
-            <div class="item-SanPhamMoi">
-                <a href="#"><img src="./img2/SPmoi_5.jpg" alt=""></a>
-                <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                </div>
-                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-                
-            </div>
-    
-            <div class="item-SanPhamMoi">
-                <a href="#"><img src="./img2/SPmoi_6.jpg" alt=""></a>
-                <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                </div>
-                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-                
-            </div>
-    
-            <div class="item-SanPhamMoi">
-                <a href="#"><img src="./img2/SPmoi_7.jpg" alt=""></a>
-                <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                </div>
-                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-                
-            </div>
-    
-            <div class="item-SanPhamMoi">
-                <a href="#"><img src="./img2/SPmoi_8.jpg" alt=""></a>
-                <div class="item-size-color">
-                    <div class="font-product">+7 size</div>
-                    <div class="font-product">+3 Màu sắc</div>
-                </div>
-                <a href="#" class="font-product">Giày Thể Thao Nam Hunter Street White</a>
-                <div class="price-product"><span style="font-size: 15px;"> 781,000 ₫ </span></div>
-            </div>
-        </div> -->
+            
     </div>
 
     <div class="gagination">
         <ul class="btn-ul">
-            <li onclick="renderPrt(-1,0)" class="btn-li btn--active">1</li>
-            <li onclick="renderPrt(-1,1)" class="btn-li">2</li>
+            <li onclick="renProduct(null, 0, 'sell')" class="btn-li btn--active">1</li>
+            <li onclick="renProduct(null, 1, 'sell')" class="btn-li">2</li>
             
         </ul>
     </div>
@@ -437,44 +247,45 @@
     </article>
 
     <article id="checkout">
-		<div class="bill">
-			<div id="bilcontain">
-				<div id="bill" style="display: none;"></div>
-				<table id="carttable">
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Tổng</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td><img src="" alt="test.png"></td>
-                                <td>
-                                    <div>Air max 1 Just do it</div>
-                                </td>
-                                <td>5.700.000 VND</td>
-                                <td>
-                                    <button onclick="countDown()">-</button>
-                                    <input id="quantity" type="text" disabled="" value="1">
-                                    <button onclick="countUp()">+</button>
-                                </td>
-                                <td>5.700.000 VND</td>
-                                <td><button onclick="removeItem()">×</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-				<div class="total">Thành tiền: <span id="totalprice">5.700.000 VND</span></div>
-				<button onclick="deleteCart()">Xóa tất cả</button>
-				<button onclick="">Thanh toán</button>
-				
-			</div>
-        </div>
-            
-        
+        <div class="title">Giỏ Hàng</div>
+        <div class="line"></div>
+        <div class="body">
 
+            <table class="cart-list">
+                <thead>
+                    <td></td>
+                    <td>Sản phẩm</td>
+                    <td>Giá</td>
+                    <td>Số lượng</td>
+                    <td>Tổng</td>
+                    <td></td>
+                </thead>
+                <tbody>
+                    
+                    
+    
+                </tbody>
+            </table>
+            <div class="total-carts">Thành tiền: <span id="total-carts">0</span>đ</div>
+            <div class="feature">
+                <button class="remove-all" id="remove-all">Xoá tất cả</button>
+                <button class="checkout" id="checkout-cart">Thanh toán</button>
+            </div>
+            <div class="bill-title">Đơn hàng đã đặt</div>
+            <div class="bill-list">
+                <!-- <div class="item">
+                    <div class="info">Sản phẩm</div>
+                    <div class="total">Tổng tiền</div>
+                    <div class="date">Ngày mua</div>
+                    <div class="status">Tình trạng</div>
+                    <div class="info">x1 Giày Thể Thao Nam Hunter Cream</div>
+                    <div class="total">781000</div>
+                    <div class="date">29/11/2022</div>
+                    <div class="status">Chưa xử lý</div>
+                </div> -->
+            </div>
+        </div>
+        
     </article>
 
     <!-- Footer -->
@@ -615,6 +426,7 @@
 
 
     <div id="popup-addCart" class="popup">
+        <img src="./icon/checkmark1.png" alt="">
         Thêm sản phẩm thành công!
     </div>
 
@@ -622,6 +434,14 @@
         Đăng ký thành công!
     </div>
     
+    <div id="popup-must-login" class="popup">
+        <img src="./icon/remove1.png" alt="">
+        <span class="title">Bạn cần phải đăng nhập để thực hiện chức năng này!</span>
+        <div class="btn">
+            <button class="login">Đăng nhập</button>
+            <button class="cancel">Huỷ</button>
+        </div>
+    </div>
 
 </body>
 </html>

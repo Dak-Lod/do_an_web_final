@@ -1,7 +1,6 @@
 
 #home {
     width: calc(100% - 200px);
-    margin: 200px 100px 0px 100px;
     background-color: var(--color-background-white);
     border: 3px solid transparent;
     border-radius: 10px;
@@ -117,7 +116,28 @@
     display: inline-block;
     background-color: var(--color-background-white);
     transition: 0.5s ease;
+    text-align: center;
 }
+
+#home .container-SanPhamMoi .item-SanPhamMoi > *{
+    padding-block: 5px;
+    display: block;
+}
+
+#home .prd-title {
+    border : 0; 
+    background-color: transparent;
+    margin-inline: auto;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#home .prd-price {
+    font-size: 20px;
+    font-weight: 1000;
+    color: var(--color-primary-dark);
+}
+
 
 #home .container-SanPhamMoi .item-SanPhamMoi:hover {
     transform: translateY(-10px);
@@ -173,6 +193,13 @@
 #home .price-product{     
     margin-top: 5px;
 }
+
+#home .price-product span {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+}
+
 .bannerMid img{
     max-width: 100%;
     max-height: 100%;
@@ -244,4 +271,10 @@
 }
 .showcart-wrap--active{
     display: flex;
+}
+
+#home .cartAdded {
+    background-color: #f50057;
+    border-color: #f50057;
+    cursor: not-allowed;
 }

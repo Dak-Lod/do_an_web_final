@@ -23,7 +23,7 @@
 
 body {
     margin-inline: 0px;
-    margin-top: -25px;
+    margin-top: 0px;
     margin-bottom: 10px;
 }
 
@@ -279,6 +279,10 @@ nav > .container a span {
 }
 
 
+header form button {
+    cursor: pointer;
+}
+
 article {
     width: calc(100% - 200px);
     margin: 180px 0px 0px 100px;
@@ -337,8 +341,8 @@ article {
 
 
 .active {
-    visibility: unset !important;
     top: 50% !important;
+    visibility: unset !important;
 }
 
 .toggle-pass {
@@ -495,10 +499,20 @@ footer > * {
 
 #popup-addCart {
     top: unset !important;
-    bottom: 5%;
-    background-color: var(--color-gradient-1);
+    bottom: 7%;
+    background-color: rgba(43, 45, 66, 0.9);
     padding: 10px;
     color: white;
+    width: 300px;
+    text-align: center;
+    padding-bottom: 20px;
+    
+}
+
+#popup-addCart > img{
+    display: block;
+    position: relative !important;
+    transform: translate(-50%,0);
     
 }
 
@@ -550,3 +564,44 @@ footer > * {
     transform: translateY(-2px);
 }
 
+#popup-must-login {
+    text-align: center;
+    
+}
+#popup-must-login .title {
+    margin-bottom: 20px;
+}
+
+#popup-must-login button.login {
+    color: white;
+    background-color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary-dark);
+}
+
+#popup-must-login button.login:hover {
+    background-color: #1c4ecc;
+    transform: translateY(-2px);
+}
+
+#popup-must-login button.login:active {
+    background-color: white;
+    color: var(--color-primary-dark);
+    transform: translateY(2px);
+}
+
+#popup-must-login button.cancel {
+    color: white;
+    background-color: #f50057;
+    border: 2px solid #f50057;
+}
+
+#popup-must-login button.cancel:hover {
+    background-color: #bd0043;
+    transform: translateY(-2px);
+}
+
+#popup-must-login button.cancel:active {
+    background-color: white;
+    color: #f50057;
+    transform: translateY(2px);
+}

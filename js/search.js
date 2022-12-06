@@ -38,3 +38,10 @@ function renSearch(n){
 
 }
 
+function renSearchPage(){
+    renSearch(-1)
+    console.log(document.getElementById('test'));
+    let searchInfo = localStorage.getItem('')
+    searchInfo.name 
+}
+

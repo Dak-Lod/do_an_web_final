@@ -35,8 +35,7 @@ let popup_edt;
 const currentView = location.href.split('?')
 let popup_rmv_account;
 let popup_edt_account;
-
-
+let popup_edt_bill;
 
 function cate_ren(categories){
     var table = document.querySelector('#cate-table > tbody')
@@ -56,49 +55,49 @@ function cate_ren(categories){
         
         td = document.createElement('td')
         
-        let btn = document.createElement('button')
-        let i = document.createElement('i')
-        i.classList.add('fa-sharp', 'fa-solid', 'fa-gear')
-        btn.appendChild(i)
-        btn.setAttribute('class', 'btn-edt')
-        td.appendChild(btn) 
+        // let btn = document.createElement('button')
+        // let i = document.createElement('i')
+        // i.classList.add('fa-sharp', 'fa-solid', 'fa-gear')
+        // btn.appendChild(i)
+        // btn.setAttribute('class', 'btn-edt')
+        // td.appendChild(btn) 
 
-        btn.addEventListener('click', function(e){
-            blur.classList.toggle('active')
-            popup_edt_cate.classList.toggle('active')
-            popup_edt_cate.style.top = "50%"
+        // btn.addEventListener('click', function(e){
+        //     blur.classList.toggle('active')
+        //     popup_edt_cate.classList.toggle('active')
+        //     popup_edt_cate.style.top = "50%"
 
-            const info = e.currentTarget.parentNode.parentNode.children
-            const index = info[0].textContent
-            const popup_info = popup_edt_cate.children[2].children[0].children
-            popup_info[0].children[1].value = index
-            popup_info[1].children[1].value = categories[index].name
+        //     const info = e.currentTarget.parentNode.parentNode.children
+        //     const index = info[0].textContent
+        //     const popup_info = popup_edt_cate.children[2].children[0].children
+        //     popup_info[0].children[1].value = index
+        //     popup_info[1].children[1].value = categories[index].name
 
 
-        })
+        // })
         
         
-        btn = document.createElement('button')
-        btn.innerHTML = `<i class="fa-sharp fa-solid fa-circle-xmark"></i>`
-        btn.setAttribute('class', 'btn-rmv')
-        btn.addEventListener('click', function(e){
-            const blur = document.getElementById('blur')
-            blur.classList.toggle('active')
-            popup_rmv_account.classList.toggle('active')
-            popup_rmv_account.style.top = "50%"
-            const info = e.currentTarget.parentNode.parentNode.children
-            const popup_info = popup_rmv_account.children[2].children
+        // btn = document.createElement('button')
+        // btn.innerHTML = `<i class="fa-sharp fa-solid fa-circle-xmark"></i>`
+        // btn.setAttribute('class', 'btn-rmv')
+        // btn.addEventListener('click', function(e){
+        //     const blur = document.getElementById('blur')
+        //     blur.classList.toggle('active')
+        //     popup_rmv_account.classList.toggle('active')
+        //     popup_rmv_account.style.top = "50%"
+        //     const info = e.currentTarget.parentNode.parentNode.children
+        //     const popup_info = popup_rmv_account.children[2].children
 
-            const id_rmv = info[0].textContent
-            const index = accounts.findIndex(({id})=>{
-                return id_rmv == id
-            })
-            popup_info[0].textContent = id_rmv
-            popup_info[1].textContent = accounts[index].name
+        //     const id_rmv = info[0].textContent
+        //     const index = accounts.findIndex(({id})=>{
+        //         return id_rmv == id
+        //     })
+        //     popup_info[0].textContent = id_rmv
+        //     popup_info[1].textContent = accounts[index].name
             
 
-        })
-        td.appendChild(btn)
+        // })
+        // td.appendChild(btn)
         tr.append(td)
         table.append(tr)
 
@@ -226,7 +225,7 @@ function product_ren(products){
         tr.append(td)
 
         td = document.createElement('td')
-        td.append(ele.price + 'đ')
+        td.append(moneyFormat(ele.price) + 'đ')
         tr.append(td)
         
         td = document.createElement('td')
@@ -244,24 +243,34 @@ function product_ren(products){
             popup_edt.classList.toggle('active')
             popup_edt.style.top = "50%"
 
-            const info = e.currentTarget.parentNode.parentNode.children
-            const id_change = info[0].textContent
-            // const name = info[1].children[1].textContent
-            // const price = info[2].children[1].textContent
-            // const cate = info[3].children[1].textContent
-            // const img = info[4].
+            // const info = e.currentTarget.parentNode.parentNode.children
+            // const id_change = info[0].textContent
+            // // const name = info[1].children[1].textContent
+            // // const price = info[2].children[1].textContent
+            // // const cate = info[3].children[1].textContent
+            // // const img = info[4].
             const popup_info = popup_edt.children[2].children[0].children
-            popup_info[0].children[1].value = id_change
+            popup_info[0].children[1].value = ele.id
 
-            const index = products.findIndex(({id})=>{
-                return id == id_change
-            })
+            // const index = products.findIndex(({id})=>{
+            //     return id == id_change
+            // })
 
-            popup_info[1].children[1].value = products[index].name
-            popup_info[2].children[1].value = products[index].price
-            popup_info[3].children[1].value = products[index].cate
-            popup_info[4].children[1].children[1].src = products[index].img
-            popup_info[5].children[0].value = products[index].des
+            popup_info[1].children[1].value = ele.name
+            popup_info[2].children[1].value = ele.price
+            switch (ele.cate){
+                case 'Nam':
+                    popup_info[3].children[1].value = 0
+                    break
+                case 'Nữ':
+                    popup_info[3].children[1].value = 1
+                    break
+                case 'Trẻ em':
+                    popup_info[3].children[1].value = 2
+                    break
+            }
+            popup_info[4].children[1].children[1].src = ele.img
+            popup_info[5].children[0].value = ele.des
 
         })
 
@@ -308,6 +317,8 @@ function adminRen(){
     
     popup_edt_cate = document.getElementById('popup-edt-cate')
     popup_rmv_cate = document.getElementById('popup-rmv-cate')
+
+    popup_edt_bill = document.getElementById('popup-edt-bill')
 
     document.querySelectorAll('.popup .cancel').forEach(ele=>{
         ele.addEventListener('click', disablePopup)
@@ -370,9 +381,7 @@ function adminRen(){
                     e.currentTarget.setCustomValidity("")
             })
             
-            formAccount.children[6].children[0].addEventListener('click',e=>{
-                formAccount.dispatchEvent(new Event('submit'))
-            })
+            
             
             
             // Popup btn remove
@@ -395,144 +404,118 @@ function adminRen(){
 
             break
             
-            case '3':
+        case '3':
                 document.querySelector('.manager.cate').style.display = "flex"
                 cate_ren(categories)
             // Cate form add
-            let formCate = document.getElementById('form-cate')
-            // console.log();
-            // formCate.children[1].children[1].value = categories.length + 1
-            // // Input check
-            // formCate.children[2].children[1].addEventListener('input', function (e){
-            //     if (e.target.value == "" || e.target.value.trim() == ""){
-            //         e.target.setCustomValidity("Tên thể loại không được trống!")
-            //         e.target.reportValidity()   
-            //     }else{
-            //         e.target.setCustomValidity("")
-                    
-            //     }
-            // })
-
-            
-            // formCate.children[3].children[0].addEventListener('click', e=>{
-                
-            //     formCate.children[2].children[1].dispatchEvent(new Event('input'))
-            //     const name = formCate.children[2].children[1].value
-            //     if (name.trim() == null){
-            //         return false;
-            //     }
-            //     categories.push(name)
-                
-            //     localStorage.setItem('cate', JSON.stringify(categories))
-            //     location.reload()
-
-            // })
+            // let formCate = document.getElementById('form-cate')
 
             // Popup btn remove
-            popup_rmv_account.children[3].children[0].onclick = function(){
+            // popup_rmv_account.children[3].children[0].onclick = function(){
+            //     const id_rmv =  popup_rmv.children[2].children[0].textContent
+            //     const index = accounts.findIndex(({id})=>{
+            //         return id == id_rmv
+            //     })
+            //     accounts.splice(index, 1)
+            //     localStorage.setItem('acc', JSON.stringify(accounts))
+            //     location.reload()
+            // }
+
+            // // Popup btn edit
+            // popup_edt_account.children[3].children[0].onclick = function(){
+            //     const form = document.querySelector('#popup-edt-account form')
+            //     form.dispatchEvent(new Event('submit'))
+            // }
+        
+        
+            break
+            
+        case '4':
+            
+            document.querySelector('.manager.bill').style.display = "flex"
+            renBill(bills)
+
+            break
+
+        default:
+            document.querySelector('.manager.product').style.display = "flex"
+            product_ren(products)
+                //Add product
+    
+            const id = Product.count + 1 + 10000
+            document.getElementById('id-product').value = id
+    
+    
+            const select = document.getElementsByClassName('cate-product')
+            const dataList = document.createElement('datalist')
+            
+            dataList.id = "cate-datalist"
+            
+            categories.forEach(function (ele){
+                const option = document.createElement('option')
+                option.value = ele
+                dataList.appendChild(option)
+            })
+            Array.prototype.forEach.call(select, ele => {
+                ele.append(dataList)
+                ele.setAttribute('list', 'cate-datalist')
+    
+            })
+            
+    
+            //Input check
+            // document.getElementById('name-product').addEventListener('input', function (e){
+            //     if (e.target.value == "" || e.target.value.trim() == ""){
+            //         e.target.setCustomValidity("Tên sản phẩm không được trống!")
+            //         e.target.reportValidity()   
+            //     }else
+            //         e.target.setCustomValidity("")
+            // })
+    
+            // document.getElementById('cate-product').addEventListener('input', function (e){
+            //     if (e.target.value == "" || e.target.value.trim() == ""){
+            //         e.target.setCustomValidity("Thể loại sản phẩm không được trống!")
+            //         e.target.reportValidity()   
+            //     }else
+            //         e.target.setCustomValidity("")
+            // })
+    
+    
+    
+            //add Image
+            const imgUpload = document.getElementsByClassName("img-product")
+            Array.prototype.forEach.call(imgUpload, ele=>{
+                ele.addEventListener("change", function (event) {
+                    const file = event.target.files[0]
+                    const img = event.currentTarget.parentElement.children[1]
+                    img.file = file
+                    img.style.display = "block";
+                    const reader = new FileReader();
+                    reader.onload = function (e){
+                        img.src = e.target.result
+                    }
+                    reader.readAsDataURL(file)
+            
+                })
+    
+            })
+            // Popup btn remove
+            popup_rmv.children[3].children[0].onclick = function(){
                 const id_rmv =  popup_rmv.children[2].children[0].textContent
-                const index = accounts.findIndex(({id})=>{
+                const index = products.findIndex(({id})=>{
                     return id == id_rmv
                 })
-                accounts.splice(index, 1)
-                localStorage.setItem('acc', JSON.stringify(accounts))
+                products.splice(index, 1)
+                localStorage.setItem('products', JSON.stringify(products))
                 location.reload()
             }
-
+    
             // Popup btn edit
-            popup_edt_account.children[3].children[0].onclick = function(){
-                const form = document.querySelector('#popup-edt-account form')
-                form.dispatchEvent(new Event('submit'))
-            }
-        
-        
+            // popup_edt.children[3].children[0].onclick = function(){
+            //     const form = document.querySelector('#popup-edt form')
+            //     form.dispatchEvent(new Event('submit'))
+            // }
             break
-            
-        case 4:
-
-            
-
-            break
-
-            default:
-                document.querySelector('.manager.product').style.display = "flex"
-                product_ren(products)
-                 //Add product
-        
-                const id = Product.count + 1 + 10000
-                document.getElementById('id-product').value = id
-        
-        
-                const select = document.getElementsByClassName('cate-product')
-                const dataList = document.createElement('datalist')
-                
-                dataList.id = "cate-datalist"
-                
-                categories.forEach(function (ele){
-                    const option = document.createElement('option')
-                    option.value = ele
-                    dataList.appendChild(option)
-                })
-                Array.prototype.forEach.call(select, ele => {
-                    ele.append(dataList)
-                    ele.setAttribute('list', 'cate-datalist')
-        
-                })
-                
-        
-                //Input check
-                document.getElementById('name-product').addEventListener('input', function (e){
-                    if (e.target.value == "" || e.target.value.trim() == ""){
-                        e.target.setCustomValidity("Tên sản phẩm không được trống!")
-                        e.target.reportValidity()   
-                    }else
-                        e.target.setCustomValidity("")
-                })
-        
-                document.getElementById('cate-product').addEventListener('input', function (e){
-                    if (e.target.value == "" || e.target.value.trim() == ""){
-                        e.target.setCustomValidity("Thể loại sản phẩm không được trống!")
-                        e.target.reportValidity()   
-                    }else
-                        e.target.setCustomValidity("")
-                })
-        
-        
-        
-                //add Image
-                const imgUpload = document.getElementsByClassName("img-product")
-                Array.prototype.forEach.call(imgUpload, ele=>{
-                    ele.addEventListener("change", function (event) {
-                        const file = event.target.files[0]
-                        const img = event.currentTarget.parentElement.children[1]
-                        img.file = file
-                        img.style.display = "block";
-                        const reader = new FileReader();
-                        reader.onload = function (e){
-                            img.src = e.target.result
-                        }
-                        reader.readAsDataURL(file)
-                
-                    })
-        
-                })
-                // Popup btn remove
-                popup_rmv.children[3].children[0].onclick = function(){
-                    const id_rmv =  popup_rmv.children[2].children[0].textContent
-                    const index = products.findIndex(({id})=>{
-                        return id == id_rmv
-                    })
-                    products.splice(index, 1)
-                    localStorage.setItem('products', JSON.stringify(products))
-                    location.reload()
-                }
-        
-                // Popup btn edit
-                popup_edt.children[3].children[0].onclick = function(){
-                    const form = document.querySelector('#popup-edt form')
-                    form.dispatchEvent(new Event('submit'))
-                }
-                break
     }
 
     cate_admin.forEach((ele, index) => {
@@ -638,6 +621,18 @@ function searchChange(){
 }
 
 
+function checkNullPrd(ele){
+    let err = document.querySelector('.manager.product .input-err')
+    if (ele.value.trim() != "") {
+        err.style.display = 'none'
+        ele.style.borderColor = 'unset'
+        return
+    }
+    err.innerText = 'Thông tin không được trống!'
+    err.style.display = 'block'
+    ele.style.borderColor = 'red'
+
+}
 
 function addProduct(){
     try {
@@ -648,20 +643,15 @@ function addProduct(){
         const des = document.querySelector(".product-add  #des-product").value
     
        
-        name = name.value
-        price = price.value
-        cate = cate.value
+        name.dispatchEvent(new Event('input'))
+        price.dispatchEvent(new Event('input'))
 
-        if (name.trim() == null || price.trim() == null || cate.trim() == null){
+        if (name.value.trim() == "" || price.value.trim() == ""){
             return false
         }
-        
-        if (categories.indexOf(cate) == -1){
-            categories.push(cate)
-            localStorage.setItem('cate', JSON.stringify(categories))
-            cate = categories.length 
-        }else
-            cate = categories.indexOf(cate)
+        name = name.value
+        price = price.value
+        cate = parseInt(cate.value)
      
         const file = document.getElementById("img-product").files[0]
         let img = 'noimg.png'
@@ -670,7 +660,6 @@ function addProduct(){
         
         products.push(new Product(name, cate, price, des, './img/' + img))
         localStorage.setItem('products', JSON.stringify(products))
-        // return false
         location.reload()
         return false
 
@@ -683,8 +672,35 @@ function addProduct(){
 
 }
 
+function changePrd(ele){
+    let info_change = ele.parentNode.parentNode.children[2].children[0]
+    let input_err = document.querySelector('#popup-edt .input-err')
+    if (info_change.children[1].children[1].value.trim() == "" || info_change.children[2].children[1].value.trim() == ""){
+        input_err.innerText = "Thông tin không được trống!"
+        input_err.style.display = 'block'
+        return false
+    }
+    input_err.style.display = 'none'
+    let index = products.findIndex(ele=>{
+        return ele.id == info_change.children[0].children[1].value
+    })
+    
+    
+    products[index].name = info_change.children[1].children[1].value
+    products[index].price = info_change.children[2].children[1].value
+    products[index].cate = categories[info_change.children[3].children[1].value]
+    if (info_change.children[4].children[1].children[0].files[0] != null){
+        products[index].img = 'img/' + info_change.children[4].children[1].children[0].files[0].name
+    }   
+    products[index].des = info_change.children[5].children[1].value
+    
+    localStorage.setItem('products', JSON.stringify(products))
+    location.reload()
+    
+}
 
 function addAccount(){
+    console.log('test');
     let formAccount = document.getElementById('form-account')
     
     for (let i = 0; i < 6; i++){
@@ -693,7 +709,7 @@ function addAccount(){
 
     const name = formAccount.children[2].children[1].value
     const user = formAccount.children[3].children[1].value
-    const pass = formAccount.children[4].children[1].value
+    const pass = formAccount.children[4].children[1].children[0].value
     const role = formAccount.children[5].children[1].value
 
     if (name.trim() == "" || user.trim() == "" || pass.trim() == ""){
@@ -712,13 +728,17 @@ function changeAccount(e){
     const popup_info = popup_edt_account.children[2].children[0].children
     const id_change  = popup_info[0].children[1].value
 
-    const index = accounts.findIndex(({id})=>{
+    if (popup_info[1].children[1].value.trim() == "" ||
+       popup_info[2].children[1].value.trim() == ""||
+       popup_info[3].children[1].children[0].value.trim() == "")
+        return false
+    const index = accounts.findIndex(({id})=>{  
         return id == id_change
     })
 
     accounts[index].name = popup_info[1].children[1].value
     accounts[index].username = popup_info[2].children[1].value
-    accounts[index].password = popup_info[3].children[1].value
+    accounts[index].password = popup_info[3].children[1].children[0].value
     accounts[index].role = popup_info[4].children[1].value
     
     localStorage.setItem('acc', JSON.stringify(accounts))
@@ -726,8 +746,132 @@ function changeAccount(e){
     return false
 }
 
+function renBill(bills){
+    var table =  document.querySelector('#bill_table > tbody')
+    table.parentElement.childNodes[4].remove()
+    table = document.createElement('tbody')
+    document.querySelector('#bill_table').append(table)
+    bills.forEach(function (ele){
+        if (!ele) return
+        let tr = document.createElement('tr')
+        let td = document.createElement('td')
+        td.append(ele.user.name)
+        tr.append(td)
+
+        td = document.createElement('td')
+        td.append(ele.date)
+
+        tr.append(td)
+        
+        td = document.createElement('td')
+        td.append(ele.info)
+        tr.append(td)
+        
+        td = document.createElement('td')
+        td.append(moneyFormat(ele.total) + 'đ')
+        tr.append(td)
+
+        td = document.createElement('td')
+        if (ele.status) {
+            td.append('Đã xử lý')
+        }else {
+            td.append('Chưa xử lý')
+        }
+        tr.append(td)
+        
+        td = document.createElement('td')
+    
+
+        let btn = document.createElement('button')
+        let i = document.createElement('i')
+        i.classList.add('fa-sharp', 'fa-solid', 'fa-gear')
+        btn.appendChild(i)
+        btn.setAttribute('class', 'btn-edt')
+        td.appendChild(btn) 
+        btn.addEventListener('click', function(e){
+            const blur = document.getElementById('blur')
+            blur.classList.toggle('active')
+            popup_edt_bill.classList.toggle('active')
+            popup_edt_bill.style.top = "50%"
+
+            let form = document.querySelector('#popup-edt-bill form')
+            form.children[0].children[1].innerText = ele.user.name
+            form.children[1].children[1].innerText = ele.date
+            form.children[2].children[1].innerText = ele.info
+            form.children[3].children[1].innerText = moneyFormat(ele.total) + 'đ'
+            if (ele.status == 0){
+                form.children[4].children[1].innerText = 'Chưa xử lý'
+                document.querySelector('#popup-edt-bill .status').style.color = 'var(--color-button-rmv)'
+                document.querySelector('#popup-edt-bill input[type="checkbox"]').checked = false
+            }
+            else {
+                form.children[4].children[1].innerText = 'Đã xử lý'
+                document.querySelector('#popup-edt-bill .status').style.color = 'var(--color-primary-dark)'
+                document.querySelector('#popup-edt-bill input[type="checkbox"]').checked = true
+            }
+            
+            document.querySelector('#popup-edt-bill input[type="checkbox"]').addEventListener('change', (e)=>{
+                if (e.currentTarget.checked){
+                    ele.status = 1
+                    form.children[4].children[1].innerText = 'Đã xử lý'
+                    document.querySelector('#popup-edt-bill .status').style.color = 'var(--color-primary-dark)'
+                }
+                else {
+                    ele.status = 0 
+                    form.children[4].children[1].innerText = 'Chưa xử lý'
+                    document.querySelector('#popup-edt-bill .status').style.color = 'var(--color-button-rmv)'
+                }
+                localStorage.setItem('bills', JSON.stringify(bills))
+                renBill(bills)
+            })
+
+        })
+
+        tr.append(td)
+        table.append(tr)
+    });
+
+}
+
+
+
+function searchChangeBill(){
+    let form = document.querySelector('.manager.bill form')
+    let id = form.children[1].children[1].value.toUpperCase()
+    let date = new Date(form.children[2].children[1].value)
+    let status = parseInt(document.getElementById('bill-status-search').value)
+
+
+    // Nếu 1 trong 3 cái điều kiện có giá trị
+    if (id.trim() !== "" || !isNaN(date.getTime()) || status != -1){
+        renBill(bills.map(function(ele){
+
+            btn.addEventListener('input')
+
+            //Nếu cái tên của bill giố
+            // product.math()
+            if (removeAccents(ele.user.name.toUpperCase()).match(id) || ele.user.name.toUpperCase().match(id) || removeAccents(ele.user.name.toUpperCase()).match(removeAccents(id)))
+                if (isNaN(date.getTime()) || ele.date.match(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`))
+                    if (status == -1 || status == ele.status)
+                        return ele
+            
+        }))
+    }else{
+        renBill(bills)
+    }
+
+    // let productAfterSelect = products.map(
+    //     function (ele, index){
+    //         console.log(ele.id + 'thu tu ' + index);
+    //         if (ele.cate == "Nam") return ele
+    //         else return null
+    //     }
+    // )
+
+}
 
 window.onload = ()=>{
     renData()
     adminRen()
 }
+

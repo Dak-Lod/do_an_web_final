@@ -1,117 +1,183 @@
-function currency(num) {
 
-	return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' VND';
-  }
+let total = 0
+const date = new Date()
 
-  function showCartTable()
-{
-	if (localStorage.getItem('carts')==null || localStorage.getItem('carts')=='[]')
-	{
-		var s='<tr><th>Không có sản phẩm nào trong giỏ hàng</th></tr>';
-		document.getElementById('cartTable').innerHTML=s;
-		document.getElementById('totalPrice').innerHTML=0;
-	}
-	else 
-	{
-		var s='<tr><th></th><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr>';
-		var total =0;
-		carts.forEach(
-			function makeTable(ele)
-			{
-				s+=`<tr>
-				<td><img src="${ele.img}" alt="${ele.img}"></td>
-					<td>
-						<div>${ele.name}</div>
-					</td>
-					<td>${currency(ele.price)}</td>
-					<td>
-						<button onclick="countDown(${ele.id})">-</button>
-						<input id="${ele.id}" type="text" disabled="" value="${ele.sell}">
-						<button onclick="countUp(${ele.id})">+</button>
-					</td>
-					<td i>${currency(ele.price*ele.sell)}</td>
-					<td><button onclick="removeItem(${ele.id})">×</button></td>
-			</tr>`
-				total+=ele.price*ele.sell;
-			}
-		)
-		document.getElementById('cartTable').innerHTML=s;
-		document.getElementById('totalPrice').innerHTML=currency(total);	
-	}
+
+function removeItem(index){
+	carts = carts.slice(index + 1, 1)
+	localStorage.setItem('carts', JSON.stringify(carts))
+	renCart()
 }
 
-function removeItem (id){
-	if(carts.length<1) 
-		{deleteCart();}
-	else{
-		for(var i=0; i< carts.length;i++)
-			{if (carts[i].id==id)
-				{	
-					carts.splice(i,1);
-					localStorage.setItem('carts',JSON.stringify(carts));
-				}
+function updateTotal(index){
+	let old_value = document.getElementById(`total-col-${index}`).innerText
+	let value = document.getElementById(`total-col-${index}`)
+	value.innerText = moneyFormat(carts[index].prd.price * document.getElementById(`qty-col-${index}`).innerText) 
+}
+
+function renCart(){
+	total = 0
+	document.querySelector('.cart-list tbody').innerHTML = ''
+	carts.forEach((element, index) => {
+		total += element.prd.price * element.qty
+		const tr = document.createElement('tr')
+
+		let td = document.createElement('td')
+		let img = document.createElement('img')
+		img.classList.add('img')
+		img.src = element.prd.img
+		td.appendChild(img)
+		tr.appendChild(td)
+
+		td = document.createElement('td')
+		td.classList.add('name')
+		td.textContent = element.prd.name
+		tr.appendChild(td)
+
+		td = document.createElement('td')
+		td.id = `price-col-`
+		td.textContent = moneyFormat(element.prd.price * element.qty)
+		td.textContent += 'đ'
+
+		tr.appendChild(td)
+
+		td = document.createElement('td')
+		td.classList.add('qty')
+		let btnRmvQty = document.createElement('button')
+		btnRmvQty.classList.add('remove')
+		btnRmvQty.addEventListener('click', ()=>{
+			if (document.getElementById(`qty-col-${index}`).innerText > 1){
+				document.getElementById(`qty-col-${index}`).innerText --
+				element.qty --
+				localStorage.setItem('carts', JSON.stringify(carts))
+				updateTotal(index)
+				document.getElementById('total-carts').innerText = moneyFormat(total - carts[index].prd.price)
+				total -= carts[index].prd.price
 			}
-		showCartTable();
+
+		})
+		btnRmvQty.textContent = '-'
+		td.appendChild(btnRmvQty)
+		tr.appendChild(td)
+		
+		let span = document.createElement('span')
+		span.classList.add('qty')
+		span.id = `qty-col-${index}`
+		span.textContent = element.qty
+		td.appendChild(span)
+		tr.appendChild(td)
+		
+
+		const btnAddQty = document.createElement('button')
+		btnAddQty.classList.add('add')
+		btnAddQty.addEventListener('click', even=>{
+			const value = document.getElementById(`qty-col-${index}`)
+			value.innerText = parseInt(value.innerText) + 1
+			element.qty ++
+			localStorage.setItem('carts', JSON.stringify(carts))
+			updateTotal(index)
+			document.getElementById('total-carts').innerText = moneyFormat(total + carts[index].prd.price)
+			total += carts[index].prd.price
+		})
+		btnAddQty.textContent = '+'
+		td.appendChild(btnAddQty)
+		tr.appendChild(td)
+		
+		td = document.createElement('td')
+		td.classList.add('total-col')
+		span = document.createElement('span')
+		span.id = `total-col-${index}`
+		span.textContent = moneyFormat(element.prd.price)
+		td.appendChild(span)
+		td.append('đ')
+		tr.appendChild(td)
+
+		td = document.createElement('td')
+		const btnRmvPrd = document.createElement('button')
+		btnRmvPrd.classList.add('remove')
+		btnRmvPrd.textContent = 'X'
+		btnRmvPrd.addEventListener('click', () =>{
+			document.getElementById('total-carts').innerText = moneyFormat(total - element.prd.price * document.getElementById(`qty-col-${index}`).innerText)
+			carts.splice(carts.findIndex((ele)=>{return ele == element}), 1)
+			localStorage.setItem('carts', JSON.stringify(carts))
+			renCart()
+		})
+		td.appendChild(btnRmvPrd)
+		tr.appendChild(td)
+
+		document.querySelector('.cart-list tbody').appendChild(tr)
+		document.getElementById('total-carts').innerText = moneyFormat(total)
+
+	});
+	
+}
+
+function renBill(){
+	document.querySelector('.bill-list').innerHTML = ''
+
+	for (let i = bills.length - 1; i > -1; i--){
+		if (bills[i].user.id == login_info.id){
+			let item = document.createElement('div')
+			item.classList.add('item')
+			let info = document.createElement('div')
+			info.classList.add('info')
+			info.innerText = bills[i].info
+			let total = document.createElement('div')
+			total.classList.add('total')
+			total.innerText = moneyFormat(bills[i].total) + 'đ'
+			let date = document.createElement('div')
+			date.classList.add('date')
+			date.innerText = bills[i].date
+			let status = document.createElement('div')
+			status.classList.add('status')
+			if (bills[i].status == 0){
+				status.innerText = "Chưa xử lý"
+			}else {
+				status.innerText = "Đang vận chuyển"
+			}
+			item.innerHTML = `<div class="info">Sản phẩm</div>
+			<div class="total">Tổng tiền</div>
+			<div class="date">Ngày mua</div>
+			<div class="status">Tình trạng</div>`
+			document.querySelector('.bill-list').append(item)
+			item.appendChild(info)
+			item.appendChild(total)
+			item.appendChild(date)
+			item.appendChild(status)
 		}
-}
-
-function deleteCart(){
-	localStorage.removeItem('carts');
-	showCartTable();
-}
-
-
-function countDown(id){
-	for(var i = 0; i<carts.length; i++)
-		{
-			if ( id == carts[i].id)
-				{
-					if(carts[i].sell > 1)
-					{
-						carts[i].sell--;
-						showCartTable();
-					}
-					else  
-					{ 
-						removeItem(id);
-					}
-						
-				}
-		}
-}
-function countUp(id){
-	for(var i = 0; i<carts.length; i++)
-		{
-			if ( id == carts[i].id)
-				{
-					carts[i].sell++;
-				}
-		}
-	showCartTable();
-}
-
-
-function PayCart()
-{
-	if (checkLogin())
-	{	
-		var tempBillArray = JSON.parse(localStorage.getItem('bills'))
-		var tempAcc = JSON.parse(localStorage.getItem('signed'));
-		var tempBill = new bill;
-		var today = new date;
-		tempBill.date = today.getdate();
-		tempBill.user = tempAcc.user;
-		if (tempBillArray==null)
-			{
-				tempBillArray=[];
-				tempBillArray[0]=tempBill;
-			}
-		else
-			{
-				var i = tempBillArray.length+1;
-				tempBillArray[i]=tempBill
-			}
-		localStorage.setItem('bills',JSON.stringify(tempArray));
 	}
 }
 
+function renCheckout (){
+	renCart()
+	document.querySelector('#remove-all').addEventListener('click' ,event=>{
+		if (carts.length < 1) return
+		carts = []
+		localStorage.removeItem('carts')
+		total = 0
+		document.getElementById('total-carts').innerText = 0
+		renCart()
+	})	
+
+	document.getElementById('checkout-cart').addEventListener('click', even=>{
+		if (carts.length < 1) return
+		if (login_info == null){
+			popup_must_login.style.top = "50%"
+			popup_must_login.classList.add('active')
+			blur.classList.add('active')
+		}else {
+			let info = carts.map((ele, index)=>{
+				let qty = document.getElementById(`qty-col-${index}`).innerText
+				return `${qty}x ${ele.prd.name}`
+			}).join("\n")
+			bills.push(new bill(bills.length + 1000, login_info, `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`, info, total, 0 ))
+			localStorage.setItem('bills', JSON.stringify(bills))
+			// console.log(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,);
+			renBill()
+		}
+		
+	})
+	if (login_info != null)
+		renBill()
+
+}

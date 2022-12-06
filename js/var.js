@@ -5,19 +5,27 @@ const role = [
 
 
 class bill {
-    constructor (id, user, date, info){
+    constructor (id, user, date, info, total, status){
         this.id = id;
         this.user = user;
         this.date = date;
         this.info = info;
+        this.total = total;
+        this.status = status
     }
 }
 
 
 var bills = localStorage.getItem('bills')
 bills = JSON.parse(bills)
+if (bills == null)
+    bills = []
 
+function moneyFormat(money){
+    return moneyFormater.format(money)
+}
 
+const moneyFormater = new Intl.NumberFormat('vn-VN', );
 
 function disablePopup(){
     setTimeout(()=>{
@@ -26,15 +34,16 @@ function disablePopup(){
     
     const popup = document.getElementsByClassName('popup')
     Array.prototype.forEach.call(popup, (ele=>{
-        // ele.style.top = 0;
+        ele.style.top = 0;
         ele.classList.remove('active')
-        
     }))
 }
 let blur
 let popup_login
 let popup_signup
 let popup_signup_complete
+let popup_must_login
+let login_info
 
 var categories = localStorage.getItem('cate')
 categories = JSON.parse(categories)
@@ -89,7 +98,8 @@ class Product {
 class Cart {
     static count = 0;
     constructor (prd){
-        this.products = prd
+        this.prd = prd
+        this.qty = 1
     }
 }
 
@@ -108,24 +118,24 @@ var products = localStorage.getItem('products')
 products = JSON.parse(products)
 if (products == null) {
     products = []
-    products.push(new Product('Giày Thể Thao Nam Hunter Cream',0,781000,'Mô tả:  ', './img/product1.webp',1,1))
-    products.push(new Product('Giày Thể Thao Bé Trai', 2, 437000, 'Mô tả: ', './img/product2.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1000000 , 'Mô tả: ', './img/nu2.webp',1,1))
-    products.push(new Product('Giày Thể Thao Bé Gái Hunter', 2, 643000 , 'Mô tả: ', './img/treEm2.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nam Hunter Street', 0, 1540000 , 'Mô tả: ', './img/nam2.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nam Hunter Cream',0,781000,'Mô tả:  ', './img/product1.webp',1,0))
+    products.push(new Product('Giày Thể Thao Bé Trai', 2, 437000, 'Mô tả: ', './img/product2.webp',1,0))
+    products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1000000, 'Mô tả: ', './img/nu2.webp',1,0))
+    products.push(new Product('Giày Thể Thao Bé Gái Hunter', 2, 643000 , 'Mô tả: ', './img/treEm2.webp',1,0))
+    products.push(new Product('Giày Thể Thao Nam Hunter Street', 0, 1540000 , 'Mô tả: ', './img/nam2.webp',1,0))
 
-    products.push(new Product('Giày Thể Thao Nam Hunter X 2k22',0,1781000,'Mô tả:  ', './img/nam3.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nam Bloomin', 0, 1354000, 'Mô tả: ', './img/nam4.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nam Hunter Tennis', 0, 853000 , 'Mô tả: ', './img/Nam5.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nữ Hunter Street ', 1, 1540000 , 'Mô tả: ', './img/nu1.webp',1,1))
-    products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1187000 , 'Mô tả: ', './img/nu3.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nam Hunter X 2k22',0,1781000,'Mô tả:  ', './img/nam3.webp',0,1))
+    products.push(new Product('Giày Thể Thao Nam Bloomin', 0, 1354000, 'Mô tả: ', './img/nam4.webp',0,1))
+    products.push(new Product('Giày Thể Thao Nam Hunter Tennis', 0, 853000 , 'Mô tả: ', './img/Nam5.webp',0,1))
+    products.push(new Product('Giày Thể Thao Nữ Hunter Street ', 1, 1540000 , 'Mô tả: ', './img/nu1.webp',0,1))
+    products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1187000 , 'Mô tả: ', './img/nu3.webp',0,1))
 
-    products.push(new Product('Giày Thể Thao Nữ Hunter X Dune ', 1, 1187000 , 'Mô tả: ', './img/nu4.webp',1,1))
+    products.push(new Product('Giày Thể Thao Nữ Hunter X Dune ', 1, 1187000, 'Mô tả: ', './img/nu4.webp',0,1))
     products.push(new Product('Giày Búp Bê Nữ', 1, 457000 , 'Mô tả: ', './img/nu5.webp',1,1))
 
-    products.push(new Product('Dép Eva Phun Trẻ Em', 2, 226000 , 'Mô tả: ', './img/treEm3.webp',1,1))
-    products.push(new Product('Giày Thể Thao Bé Trai X Junior', 2, 643000 , 'Mô tả: ', './img/te.webp',1,1))
-    products.push(new Product('Giày Thể Thao Bé Trai DSB', 2, 457000 , 'Mô tả: ', './img/treEm5.webp',1,1))
+    products.push(new Product('Dép Eva Phun Trẻ Em', 2, 226000, 'Mô tả: ', './img/treEm3.webp',0,0))
+    products.push(new Product('Giày Thể Thao Bé Trai X Junior', 2, 643000 , 'Mô tả: ', './img/te.webp',0,0))
+    products.push(new Product('Giày Thể Thao Bé Trai DSB', 2, 457000 , 'Mô tả: ', './img/treEm5.webp',0,0))
     // products.push(new Product())
     localStorage.setItem('products', JSON.stringify(products))
 }else{
@@ -146,9 +156,9 @@ function renData(){
     popup_login = document.getElementById('popup-login')
     popup_signup = document.getElementById('popup-signup')
     popup_signup_complete = document.getElementById('popup-signup-complete')
+    popup_must_login = document.getElementById('popup-must-login')
 
-
-    var login_info = localStorage.getItem('signed')
+    login_info = localStorage.getItem('signed')
     login_info = JSON.parse(login_info)
     if (login_info != null){
         let tmp = document.getElementById('login-name')
@@ -164,7 +174,7 @@ function renData(){
             let btn = document.createElement('button')
             btn.innerText = "Admin"
             btn.onclick = function (){
-                window.open('./admin.html')
+                window.location.href = './admin.html'
             }
             logout_btn.parentNode.appendChild(btn)
             logout_btn.parentNode.appendChild(logout_btn)
@@ -203,9 +213,9 @@ function renData(){
                 break
             case 'search' :
                 document.getElementById('search').style.display = 'block'
-                renSearch(-1)
+                renSearchPage()
                 break
-            case undefined:
+            default:
                 document.getElementById('home').style.display = 'block'
                 renHome()
                 break
@@ -221,11 +231,12 @@ function renData(){
         a.focus()
         navBar.appendChild(a)
         
-        categories.forEach(ele => {
+        for (let i = 0; i < 4; i++){
             a = document.createElement('a');
-            a.innerText = ele
+            a.innerText = categories[i]
             navBar.appendChild(a)
-        })
+
+        }
 
         
 
@@ -340,10 +351,18 @@ function renData(){
             }
             console.log(signup_info);
             if (signup_err.style.display == 'none'){
-                accounts.push(new Account(signup_info.name, signup_info.username, signup_info.password, 1, signup_info.address, signup_info.phoneNumber))
-                localStorage.setItem('signed', JSON.stringify(accounts[accounts.length - 1]))
-                localStorage.setItem( 'acc' ,JSON.stringify(accounts))
-                location.reload()
+                if (accounts.findIndex((ele)=>{
+                    return ele.username = signup_info.username
+                }) > -1) {
+                    signup_err.textContent = "Tên tài khoản đã tồn tại!"
+                    signup_err.style.display = 'block'
+                    signup_form.children[0].style.borderColor = 'red'
+                }else {
+                    accounts.push(new Account(signup_info.name, signup_info.username, signup_info.password, 1, signup_info.address, signup_info.phoneNumber))
+                    localStorage.setItem('signed', JSON.stringify(accounts[accounts.length - 1]))
+                    localStorage.setItem( 'acc' ,JSON.stringify(accounts))
+                    location.reload()
+                }
             }
         })
 
@@ -356,8 +375,20 @@ function renData(){
     //Disable blur
     document.getElementById('blur').addEventListener('click',disablePopup)
 
-   
-    
+    document.querySelector('#popup-must-login .login').addEventListener('click', event=>{
+        popup_must_login.style.top = 0
+        popup_must_login.classList.remove('active')
+        setTimeout(() => {
+            popup_login.style.top = "50%"
+            popup_login.classList.add('active')
+        }, 200);
+    })
+
+    document.querySelector('#popup-must-login .cancel').addEventListener('click', event=>{
+        popup_must_login.style.top = 0
+        popup_must_login.classList.remove('active')
+        blur.classList.remove('active')
+    })
 
 }
 
@@ -379,20 +410,39 @@ function renMoney(money){
 
 var messHide = null
 
-function addCart(id){
-    products.forEach((ele)=>{
-        if (id == ele.id){
-            carts.push(ele)
-            localStorage.setItem('carts',JSON.stringify(carts))
-        }
+// function addCart(id){
+//     products.forEach((ele)=>{
+//         if (id == ele.id){
+//             carts.push(ele)
+//             localStorage.setItem('carts',JSON.stringify(carts))
+//         }
 
-    })
+//     })
+//     updateQty()
+//     if (messHide != null) 
+//         clearTimeout(messHide)
+//     messHide = setTimeout(()=>{
+        // document.getElementById('popup-addCart').classList.remove('active')
+//     }, 1000)
+//     document.getElementById('popup-addCart').classList.add('active')
+
+// }
+
+
+function addCart(prd){
+    if (carts.findIndex((ele)=> {
+        return ele.prd.id == prd.id
+    }) > -1){
+        console.log('Trùng');
+        return
+    }
+    carts.push(new Cart(prd))
+    localStorage.setItem('carts', JSON.stringify(carts))
     updateQty()
-    if (messHide != null) 
+    if (messHide != null)
         clearTimeout(messHide)
-    messHide = setTimeout(()=>{
+    messHide = setTimeout(() => {
         document.getElementById('popup-addCart').classList.remove('active')
-    }, 1000)
+    }, 1000);
     document.getElementById('popup-addCart').classList.add('active')
-
 }
