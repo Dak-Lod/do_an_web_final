@@ -121,7 +121,10 @@ function renBill(){
 			item.classList.add('item')
 			let info = document.createElement('div')
 			info.classList.add('info')
-			info.innerText = bills[i].info
+			info.innerText = bills[i].info.map(ele=>{
+				return ele.qty + 'x ' + ele.prd.name
+			}).join('\n')
+			// info.innerText = bills[i].info.qty + 'x ' + bills[i].info.prd
 			let total = document.createElement('div')
 			total.classList.add('total')
 			total.innerText = moneyFormat(bills[i].total) + 'đ'
@@ -166,10 +169,13 @@ function renCheckout (){
 			popup_must_login.classList.add('active')
 			blur.classList.add('active')
 		}else {
-			let info = carts.map((ele, index)=>{
-				let qty = document.getElementById(`qty-col-${index}`).innerText
-				return `${qty}x ${ele.prd.name}`
-			}).join("\n")
+			const info = carts.map((ele, index)=>{
+				return ele
+			})
+			// let info = carts.map((ele, index)=>{
+			// 	let qty = document.getElementById(`qty-col-${index}`).innerText
+			// 	return `${qty}x ${ele.prd.name}`
+			// }).join("\n")
 			bills.push(new bill(bills.length + 1000, login_info, `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`, info, total, 0 ))
 			localStorage.setItem('bills', JSON.stringify(bills))
 			// console.log(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,);

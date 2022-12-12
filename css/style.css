@@ -605,3 +605,58 @@ footer > * {
     color: #f50057;
     transform: translateY(2px);
 }
+
+#popup-prd-detail .body {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+#popup-prd-detail img {
+    max-width: 400px;
+    align-items: center;
+}
+
+#popup-prd-detail .right-content {
+    min-width: 500px;
+    max-width: calc(100vw - 500px);
+    padding: 30px;
+    display: flex;
+    flex-flow: column;
+}
+
+#popup-prd-detail .right-content *{
+    display: block;
+    /* margin: auto; */
+}
+
+#popup-prd-detail .prd-name {
+    font-size: 40px;
+    text-transform: uppercase;
+    color: var(--color-primary-dark);
+}
+
+#popup-prd-detail .prd-price {
+    font-size: 25px;
+}
+
+#popup-prd-detail .prd-cate {
+    color: var(--color-primary-dark);
+    font-weight: 700;
+}
+
+#popup-prd-detail p {
+    padding-top: 10px;
+    flex: 1;
+}
+
+#popup-prd-detail button {
+    height: 35px;
+    padding-inline: 10px;
+    background-color: var(--color-primary-dark);
+    border: 1px solid var(--color-primary-dark);
+    border-radius: 4px;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}

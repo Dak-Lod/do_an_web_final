@@ -3,6 +3,29 @@ const role = [
     'Khách hàng'
 ]
 
+function removeAccents(str) {
+    var AccentsMap = [
+      "aàảãáạăằẳẵắặâầẩẫấậ",
+      "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
+      "dđ", "DĐ",
+      "eèẻẽéẹêềểễếệ",
+      "EÈẺẼÉẸÊỀỂỄẾỆ",
+      "iìỉĩíị",
+      "IÌỈĨÍỊ",
+      "oòỏõóọôồổỗốộơờởỡớợ",
+      "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
+      "uùủũúụưừửữứự",
+      "UÙỦŨÚỤƯỪỬỮỨỰ",
+      "yỳỷỹýỵ",
+      "YỲỶỸÝỴ"    
+    ];
+    for (var i=0; i<AccentsMap.length; i++) {
+      var re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
+      var char = AccentsMap[i][0];
+      str = str.replace(re, char);
+    }
+    return str;
+}
 
 class bill {
     constructor (id, user, date, info, total, status){
@@ -44,6 +67,7 @@ let popup_signup
 let popup_signup_complete
 let popup_must_login
 let login_info
+let popup_detail
 
 var categories = localStorage.getItem('cate')
 categories = JSON.parse(categories)
@@ -118,7 +142,7 @@ var products = localStorage.getItem('products')
 products = JSON.parse(products)
 if (products == null) {
     products = []
-    products.push(new Product('Giày Thể Thao Nam Hunter Cream',0,781000,'Mô tả:  ', './img/product1.webp',1,0))
+    products.push(new Product('Giày Thể Thao Nam Hunter Cream',0,781000,'Màu xanh', './img/product1.webp',1,0))
     products.push(new Product('Giày Thể Thao Bé Trai', 2, 437000, 'Mô tả: ', './img/product2.webp',1,0))
     products.push(new Product('Giày Thể Thao Nữ Hunter X', 1, 1000000, 'Mô tả: ', './img/nu2.webp',1,0))
     products.push(new Product('Giày Thể Thao Bé Gái Hunter', 2, 643000 , 'Mô tả: ', './img/treEm2.webp',1,0))
@@ -152,9 +176,16 @@ function updateQty(){
 
 function renData(){
     updateQty()
+    let form = document.querySelector('.header-search form')
+    form.addEventListener('submit', e=>{
+        let cate = form.children[0].value
+        let name = form.children[1].value
+        callSearch(parseInt(cate), name)
+    })
     blur = document.getElementById('blur')
     popup_login = document.getElementById('popup-login')
     popup_signup = document.getElementById('popup-signup')
+    popup_detail = document.getElementById('popup-prd-detail')
     popup_signup_complete = document.getElementById('popup-signup-complete')
     popup_must_login = document.getElementById('popup-must-login')
 
@@ -194,9 +225,13 @@ function renData(){
     // $('#body').load('./admin.html', adminRen) //Sửa admin.html thành tên file của mình
     // $('#body').load('./shopee.html') //Sửa admin.html thành tên file của mình
     // Search selection
-    var srchSelect =  document.querySelector('.input-select')
+    let srchSelect =  document.querySelector('.input-select')
+    let tmp = document.createElement('option');
+    tmp.setAttribute('value', -1)
+    tmp.innerText = 'Tất cả'
+    srchSelect.append(tmp)
     categories.forEach((ele, index) => {
-        var tmp = document.createElement('option');
+        tmp = document.createElement('option');
         tmp.setAttribute('value', index)
         tmp.innerText = ele
         srchSelect.appendChild(tmp)
@@ -206,6 +241,31 @@ function renData(){
     // console.log(link[0].includes('admin.html'));
     
     if (!link[0].includes('admin.html')){
+        
+        // Navigation
+        let navBar = document.querySelector('nav > .container')
+        let aMain = document.createElement('a');
+        aMain.innerText = "Trang chủ"
+        aMain.href = './index.html'
+        aMain.addEventListener('click', e=>{
+            localStorage.removeItem('search')
+        })
+        // if (JSON.parse(localStorage.getItem('search')).cate == -1)
+        //     aMain.classList.add('active')
+        navBar.appendChild(aMain)
+        
+        let a
+        const search = JSON.parse(localStorage.getItem('search'))
+        for (let i = 0; i < 4; i++){
+            a = document.createElement('a');
+            a.innerText = categories[i]
+            a.setAttribute('onclick', `callSearch(${i}, '')`)
+
+            if (search != null && search.cate == i)
+                a.classList.add('active')
+            navBar.appendChild(a)
+        }
+        
         switch (link[1]){
             case 'checkout':
                 document.getElementById('checkout').style.display = 'block'
@@ -216,28 +276,13 @@ function renData(){
                 renSearchPage()
                 break
             default:
+                aMain.classList.add('active')
                 document.getElementById('home').style.display = 'block'
                 renHome()
                 break
 
             
         }
-
-        // Navigation
-        let navBar = document.querySelector('nav > .container')
-        let a = document.createElement('a');
-        a.innerText = "Trang chủ"
-        a.classList.add('active')
-        a.focus()
-        navBar.appendChild(a)
-        
-        for (let i = 0; i < 4; i++){
-            a = document.createElement('a');
-            a.innerText = categories[i]
-            navBar.appendChild(a)
-
-        }
-
         
 
         //Button login
@@ -445,4 +490,13 @@ function addCart(prd){
         document.getElementById('popup-addCart').classList.remove('active')
     }, 1000);
     document.getElementById('popup-addCart').classList.add('active')
+}
+
+function callSearch(cate, name){
+    let search = {
+        cate: cate,
+        name: name
+    }
+    localStorage.setItem('search', JSON.stringify(search))
+    window.location.href = './?search'
 }

@@ -32,11 +32,11 @@
                 <!-- Search bar -->
 
             <div class="header-search">
-                <form action="/?search">
+                <form onsubmit="return false">
                     <select class="input-select"></select>
-                    <input type="text"
+                    <input type="text" id="main-search"
                     placeholder="Tìm kiếm" class="input">
-                    <button class="search-btn" onclick="callSearch()">
+                    <button class="search-btn">
                         <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
@@ -137,25 +137,23 @@
                         <div class="filter__header">Thể loại</div>
                         <div class="category-wrapper">
                             <div class="category-item">
-                                <input name="cate" type="radio" checked="checked" onchange="">
+                                <input name="cate" type= "radio"
+                                 onchange="searchChange(this)"value="-1">
                                 <span>Tất cả</span>
                             </div>
                             <div class="category-item">
-                                <input id="male" name="cate" type="radio" onchange="cateChanged(this)" value="nam">
+                                <input name="cate" type="radio" onchange="searchChange(this)" value="0">
                                 <span>Nam</span>
                             </div>
                             <div class="category-item">
-                                <input name="cate" type="radio" onchange="">
+                                <input name="cate" type="radio" onchange="searchChange(this)" value="1">
                                 <span>Nữ</span>
                             </div>
                             <div class="category-item">
-                                <input name="cate" type="radio" onchange="">
+                                <input name="cate" type="radio" onchange="searchChange(this)" value="2">
                                 <span>Trẻ em</span>
                             </div>
-                            <div class="category-item">
-                                <input name="cate" type="radio" onchange="">
-                                <span>Khuyến mãi</span>
-                            </div>
+                        
                         </div>
                     </div><!--category-filter-->
 
@@ -164,11 +162,11 @@
                         <div class="price-wrapper">
                             <div class="price-display">
                                 <div class="price-input">
-                                    <input type="number" placeholder="đ MIN" id="pr-min" value>
+                                    <input type="number" oninput="searchChange()" placeholder="đ MIN" id="pr-min">
                                 </div>
                                 <div class="separator">-</div>
                                 <div class="price-input">
-                                    <input type="number" placeholder="đ MAX" id="pr-max">
+                                    <input type="number" oninput="searchChange()" placeholder="đ MAX" id="pr-max">
                                 </div>
                             </div><!--display-->
                            <!--<button class="find-product" onclick="priceSearch()">Tìm</button>--> 
@@ -178,8 +176,13 @@
             </nav>
             </div><!--left-->
             <div class="right-content">
+                <div class="product-view">
 
-            </div>        
+                </div>
+                <div class="showMore">
+                    <button onclick="showMoreFunc()">Xem thêm...</button>
+                </div>
+            </div>         
         </div>
         
         
@@ -443,6 +446,21 @@
         <div class="btn">
             <button class="login">Đăng nhập</button>
             <button class="cancel">Huỷ</button>
+        </div>
+    </div>
+
+    <div id="popup-prd-detail" class="popup">
+        <div class="body">
+            <div class="left-content">
+                <img src="/img/SPmoi_1.jpg" class="prd-img">
+            </div>
+            <div class="right-content">
+                <span class="prd-name">giay tre em</span>
+                <span class="prd-price">345345345</span>
+                <span class="prd-cate">Thể loại: Nam</span>
+                <p class="prd-des">Mô tả: ádfasdfasdf</p>
+                <button class="addCart">Thêm vào giỏ</button>
+            </div>
         </div>
     </div>
 

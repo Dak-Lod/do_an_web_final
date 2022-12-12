@@ -33,19 +33,12 @@
 
             <div class="header-search">
                 <form action="/?search">
-                    <select id="theloai"class="input-select">
-                        <option value="0">Trang chủ</option>
-                        <option value="1">Nam</option>
-                        <option value="2">Nữ</option>
-                        <option value="3">Trẻ em</option>
-                        <option value="4">Khuyến mãi</option>
-                    </select>
-                    <input type="text"
+                    <select class="input-select"></select>
+                    <input type="text" id="main-search"
                     placeholder="Tìm kiếm" class="input">
                     <button class="search-btn" onclick="callSearch()">
                         <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
                     </button>
-
                 </form>
             </div>
                 <!-- /Search bar -->
@@ -144,25 +137,23 @@
                         <div class="filter__header">Thể loại</div>
                         <div class="category-wrapper">
                             <div class="category-item">
-                                <input name="cate" type="radio" checked="checked" onchange="">
+                                <input name="cate" type= "radio" checked="checked"
+                                 onchange="cateChanged(this)"value="-1">
                                 <span>Tất cả</span>
                             </div>
                             <div class="category-item">
-                                <input id="male" name="cate" type="radio" onchange="cateChanged(this)" value="nam">
+                                <input name="cate" type="radio" onchange="cateChanged(this)" value="0">
                                 <span>Nam</span>
                             </div>
                             <div class="category-item">
-                                <input name="cate" type="radio" onchange="">
+                                <input name="cate" type="radio" onchange="cateChanged(this)" value="1">
                                 <span>Nữ</span>
                             </div>
                             <div class="category-item">
-                                <input name="cate" type="radio" onchange="">
+                                <input name="cate" type="radio" onchange="cateChanged(this)" value="2">
                                 <span>Trẻ em</span>
                             </div>
-                            <div class="category-item">
-                                <input name="cate" type="radio" onchange="">
-                                <span>Khuyến mãi</span>
-                            </div>
+                        
                         </div>
                     </div><!--category-filter-->
 
@@ -171,7 +162,7 @@
                         <div class="price-wrapper">
                             <div class="price-display">
                                 <div class="price-input">
-                                    <input type="number" placeholder="đ MIN" id="pr-min" value>
+                                    <input type="number" placeholder="đ MIN" id="pr-min">
                                 </div>
                                 <div class="separator">-</div>
                                 <div class="price-input">
@@ -185,8 +176,13 @@
             </nav>
             </div><!--left-->
             <div class="right-content">
+                <div class="product-view">
 
-            </div>        
+                </div>
+                <div class="showMore">
+                    <button onclick="showMoreFunc()">Xem thêm...</button>
+                </div>
+            </div>         
         </div>
         
         

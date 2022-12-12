@@ -1,26 +1,4 @@
-function removeAccents(str) {
-    var AccentsMap = [
-      "aàảãáạăằẳẵắặâầẩẫấậ",
-      "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
-      "dđ", "DĐ",
-      "eèẻẽéẹêềểễếệ",
-      "EÈẺẼÉẸÊỀỂỄẾỆ",
-      "iìỉĩíị",
-      "IÌỈĨÍỊ",
-      "oòỏõóọôồổỗốộơờởỡớợ",
-      "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
-      "uùủũúụưừửữứự",
-      "UÙỦŨÚỤƯỪỬỮỨỰ",
-      "yỳỷỹýỵ",
-      "YỲỶỸÝỴ"    
-    ];
-    for (var i=0; i<AccentsMap.length; i++) {
-      var re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
-      var char = AccentsMap[i][0];
-      str = str.replace(re, char);
-    }
-    return str;
-}
+
 
 const cate_admin = [
     'Trang chủ',
@@ -269,8 +247,17 @@ function product_ren(products){
                     popup_info[3].children[1].value = 2
                     break
             }
+
+            const imgFile = new File([''], ele.img.split('/')[2], {
+                type: 'img'
+            })
+
+            const dataTransfer = new DataTransfer()
+            dataTransfer.items.add(imgFile)
+
+            popup_info[4].children[1].children[0].files = dataTransfer.files
             popup_info[4].children[1].children[1].src = ele.img
-            popup_info[5].children[0].value = ele.des
+            popup_info[5].children[1].value = ele.des
 
         })
 
@@ -302,7 +289,12 @@ function product_ren(products){
     });
 }
 
+function rmvImg(){
+    const dataTransfer = new DataTransfer()
+    document.querySelector('#popup-edt .img-preview').src = './img/noimg.png'
+    document.querySelector('#popup-edt .img-product').files = dataTransfer.files
 
+}
 
 function adminRen(){
     
@@ -581,35 +573,30 @@ function adminRen(){
 
 
 function searchChange(){
-    let min = document.getElementById('product-price-min');
-    let max = document.getElementById('product-price-max');
+    let min = document.getElementById('product-price-min').value;
+    let max = document.getElementById('product-price-max').value;
     let product_search = products
 
-    if (min.value == "") min = 0;
-    else min = min.value * 1000
-    if (max.value == "") max = 2000000;
-    else max = max.value * 1000
-
-    if (max != 2000000 || min != 0 )
-        product_search = products.map(function (ele){
-            if (ele.price >= min && ele.price <= max)      
-                return ele
-            else 
-                return null
-    })
+    if (min != "") 
+        min = parseInt(min)
+    if (max != "") 
+        max = parseInt(max)
 
     var id = document.getElementById('product-id-search').value.toUpperCase()
-    if (id.trim() !== ""){
+    if (id.trim() !== "" || min != "" || max != ""){
         if (document.getElementById('searchSlt').value == 1)
             product_ren(product_search.map(function(ele){
-                // console.log(id);
                 if (ele.id.toString().match(id))
+                    if (min == "" || min <= ele.price)
+                        if (max == "" || max >= ele.price)
                     return ele
                 else return null
             }))
         else
             product_ren(product_search.map(function(ele){
                 if (removeAccents(ele.name.toUpperCase()).match(id) || ele.name.toUpperCase().match(id) || removeAccents(ele.name.toUpperCase()).match(removeAccents(id)))
+                    if (min == "" || min <= ele.price)
+                        if (max == "" || max >= ele.price)
                     return ele
                 else return null
             }))
@@ -690,8 +677,10 @@ function changePrd(ele){
     products[index].price = info_change.children[2].children[1].value
     products[index].cate = categories[info_change.children[3].children[1].value]
     if (info_change.children[4].children[1].children[0].files[0] != null){
-        products[index].img = 'img/' + info_change.children[4].children[1].children[0].files[0].name
-    }   
+        products[index].img = './img/' + info_change.children[4].children[1].children[0].files[0].name
+    }else {
+        products[index].img = './img/noimg.png'
+    }
     products[index].des = info_change.children[5].children[1].value
     
     localStorage.setItem('products', JSON.stringify(products))
@@ -745,13 +734,15 @@ function changeAccount(e){
     location.reload()
     return false
 }
+let currentBill = []
 
-function renBill(bills){
+function renBill(b){
+    currentBill = b
     var table =  document.querySelector('#bill_table > tbody')
     table.parentElement.childNodes[4].remove()
     table = document.createElement('tbody')
     document.querySelector('#bill_table').append(table)
-    bills.forEach(function (ele){
+    b.forEach(function (ele){
         if (!ele) return
         let tr = document.createElement('tr')
         let td = document.createElement('td')
@@ -764,7 +755,10 @@ function renBill(bills){
         tr.append(td)
         
         td = document.createElement('td')
-        td.append(ele.info)
+        td.append(ele.info.map(ele=>{
+            return ele.qty + 'x ' + ele.prd.name
+        }).join('\n'))
+
         tr.append(td)
         
         td = document.createElement('td')
@@ -797,7 +791,9 @@ function renBill(bills){
             let form = document.querySelector('#popup-edt-bill form')
             form.children[0].children[1].innerText = ele.user.name
             form.children[1].children[1].innerText = ele.date
-            form.children[2].children[1].innerText = ele.info
+            form.children[2].children[1].innerText = ele.info.map(ele=>{
+                return ele.qty + 'x ' + ele.prd.name
+            }).join('\n')
             form.children[3].children[1].innerText = moneyFormat(ele.total) + 'đ'
             if (ele.status == 0){
                 form.children[4].children[1].innerText = 'Chưa xử lý'
@@ -810,20 +806,7 @@ function renBill(bills){
                 document.querySelector('#popup-edt-bill input[type="checkbox"]').checked = true
             }
             
-            document.querySelector('#popup-edt-bill input[type="checkbox"]').addEventListener('change', (e)=>{
-                if (e.currentTarget.checked){
-                    ele.status = 1
-                    form.children[4].children[1].innerText = 'Đã xử lý'
-                    document.querySelector('#popup-edt-bill .status').style.color = 'var(--color-primary-dark)'
-                }
-                else {
-                    ele.status = 0 
-                    form.children[4].children[1].innerText = 'Chưa xử lý'
-                    document.querySelector('#popup-edt-bill .status').style.color = 'var(--color-button-rmv)'
-                }
-                localStorage.setItem('bills', JSON.stringify(bills))
-                renBill(bills)
-            })
+            document.querySelector('#popup-edt-bill input[type="checkbox"]').setAttribute('onchange', `editBillChange(${ele.id},this)`)
 
         })
 
@@ -833,7 +816,24 @@ function renBill(bills){
 
 }
 
-
+function editBillChange(id, e){
+    let form = document.querySelector('#popup-edt-bill form')
+    const bill = bills.find(ele=>{
+        return ele.id == id
+    })
+    if (e.checked){
+        bill.status = 1
+        form.children[4].children[1].innerText = 'Đã xử lý'
+        document.querySelector('#popup-edt-bill .status').style.color = 'var(--color-primary-dark)'
+    }
+    else {
+        bill.status = 0 
+        form.children[4].children[1].innerText = 'Chưa xử lý'
+        document.querySelector('#popup-edt-bill .status').style.color = 'var(--color-button-rmv)'
+    }
+    localStorage.setItem('bills', JSON.stringify(bills))
+    renBill(currentBill)
+}
 
 function searchChangeBill(){
     let form = document.querySelector('.manager.bill form')
@@ -842,14 +842,9 @@ function searchChangeBill(){
     let status = parseInt(document.getElementById('bill-status-search').value)
 
 
-    // Nếu 1 trong 3 cái điều kiện có giá trị
     if (id.trim() !== "" || !isNaN(date.getTime()) || status != -1){
         renBill(bills.map(function(ele){
 
-            btn.addEventListener('input')
-
-            //Nếu cái tên của bill giố
-            // product.math()
             if (removeAccents(ele.user.name.toUpperCase()).match(id) || ele.user.name.toUpperCase().match(id) || removeAccents(ele.user.name.toUpperCase()).match(removeAccents(id)))
                 if (isNaN(date.getTime()) || ele.date.match(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`))
                     if (status == -1 || status == ele.status)

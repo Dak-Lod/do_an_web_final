@@ -107,7 +107,10 @@
     transition: 0.8s ease;
 }
 
- 
+#home .container-SanPhamMoi .item-SanPhamMoi img {
+    cursor: pointer;
+}
+
 
 #home .container-SanPhamMoi .item-SanPhamMoi{
     line-height: 1;
@@ -273,8 +276,8 @@
     display: flex;
 }
 
-#home .cartAdded {
-    background-color: #f50057;
-    border-color: #f50057;
-    cursor: not-allowed;
+.cartAdded {
+    background-color: #f50057 !important;
+    border-color: #f50057 !important;
+    cursor: not-allowed !important;
 }

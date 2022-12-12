@@ -30,9 +30,9 @@
                 <!-- Search bar -->
 
             <div class="header-search">
-                <form>
+                <form onsubmit="return false">
                     <select class="input-select"></select>
-                    <input type="text"
+                    <input type="text" id="main-search"
                     placeholder="Tìm kiếm" class="input">
                     <button class="search-btn"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
                 </form>
@@ -137,11 +137,11 @@
                         <label for="">Khoảng giá:</label>
                         <div class="container-price">
                             <label for="">Từ: </label>
-                            <input type="number" class="price-product-input" id="product-price-min" placeholder="0K đồng"
+                            <input type="number" class="price-product-input" id="product-price-min" placeholder="MINđ"
                             oninput="searchChange()">
         
                             <label for="">Đến: </label>
-                            <input type="number" class="price-product-input" id="product-price-max" placeholder="2.000K đồng"
+                            <input type="number" class="price-product-input" id="product-price-max" placeholder="MAXđ"
                             oninput="searchChange()">
                             <!-- <div>Đơn vị ngìn đồng</div> -->
                         </div>
@@ -413,8 +413,8 @@
                     <label for="">Ảnh:</label>
                     <div>
                         <input type="file" name="status-product" class="img-product">
-    
-                        <img class="img-preview" >
+                        <img class="img-preview">
+                        <button onclick="rmvImg()">Xoá ảnh</button>
                     </div>
                 </div>
                 <!-- <div style="text-align: center;">
