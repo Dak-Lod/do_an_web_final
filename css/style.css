@@ -103,6 +103,11 @@ a.logo::after {
     top: 50%;
 }
 
+.header-search .search-btn {
+    margin-left: -50px;
+}
+
+
 .header-search form {
     display: flex;
     justify-content: center;
@@ -126,7 +131,7 @@ a.logo::after {
 }
 
 .header-search form .search-btn {
-    margin-left: -6px;
+    /* margin-left: -6px; */
     height: 40px;
     min-width: 55px;
     background: var(--color-primary-dark);

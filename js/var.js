@@ -397,7 +397,7 @@ function renData(){
             console.log(signup_info);
             if (signup_err.style.display == 'none'){
                 if (accounts.findIndex((ele)=>{
-                    return ele.username = signup_info.username
+                    return ele.username == signup_info.username
                 }) > -1) {
                     signup_err.textContent = "Tên tài khoản đã tồn tại!"
                     signup_err.style.display = 'block'

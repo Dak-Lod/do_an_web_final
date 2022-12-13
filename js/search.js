@@ -183,7 +183,7 @@ function renSearchPage(){
         case "-1":
             checkCate.children[0].children[0].checked = true
             currentCate = -1
-            renSP(products)
+            searchChange()
             break
         case "0":
             checkCate.children[1].children[0].checked = true
